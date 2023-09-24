@@ -104,6 +104,7 @@
             this.tarifs.Text = "Тарифы";
             this.tarifs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tarifs.UseVisualStyleBackColor = false;
+            this.tarifs.Click += new System.EventHandler(this.tarifs_Click);
             // 
             // app_name
             // 
@@ -125,7 +126,7 @@
             this.pas_mask.Enabled = false;
             this.pas_mask.Font = new System.Drawing.Font("Linux Biolinum G", 24F);
             this.pas_mask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.pas_mask.Location = new System.Drawing.Point(25, 286);
+            this.pas_mask.Location = new System.Drawing.Point(34, 285);
             this.pas_mask.Name = "pas_mask";
             this.pas_mask.Size = new System.Drawing.Size(114, 37);
             this.pas_mask.TabIndex = 6;
@@ -138,7 +139,7 @@
             this.log_mask.Enabled = false;
             this.log_mask.Font = new System.Drawing.Font("Linux Biolinum G", 24F);
             this.log_mask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.log_mask.Location = new System.Drawing.Point(25, 221);
+            this.log_mask.Location = new System.Drawing.Point(34, 221);
             this.log_mask.Name = "log_mask";
             this.log_mask.Size = new System.Drawing.Size(99, 37);
             this.log_mask.TabIndex = 7;
@@ -164,8 +165,7 @@
             // 
             // authorization
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 582);
@@ -178,8 +178,10 @@
             this.Controls.Add(this.password);
             this.Controls.Add(this.login);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "authorization";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OutAccounting";

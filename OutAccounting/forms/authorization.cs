@@ -50,25 +50,25 @@ namespace OutAccounting
 
         private void entrance_Click(object sender, EventArgs e)
         {
-            current_user.login = login.Text;
-            current_user.password = password.Text;
-
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            DataTable table = new DataTable();
-
-            string querystring = $"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'";
-            SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
-
-            try
+            if ((login.Text == "") || (password.Text == ""))
             {
-                if ((login.Text == "") || (password.Text == ""))
+                MessageBox.Show("Введите данные во все поля для ввода!", "Заполните все данные!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                current_user.login = login.Text.Trim();
+                current_user.password = password.Text.Trim();
+
+                try
                 {
-                    MessageBox.Show("Введите данные во все поля для ввода!", "Заполните все данные!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
+
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    DataTable table = new DataTable();
+
+                    string querystring = $"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'";
+                    SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
+                    adapter.SelectCommand = command;
+                    adapter.Fill(table);
                     if (table.Rows.Count == 1)
                     {
                         SqlCommand user_ID = new SqlCommand($"Select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
@@ -78,7 +78,13 @@ namespace OutAccounting
                         SqlCommand level = new SqlCommand($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
                         current_user.level = Convert.ToInt32(level.ExecuteScalar());
                         dataBase.closeConnection();
-                        MessageBox.Show("Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK);
+                        MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK);
+                        //menu menu = new menu();
+                        //menu.Show();
+                        //this.Hide();
+                        tarifs tarifs = new tarifs();
+                        tarifs.Show();
+                        this.Hide();
                     }
                     else
                     {
@@ -86,13 +92,23 @@ namespace OutAccounting
                         MessageBox.Show("Такого аккаунта не существует! \nПроверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Ошибка входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Проверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Неизвестная ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
-            catch (Exception ex) 
-            {
-                MessageBox.Show("Проверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Неизвестная ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
 
+        private void tarifs_Click(object sender, EventArgs e)
+        {
+            current_user.login = "guest";
+            current_user.password = "guest";
+            current_user.level = 0;
+
+            tarifs tarifs = new tarifs();
+            tarifs.Show();
+            this.Hide();
         }
     }
 }
