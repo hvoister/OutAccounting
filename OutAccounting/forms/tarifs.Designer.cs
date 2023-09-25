@@ -32,9 +32,9 @@
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label price_per_monthLabel;
             System.Windows.Forms.Label servicesLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tarifs));
             this.app_name = new System.Windows.Forms.Label();
             this.tarifsdata = new System.Windows.Forms.DataGridView();
@@ -47,18 +47,20 @@
             this.delete_note = new System.Windows.Forms.Button();
             this.deletbutton = new System.Windows.Forms.PictureBox();
             this.infopanel = new System.Windows.Forms.Panel();
-            this.createbitton = new System.Windows.Forms.PictureBox();
+            this.agreecreatebutton = new System.Windows.Forms.PictureBox();
+            this.fulltarifs = new System.Windows.Forms.PictureBox();
             this.deletebutton = new System.Windows.Forms.PictureBox();
+            this.createbitton = new System.Windows.Forms.PictureBox();
             this.price_per_monthTextBox = new System.Windows.Forms.TextBox();
+            this.servicesTextBox = new System.Windows.Forms.TextBox();
             this.moveright = new System.Windows.Forms.PictureBox();
             this.moveleft = new System.Windows.Forms.PictureBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.backbutton = new System.Windows.Forms.PictureBox();
-            this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
             this.workerpic = new System.Windows.Forms.PictureBox();
             this.bosspic = new System.Windows.Forms.PictureBox();
-            this.servicesTextBox = new System.Windows.Forms.TextBox();
-            this.fulltarifs = new System.Windows.Forms.PictureBox();
+            this.gueststarif = new System.Windows.Forms.PictureBox();
+            this.backbutton = new System.Windows.Forms.PictureBox();
+            this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
             nameLabel = new System.Windows.Forms.Label();
             price_per_monthLabel = new System.Windows.Forms.Label();
             servicesLabel = new System.Windows.Forms.Label();
@@ -67,14 +69,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deletbutton)).BeginInit();
             this.infopanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.createbitton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.agreecreatebutton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fulltarifs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deletebutton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createbitton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveleft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerpic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bosspic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fulltarifs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -130,41 +134,41 @@
             this.tarifsdata.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.tarifsdata.BackgroundColor = System.Drawing.Color.White;
             this.tarifsdata.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.tarifsdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tarifsdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.pricepermonthDataGridViewTextBoxColumn,
             this.servicesDataGridViewTextBoxColumn});
             this.tarifsdata.DataSource = this.tarifsBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tarifsdata.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tarifsdata.DefaultCellStyle = dataGridViewCellStyle11;
             this.tarifsdata.GridColor = System.Drawing.SystemColors.Control;
             this.tarifsdata.Location = new System.Drawing.Point(155, 212);
             this.tarifsdata.Name = "tarifsdata";
             this.tarifsdata.ReadOnly = true;
             this.tarifsdata.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.tarifsdata.ShowCellToolTips = false;
             this.tarifsdata.ShowEditingIcon = false;
             this.tarifsdata.Size = new System.Drawing.Size(705, 296);
@@ -211,6 +215,7 @@
             // delete_note
             // 
             this.delete_note.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.delete_note.Enabled = false;
             this.delete_note.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delete_note.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete_note.ForeColor = System.Drawing.Color.White;
@@ -226,6 +231,7 @@
             // deletbutton
             // 
             this.deletbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.deletbutton.Enabled = false;
             this.deletbutton.Location = new System.Drawing.Point(97, 514);
             this.deletbutton.Name = "deletbutton";
             this.deletbutton.Size = new System.Drawing.Size(316, 46);
@@ -235,6 +241,7 @@
             // infopanel
             // 
             this.infopanel.BackColor = System.Drawing.Color.White;
+            this.infopanel.Controls.Add(this.agreecreatebutton);
             this.infopanel.Controls.Add(this.fulltarifs);
             this.infopanel.Controls.Add(this.deletebutton);
             this.infopanel.Controls.Add(this.createbitton);
@@ -248,22 +255,37 @@
             this.infopanel.Controls.Add(this.nameTextBox);
             this.infopanel.Controls.Add(this.workerpic);
             this.infopanel.Controls.Add(this.bosspic);
+            this.infopanel.Controls.Add(this.gueststarif);
             this.infopanel.Location = new System.Drawing.Point(134, 197);
             this.infopanel.Name = "infopanel";
             this.infopanel.Size = new System.Drawing.Size(753, 386);
             this.infopanel.TabIndex = 10;
             // 
-            // createbitton
+            // agreecreatebutton
             // 
-            this.createbitton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
-            this.createbitton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createbitton.BackgroundImage")));
-            this.createbitton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.createbitton.Location = new System.Drawing.Point(505, 312);
-            this.createbitton.Name = "createbitton";
-            this.createbitton.Size = new System.Drawing.Size(52, 55);
-            this.createbitton.TabIndex = 16;
-            this.createbitton.TabStop = false;
-            this.createbitton.Visible = false;
+            this.agreecreatebutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
+            this.agreecreatebutton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("agreecreatebutton.BackgroundImage")));
+            this.agreecreatebutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.agreecreatebutton.Location = new System.Drawing.Point(508, 312);
+            this.agreecreatebutton.Name = "agreecreatebutton";
+            this.agreecreatebutton.Size = new System.Drawing.Size(52, 55);
+            this.agreecreatebutton.TabIndex = 21;
+            this.agreecreatebutton.TabStop = false;
+            this.agreecreatebutton.Visible = false;
+            this.agreecreatebutton.Click += new System.EventHandler(this.agreecreatebutton_Click);
+            // 
+            // fulltarifs
+            // 
+            this.fulltarifs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
+            this.fulltarifs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fulltarifs.BackgroundImage")));
+            this.fulltarifs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fulltarifs.Location = new System.Drawing.Point(556, 314);
+            this.fulltarifs.Name = "fulltarifs";
+            this.fulltarifs.Size = new System.Drawing.Size(48, 52);
+            this.fulltarifs.TabIndex = 19;
+            this.fulltarifs.TabStop = false;
+            this.fulltarifs.Visible = false;
+            this.fulltarifs.Click += new System.EventHandler(this.fulltarifs_Click);
             // 
             // deletebutton
             // 
@@ -277,6 +299,19 @@
             this.deletebutton.TabStop = false;
             this.deletebutton.Click += new System.EventHandler(this.deletebutton_Click);
             // 
+            // createbitton
+            // 
+            this.createbitton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
+            this.createbitton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createbitton.BackgroundImage")));
+            this.createbitton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.createbitton.Location = new System.Drawing.Point(505, 312);
+            this.createbitton.Name = "createbitton";
+            this.createbitton.Size = new System.Drawing.Size(52, 55);
+            this.createbitton.TabIndex = 16;
+            this.createbitton.TabStop = false;
+            this.createbitton.Visible = false;
+            this.createbitton.Click += new System.EventHandler(this.createbitton_Click);
+            // 
             // price_per_monthTextBox
             // 
             this.price_per_monthTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tarifsBindingSource, "price_per_month", true));
@@ -285,6 +320,16 @@
             this.price_per_monthTextBox.Name = "price_per_monthTextBox";
             this.price_per_monthTextBox.Size = new System.Drawing.Size(512, 35);
             this.price_per_monthTextBox.TabIndex = 13;
+            // 
+            // servicesTextBox
+            // 
+            this.servicesTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tarifsBindingSource, "services", true));
+            this.servicesTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.servicesTextBox.Location = new System.Drawing.Point(132, 125);
+            this.servicesTextBox.Multiline = true;
+            this.servicesTextBox.Name = "servicesTextBox";
+            this.servicesTextBox.Size = new System.Drawing.Size(591, 179);
+            this.servicesTextBox.TabIndex = 14;
             // 
             // moveright
             // 
@@ -319,6 +364,36 @@
             this.nameTextBox.Size = new System.Drawing.Size(561, 35);
             this.nameTextBox.TabIndex = 12;
             // 
+            // workerpic
+            // 
+            this.workerpic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
+            this.workerpic.Location = new System.Drawing.Point(502, 310);
+            this.workerpic.Name = "workerpic";
+            this.workerpic.Size = new System.Drawing.Size(224, 62);
+            this.workerpic.TabIndex = 17;
+            this.workerpic.TabStop = false;
+            this.workerpic.Visible = false;
+            // 
+            // bosspic
+            // 
+            this.bosspic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
+            this.bosspic.Location = new System.Drawing.Point(559, 310);
+            this.bosspic.Name = "bosspic";
+            this.bosspic.Size = new System.Drawing.Size(167, 62);
+            this.bosspic.TabIndex = 18;
+            this.bosspic.TabStop = false;
+            this.bosspic.Visible = false;
+            // 
+            // gueststarif
+            // 
+            this.gueststarif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
+            this.gueststarif.Location = new System.Drawing.Point(549, 310);
+            this.gueststarif.Name = "gueststarif";
+            this.gueststarif.Size = new System.Drawing.Size(177, 62);
+            this.gueststarif.TabIndex = 20;
+            this.gueststarif.TabStop = false;
+            this.gueststarif.Visible = false;
+            // 
             // backbutton
             // 
             this.backbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
@@ -342,49 +417,6 @@
             this.tableAdapterManager.TarifsTableAdapter = this.tarifsTableAdapter;
             this.tableAdapterManager.UpdateOrder = OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.WorkersTableAdapter = null;
-            // 
-            // workerpic
-            // 
-            this.workerpic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
-            this.workerpic.Location = new System.Drawing.Point(503, 310);
-            this.workerpic.Name = "workerpic";
-            this.workerpic.Size = new System.Drawing.Size(223, 62);
-            this.workerpic.TabIndex = 17;
-            this.workerpic.TabStop = false;
-            this.workerpic.Visible = false;
-            // 
-            // bosspic
-            // 
-            this.bosspic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
-            this.bosspic.Location = new System.Drawing.Point(559, 310);
-            this.bosspic.Name = "bosspic";
-            this.bosspic.Size = new System.Drawing.Size(167, 62);
-            this.bosspic.TabIndex = 18;
-            this.bosspic.TabStop = false;
-            this.bosspic.Visible = false;
-            // 
-            // servicesTextBox
-            // 
-            this.servicesTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tarifsBindingSource, "services", true));
-            this.servicesTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servicesTextBox.Location = new System.Drawing.Point(132, 125);
-            this.servicesTextBox.Multiline = true;
-            this.servicesTextBox.Name = "servicesTextBox";
-            this.servicesTextBox.Size = new System.Drawing.Size(591, 179);
-            this.servicesTextBox.TabIndex = 14;
-            // 
-            // fulltarifs
-            // 
-            this.fulltarifs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
-            this.fulltarifs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fulltarifs.BackgroundImage")));
-            this.fulltarifs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fulltarifs.Location = new System.Drawing.Point(540, 310);
-            this.fulltarifs.Name = "fulltarifs";
-            this.fulltarifs.Size = new System.Drawing.Size(65, 62);
-            this.fulltarifs.TabIndex = 19;
-            this.fulltarifs.TabStop = false;
-            this.fulltarifs.Visible = false;
-            this.fulltarifs.Click += new System.EventHandler(this.fulltarifs_Click);
             // 
             // tarifs
             // 
@@ -415,14 +447,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.deletbutton)).EndInit();
             this.infopanel.ResumeLayout(false);
             this.infopanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.createbitton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.agreecreatebutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fulltarifs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deletebutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createbitton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveright)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveleft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerpic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bosspic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fulltarifs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backbutton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,5 +487,7 @@
         private System.Windows.Forms.TextBox servicesTextBox;
         private System.Windows.Forms.PictureBox bosspic;
         private System.Windows.Forms.PictureBox fulltarifs;
+        private System.Windows.Forms.PictureBox gueststarif;
+        private System.Windows.Forms.PictureBox agreecreatebutton;
     }
 }

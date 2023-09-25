@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace OutAccounting
 {
     public partial class tarifs : Form
     {
+        dataBase dataBase = new dataBase();
         public tarifs()
         {
             InitializeComponent();
             this.tarifsdata.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            
 
             if (current_user.level == 1)
             {
@@ -25,9 +29,12 @@ namespace OutAccounting
                 deletebutton.Visible = true;
                 createbitton.Visible = true;
                 deletbutton.Visible = false;
+
+                gueststarif.Visible = false;
             }
             else
             {
+                gueststarif.Visible = true;
                 workerpic.Visible = false;
                 deletebutton.Visible = false;
                 createbitton.Visible = false;
@@ -76,7 +83,11 @@ namespace OutAccounting
                 authorization.Show();
                 this.Hide();
             }
-            else {infopanel.Visible = true; }
+            else 
+            {
+                infopanel.Visible = true;
+                delete_note.Enabled = false;
+            }
         }
 
         private void moveleft_Click(object sender, EventArgs e)
@@ -92,11 +103,69 @@ namespace OutAccounting
         private void deletebutton_Click(object sender, EventArgs e)
         {
             infopanel.Visible = false;
+            delete_note.Enabled = true;
         }
 
         private void fulltarifs_Click(object sender, EventArgs e)
         {
             infopanel.Visible = false;
+        }
+
+        private void createbitton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tarifsBindingSource.AddNew();
+                agreecreatebutton.Visible = true;
+                deletebutton.Visible = false;
+                moveleft.Visible = false;
+                moveright.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка введения данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void agreecreatebutton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (nameTextBox.Text == "" || Convert.ToDouble(price_per_monthTextBox.Text) == 0 || servicesTextBox.Text == "")
+                {
+                    MessageBox.Show("Введите данные во все поля для ввода!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    string tarname = nameTextBox.Text;
+                    double price = Convert.ToDouble(price_per_monthTextBox.Text);
+                    string description = servicesTextBox.Text;
+
+                    dataBase.openConnection();
+
+                    string querystring = $"insert into tarifs (name, price_per_month, services) values (N'{tarname}', {price} , N'{description}')";
+                    SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
+
+                    command.ExecuteNonQuery();
+
+                    dataBase.closeConnection();
+                    MessageBox.Show("Данные успешно добавлены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    this.tarifsTableAdapter.Fill(this.accountingDataSet.Tarifs);
+                    agreecreatebutton.Visible = false;
+
+                    moveleft.Visible = true;
+                    moveright.Visible = true;
+                    deletebutton.Visible = true;
+                    agreecreatebutton.Visible = false;
+                    tarifsBindingSource.MoveFirst();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }
