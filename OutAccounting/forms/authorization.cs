@@ -1,4 +1,5 @@
 ﻿using dataBaseConnection;
+using OutAccounting.forms;
 using OutAccounting.other;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,12 @@ namespace OutAccounting
             InitializeComponent();
 
             today_lab.Text = Convert.ToString(DateTime.Now);
+
+            if (current_user.login != "guest" && current_user.login != null)
+            {
+                menupanel.Visible = true;
+                backauth_button.Visible = true;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -79,12 +86,10 @@ namespace OutAccounting
                         current_user.level = Convert.ToInt32(level.ExecuteScalar());
                         dataBase.closeConnection();
                         MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK);
-                        //menu menu = new menu();
-                        //menu.Show();
-                        //this.Hide();
-                        tarifs tarifs = new tarifs();
-                        tarifs.Show();
-                        this.Hide();
+                        menupanel.Visible = true;
+                        backauth_button.Visible = true;
+                        login.Clear();
+                        password.Clear();
                     }
                     else
                     {
@@ -108,6 +113,27 @@ namespace OutAccounting
 
             tarifs tarifs = new tarifs();
             tarifs.Show();
+            this.Hide();
+        }
+
+        private void backauth_button_Click(object sender, EventArgs e)
+        {
+            menupanel.Visible = false;
+            backauth_button.Visible = false;
+            
+        }
+
+        private void tarifs_button_Click(object sender, EventArgs e)
+        {
+            tarifs tarifs = new tarifs();
+            tarifs.Show();
+            this.Hide();
+        }
+
+        private void customers_button_Click(object sender, EventArgs e)
+        {
+            customers customers = new customers();
+            customers.Show();
             this.Hide();
         }
     }
