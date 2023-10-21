@@ -136,5 +136,20 @@ namespace OutAccounting
             customers.Show();
             this.Hide();
         }
+
+        private void hide_button_Click(object sender, EventArgs e)
+        {
+            password.UseSystemPasswordChar = false;
+            hide_button.Visible = false;
+            show_button.Visible = true;
+        }
+
+        private void show_button_Click(object sender, EventArgs e)
+        {
+            password.UseSystemPasswordChar = true;
+            hide_button.Visible = true;
+            show_button.Visible = false;
+            
+        }
     }
 }

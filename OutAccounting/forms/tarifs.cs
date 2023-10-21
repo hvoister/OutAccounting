@@ -21,9 +21,7 @@ namespace OutAccounting
             InitializeComponent();
             this.tarifsdata.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            
-
-            if (current_user.level == 1)
+            if (current_user.level == 2)
             {
                 workerpic.Visible = true;
                 deletebutton.Visible = true;

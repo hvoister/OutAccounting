@@ -45,8 +45,12 @@
             this.customers_button = new System.Windows.Forms.Button();
             this.accounting_button = new System.Windows.Forms.Button();
             this.backauth_button = new System.Windows.Forms.Button();
+            this.hide_button = new System.Windows.Forms.PictureBox();
+            this.show_button = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menupanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hide_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.show_button)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -158,7 +162,7 @@
             this.today_lab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
             this.today_lab.Font = new System.Drawing.Font("Linux Biolinum G", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.today_lab.ForeColor = System.Drawing.Color.White;
-            this.today_lab.Location = new System.Drawing.Point(709, 542);
+            this.today_lab.Location = new System.Drawing.Point(706, 542);
             this.today_lab.Name = "today_lab";
             this.today_lab.Size = new System.Drawing.Size(227, 31);
             this.today_lab.TabIndex = 9;
@@ -176,7 +180,7 @@
             this.menupanel.Controls.Add(this.tarifs_button);
             this.menupanel.Controls.Add(this.customers_button);
             this.menupanel.Controls.Add(this.accounting_button);
-            this.menupanel.Location = new System.Drawing.Point(-6, 170);
+            this.menupanel.Location = new System.Drawing.Point(-6, 171);
             this.menupanel.Name = "menupanel";
             this.menupanel.Size = new System.Drawing.Size(391, 397);
             this.menupanel.TabIndex = 10;
@@ -242,14 +246,41 @@
             this.backauth_button.Visible = false;
             this.backauth_button.Click += new System.EventHandler(this.backauth_button_Click);
             // 
+            // hide_button
+            // 
+            this.hide_button.BackColor = System.Drawing.Color.White;
+            this.hide_button.Image = ((System.Drawing.Image)(resources.GetObject("hide_button.Image")));
+            this.hide_button.Location = new System.Drawing.Point(312, 285);
+            this.hide_button.Name = "hide_button";
+            this.hide_button.Size = new System.Drawing.Size(40, 40);
+            this.hide_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.hide_button.TabIndex = 12;
+            this.hide_button.TabStop = false;
+            this.hide_button.Visible = false;
+            this.hide_button.Click += new System.EventHandler(this.hide_button_Click);
+            // 
+            // show_button
+            // 
+            this.show_button.BackColor = System.Drawing.Color.White;
+            this.show_button.Image = ((System.Drawing.Image)(resources.GetObject("show_button.Image")));
+            this.show_button.Location = new System.Drawing.Point(312, 285);
+            this.show_button.Name = "show_button";
+            this.show_button.Size = new System.Drawing.Size(40, 40);
+            this.show_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.show_button.TabIndex = 13;
+            this.show_button.TabStop = false;
+            this.show_button.Click += new System.EventHandler(this.show_button_Click);
+            // 
             // authorization
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 582);
-            this.Controls.Add(this.backauth_button);
             this.Controls.Add(this.menupanel);
+            this.Controls.Add(this.show_button);
+            this.Controls.Add(this.hide_button);
+            this.Controls.Add(this.backauth_button);
             this.Controls.Add(this.today_lab);
             this.Controls.Add(this.log_mask);
             this.Controls.Add(this.pas_mask);
@@ -268,6 +299,8 @@
             this.Text = "OutAccounting";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menupanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.hide_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.show_button)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +323,8 @@
         private System.Windows.Forms.Button tarifs_button;
         private System.Windows.Forms.Button customers_button;
         private System.Windows.Forms.Button accounting_button;
+        private System.Windows.Forms.PictureBox hide_button;
+        private System.Windows.Forms.PictureBox show_button;
     }
 }
 
