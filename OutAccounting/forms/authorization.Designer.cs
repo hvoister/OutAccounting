@@ -162,7 +162,7 @@
             this.today_lab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
             this.today_lab.Font = new System.Drawing.Font("Linux Biolinum G", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.today_lab.ForeColor = System.Drawing.Color.White;
-            this.today_lab.Location = new System.Drawing.Point(706, 542);
+            this.today_lab.Location = new System.Drawing.Point(701, 542);
             this.today_lab.Name = "today_lab";
             this.today_lab.Size = new System.Drawing.Size(227, 31);
             this.today_lab.TabIndex = 9;
@@ -229,6 +229,7 @@
             this.accounting_button.Text = "Учёт услуг";
             this.accounting_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.accounting_button.UseVisualStyleBackColor = false;
+            this.accounting_button.Click += new System.EventHandler(this.accounting_button_Click);
             // 
             // backauth_button
             // 
@@ -297,6 +298,8 @@
             this.Name = "authorization";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OutAccounting";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.authorization_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.authorization_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menupanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).EndInit();

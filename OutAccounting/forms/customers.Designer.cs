@@ -35,9 +35,9 @@
             System.Windows.Forms.Label registration_formLabel;
             System.Windows.Forms.Label ogrnLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(customers));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backbutton = new System.Windows.Forms.PictureBox();
             this.app_name = new System.Windows.Forms.Label();
             this.agreecreatebutton = new System.Windows.Forms.PictureBox();
@@ -47,29 +47,31 @@
             this.moveleft = new System.Windows.Forms.PictureBox();
             this.workerpic = new System.Windows.Forms.PictureBox();
             this.infopanel = new System.Windows.Forms.Panel();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.accountingDataSet = new OutAccounting.other.accountingDataSet();
+            this.orgname = new System.Windows.Forms.TextBox();
+            this.ogrnTextBox = new System.Windows.Forms.TextBox();
+            this.ogrnMaskedBox = new System.Windows.Forms.MaskedTextBox();
+            this.registration_formTextBox = new System.Windows.Forms.TextBox();
+            this.kppTextBox = new System.Windows.Forms.TextBox();
+            this.innTextBox = new System.Windows.Forms.TextBox();
             this.registration_formMaskedBox = new System.Windows.Forms.ComboBox();
             this.kppMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.innMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.fullcustomers = new System.Windows.Forms.PictureBox();
-            this.ogrnTextBox = new System.Windows.Forms.TextBox();
-            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.accountingDataSet = new OutAccounting.other.accountingDataSet();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.bosspic = new System.Windows.Forms.PictureBox();
             this.gueststarif = new System.Windows.Forms.PictureBox();
             this.delete_note = new System.Windows.Forms.Button();
-            this.deletbutton = new System.Windows.Forms.PictureBox();
+            this.delete_panel = new System.Windows.Forms.PictureBox();
             this.customersDataGridView = new System.Windows.Forms.DataGridView();
             this.customersTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.CustomersTableAdapter();
             this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
-            this.innTextBox = new System.Windows.Forms.TextBox();
-            this.kppTextBox = new System.Windows.Forms.TextBox();
-            this.registration_formTextBox = new System.Windows.Forms.TextBox();
-            this.ogrnMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ogrn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             nameLabel = new System.Windows.Forms.Label();
             innLabel = new System.Windows.Forms.Label();
             kppLabel = new System.Windows.Forms.Label();
@@ -83,12 +85,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.moveleft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerpic)).BeginInit();
             this.infopanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fullcustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fullcustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bosspic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deletbutton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.delete_panel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,7 +128,7 @@
             // 
             registration_formLabel.AutoSize = true;
             registration_formLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            registration_formLabel.Location = new System.Drawing.Point(43, 202);
+            registration_formLabel.Location = new System.Drawing.Point(43, 203);
             registration_formLabel.Name = "registration_formLabel";
             registration_formLabel.Size = new System.Drawing.Size(227, 27);
             registration_formLabel.TabIndex = 24;
@@ -209,7 +211,7 @@
             this.moveright.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
             this.moveright.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("moveright.BackgroundImage")));
             this.moveright.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.moveright.Location = new System.Drawing.Point(658, 310);
+            this.moveright.Location = new System.Drawing.Point(659, 310);
             this.moveright.Name = "moveright";
             this.moveright.Size = new System.Drawing.Size(65, 62);
             this.moveright.TabIndex = 13;
@@ -221,7 +223,7 @@
             this.moveleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
             this.moveleft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("moveleft.BackgroundImage")));
             this.moveleft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.moveleft.Location = new System.Drawing.Point(601, 310);
+            this.moveleft.Location = new System.Drawing.Point(600, 310);
             this.moveleft.Name = "moveleft";
             this.moveleft.Size = new System.Drawing.Size(65, 62);
             this.moveleft.TabIndex = 12;
@@ -240,6 +242,8 @@
             // infopanel
             // 
             this.infopanel.BackColor = System.Drawing.Color.White;
+            this.infopanel.Controls.Add(this.nameTextBox);
+            this.infopanel.Controls.Add(this.orgname);
             this.infopanel.Controls.Add(this.ogrnTextBox);
             this.infopanel.Controls.Add(this.ogrnMaskedBox);
             this.infopanel.Controls.Add(this.registration_formTextBox);
@@ -254,7 +258,6 @@
             this.infopanel.Controls.Add(kppLabel);
             this.infopanel.Controls.Add(innLabel);
             this.infopanel.Controls.Add(nameLabel);
-            this.infopanel.Controls.Add(this.nameTextBox);
             this.infopanel.Controls.Add(this.agreecreatebutton);
             this.infopanel.Controls.Add(this.deletebutton);
             this.infopanel.Controls.Add(this.createbitton);
@@ -263,10 +266,87 @@
             this.infopanel.Controls.Add(this.workerpic);
             this.infopanel.Controls.Add(this.bosspic);
             this.infopanel.Controls.Add(this.gueststarif);
-            this.infopanel.Location = new System.Drawing.Point(132, 197);
+            this.infopanel.Location = new System.Drawing.Point(132, 199);
             this.infopanel.Name = "infopanel";
             this.infopanel.Size = new System.Drawing.Size(753, 392);
             this.infopanel.TabIndex = 17;
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "name", true));
+            this.nameTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.nameTextBox.Location = new System.Drawing.Point(205, 59);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.ReadOnly = true;
+            this.nameTextBox.Size = new System.Drawing.Size(523, 35);
+            this.nameTextBox.TabIndex = 22;
+            // 
+            // customersBindingSource
+            // 
+            this.customersBindingSource.DataMember = "Customers";
+            this.customersBindingSource.DataSource = this.accountingDataSet;
+            // 
+            // accountingDataSet
+            // 
+            this.accountingDataSet.DataSetName = "accountingDataSet";
+            this.accountingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // orgname
+            // 
+            this.orgname.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.orgname.Location = new System.Drawing.Point(205, 59);
+            this.orgname.Name = "orgname";
+            this.orgname.Size = new System.Drawing.Size(523, 35);
+            this.orgname.TabIndex = 29;
+            // 
+            // ogrnTextBox
+            // 
+            this.ogrnTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "ogrn", true));
+            this.ogrnTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.ogrnTextBox.Location = new System.Drawing.Point(129, 249);
+            this.ogrnTextBox.Name = "ogrnTextBox";
+            this.ogrnTextBox.ReadOnly = true;
+            this.ogrnTextBox.Size = new System.Drawing.Size(599, 35);
+            this.ogrnTextBox.TabIndex = 26;
+            // 
+            // ogrnMaskedBox
+            // 
+            this.ogrnMaskedBox.Enabled = false;
+            this.ogrnMaskedBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.ogrnMaskedBox.Location = new System.Drawing.Point(129, 249);
+            this.ogrnMaskedBox.Name = "ogrnMaskedBox";
+            this.ogrnMaskedBox.Size = new System.Drawing.Size(599, 35);
+            this.ogrnMaskedBox.TabIndex = 18;
+            // 
+            // registration_formTextBox
+            // 
+            this.registration_formTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "registration_form", true));
+            this.registration_formTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.registration_formTextBox.Location = new System.Drawing.Point(276, 200);
+            this.registration_formTextBox.Name = "registration_formTextBox";
+            this.registration_formTextBox.ReadOnly = true;
+            this.registration_formTextBox.Size = new System.Drawing.Size(452, 35);
+            this.registration_formTextBox.TabIndex = 28;
+            // 
+            // kppTextBox
+            // 
+            this.kppTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "kpp", true));
+            this.kppTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.kppTextBox.Location = new System.Drawing.Point(116, 151);
+            this.kppTextBox.Name = "kppTextBox";
+            this.kppTextBox.ReadOnly = true;
+            this.kppTextBox.Size = new System.Drawing.Size(612, 35);
+            this.kppTextBox.TabIndex = 28;
+            // 
+            // innTextBox
+            // 
+            this.innTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "inn", true));
+            this.innTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.innTextBox.Location = new System.Drawing.Point(116, 104);
+            this.innTextBox.Name = "innTextBox";
+            this.innTextBox.ReadOnly = true;
+            this.innTextBox.Size = new System.Drawing.Size(612, 35);
+            this.innTextBox.TabIndex = 28;
             // 
             // registration_formMaskedBox
             // 
@@ -280,7 +360,7 @@
             "Некоммерческая организация (НКО)",
             "Обособленное подразделение (ОП)",
             "Товарищество собственников жилья (ТСЖ)"});
-            this.registration_formMaskedBox.Location = new System.Drawing.Point(276, 199);
+            this.registration_formMaskedBox.Location = new System.Drawing.Point(276, 200);
             this.registration_formMaskedBox.Name = "registration_formMaskedBox";
             this.registration_formMaskedBox.Size = new System.Drawing.Size(452, 35);
             this.registration_formMaskedBox.TabIndex = 28;
@@ -316,34 +396,6 @@
             this.fullcustomers.TabStop = false;
             this.fullcustomers.Visible = false;
             this.fullcustomers.Click += new System.EventHandler(this.fullcustomers_Click);
-            // 
-            // ogrnTextBox
-            // 
-            this.ogrnTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "ogrn", true));
-            this.ogrnTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.ogrnTextBox.Location = new System.Drawing.Point(129, 249);
-            this.ogrnTextBox.Name = "ogrnTextBox";
-            this.ogrnTextBox.Size = new System.Drawing.Size(599, 35);
-            this.ogrnTextBox.TabIndex = 26;
-            // 
-            // customersBindingSource
-            // 
-            this.customersBindingSource.DataMember = "Customers";
-            this.customersBindingSource.DataSource = this.accountingDataSet;
-            // 
-            // accountingDataSet
-            // 
-            this.accountingDataSet.DataSetName = "accountingDataSet";
-            this.accountingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "name", true));
-            this.nameTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.nameTextBox.Location = new System.Drawing.Point(206, 59);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(521, 35);
-            this.nameTextBox.TabIndex = 22;
             // 
             // bosspic
             // 
@@ -381,16 +433,16 @@
             this.delete_note.UseVisualStyleBackColor = false;
             this.delete_note.Click += new System.EventHandler(this.delete_note_Click);
             // 
-            // deletbutton
+            // delete_panel
             // 
-            this.deletbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
-            this.deletbutton.Enabled = false;
-            this.deletbutton.Location = new System.Drawing.Point(97, 512);
-            this.deletbutton.Name = "deletbutton";
-            this.deletbutton.Size = new System.Drawing.Size(316, 46);
-            this.deletbutton.TabIndex = 16;
-            this.deletbutton.TabStop = false;
-            this.deletbutton.Visible = false;
+            this.delete_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.delete_panel.Enabled = false;
+            this.delete_panel.Location = new System.Drawing.Point(96, 512);
+            this.delete_panel.Name = "delete_panel";
+            this.delete_panel.Size = new System.Drawing.Size(316, 46);
+            this.delete_panel.TabIndex = 16;
+            this.delete_panel.TabStop = false;
+            this.delete_panel.Visible = false;
             // 
             // customersDataGridView
             // 
@@ -402,42 +454,43 @@
             this.customersDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.customersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.customersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewTextBoxColumn5,
+            this.ogrn});
             this.customersDataGridView.DataSource = this.customersBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.customersDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.customersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.customersDataGridView.GridColor = System.Drawing.SystemColors.Control;
             this.customersDataGridView.Location = new System.Drawing.Point(155, 212);
             this.customersDataGridView.Name = "customersDataGridView";
             this.customersDataGridView.ReadOnly = true;
             this.customersDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.customersDataGridView.ShowCellToolTips = false;
             this.customersDataGridView.ShowEditingIcon = false;
             this.customersDataGridView.Size = new System.Drawing.Size(705, 296);
@@ -459,49 +512,13 @@
             this.tableAdapterManager.UpdateOrder = OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.WorkersTableAdapter = null;
             // 
-            // innTextBox
-            // 
-            this.innTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "inn", true));
-            this.innTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.innTextBox.Location = new System.Drawing.Point(116, 104);
-            this.innTextBox.Name = "innTextBox";
-            this.innTextBox.Size = new System.Drawing.Size(612, 35);
-            this.innTextBox.TabIndex = 28;
-            // 
-            // kppTextBox
-            // 
-            this.kppTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "kpp", true));
-            this.kppTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.kppTextBox.Location = new System.Drawing.Point(116, 151);
-            this.kppTextBox.Name = "kppTextBox";
-            this.kppTextBox.Size = new System.Drawing.Size(612, 35);
-            this.kppTextBox.TabIndex = 28;
-            // 
-            // registration_formTextBox
-            // 
-            this.registration_formTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customersBindingSource, "registration_form", true));
-            this.registration_formTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.registration_formTextBox.Location = new System.Drawing.Point(276, 199);
-            this.registration_formTextBox.Name = "registration_formTextBox";
-            this.registration_formTextBox.Size = new System.Drawing.Size(452, 35);
-            this.registration_formTextBox.TabIndex = 28;
-            // 
-            // ogrnMaskedBox
-            // 
-            this.ogrnMaskedBox.Enabled = false;
-            this.ogrnMaskedBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.ogrnMaskedBox.Location = new System.Drawing.Point(129, 249);
-            this.ogrnMaskedBox.Name = "ogrnMaskedBox";
-            this.ogrnMaskedBox.Size = new System.Drawing.Size(599, 35);
-            this.ogrnMaskedBox.TabIndex = 18;
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "name";
             this.dataGridViewTextBoxColumn2.HeaderText = "Организация";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 170;
+            this.dataGridViewTextBoxColumn2.Width = 140;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -509,7 +526,7 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "ИНН";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 130;
+            this.dataGridViewTextBoxColumn3.Width = 110;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -525,7 +542,15 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Форма регистрации";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 280;
+            this.dataGridViewTextBoxColumn5.Width = 215;
+            // 
+            // ogrn
+            // 
+            this.ogrn.DataPropertyName = "ogrn";
+            this.ogrn.HeaderText = "ОГРН";
+            this.ogrn.Name = "ogrn";
+            this.ogrn.ReadOnly = true;
+            this.ogrn.Width = 116;
             // 
             // customers
             // 
@@ -536,7 +561,7 @@
             this.ClientSize = new System.Drawing.Size(1060, 664);
             this.Controls.Add(this.infopanel);
             this.Controls.Add(this.customersDataGridView);
-            this.Controls.Add(this.deletbutton);
+            this.Controls.Add(this.delete_panel);
             this.Controls.Add(this.backbutton);
             this.Controls.Add(this.app_name);
             this.Controls.Add(this.delete_note);
@@ -547,7 +572,9 @@
             this.MinimizeBox = false;
             this.Name = "customers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "customers";
+            this.Text = "OutAccounting - Клиенты";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.customers_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.customers_FormClosed);
             this.Load += new System.EventHandler(this.customers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreecreatebutton)).EndInit();
@@ -558,12 +585,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.workerpic)).EndInit();
             this.infopanel.ResumeLayout(false);
             this.infopanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fullcustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fullcustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bosspic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deletbutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.delete_panel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -584,7 +611,7 @@
         private System.Windows.Forms.PictureBox gueststarif;
         private other.accountingDataSet accountingDataSet;
         private System.Windows.Forms.Button delete_note;
-        private System.Windows.Forms.PictureBox deletbutton;
+        private System.Windows.Forms.PictureBox delete_panel;
         private System.Windows.Forms.BindingSource customersBindingSource;
         private other.accountingDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
         private System.Windows.Forms.DataGridView customersDataGridView;
@@ -600,9 +627,11 @@
         private System.Windows.Forms.TextBox kppTextBox;
         private System.Windows.Forms.TextBox registration_formTextBox;
         private System.Windows.Forms.MaskedTextBox ogrnMaskedBox;
+        private System.Windows.Forms.TextBox orgname;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ogrn;
     }
 }

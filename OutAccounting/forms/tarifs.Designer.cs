@@ -32,9 +32,9 @@
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label price_per_monthLabel;
             System.Windows.Forms.Label servicesLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tarifs));
             this.app_name = new System.Windows.Forms.Label();
             this.tarifsdata = new System.Windows.Forms.DataGridView();
@@ -134,41 +134,41 @@
             this.tarifsdata.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.tarifsdata.BackgroundColor = System.Drawing.Color.White;
             this.tarifsdata.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.tarifsdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tarifsdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.pricepermonthDataGridViewTextBoxColumn,
             this.servicesDataGridViewTextBoxColumn});
             this.tarifsdata.DataSource = this.tarifsBindingSource;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tarifsdata.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tarifsdata.DefaultCellStyle = dataGridViewCellStyle5;
             this.tarifsdata.GridColor = System.Drawing.SystemColors.Control;
             this.tarifsdata.Location = new System.Drawing.Point(155, 212);
             this.tarifsdata.Name = "tarifsdata";
             this.tarifsdata.ReadOnly = true;
             this.tarifsdata.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.tarifsdata.ShowCellToolTips = false;
             this.tarifsdata.ShowEditingIcon = false;
             this.tarifsdata.Size = new System.Drawing.Size(705, 296);
@@ -318,6 +318,7 @@
             this.price_per_monthTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.price_per_monthTextBox.Location = new System.Drawing.Point(211, 77);
             this.price_per_monthTextBox.Name = "price_per_monthTextBox";
+            this.price_per_monthTextBox.ReadOnly = true;
             this.price_per_monthTextBox.Size = new System.Drawing.Size(512, 35);
             this.price_per_monthTextBox.TabIndex = 13;
             // 
@@ -328,6 +329,7 @@
             this.servicesTextBox.Location = new System.Drawing.Point(132, 125);
             this.servicesTextBox.Multiline = true;
             this.servicesTextBox.Name = "servicesTextBox";
+            this.servicesTextBox.ReadOnly = true;
             this.servicesTextBox.Size = new System.Drawing.Size(591, 179);
             this.servicesTextBox.TabIndex = 14;
             // 
@@ -336,7 +338,7 @@
             this.moveright.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
             this.moveright.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("moveright.BackgroundImage")));
             this.moveright.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.moveright.Location = new System.Drawing.Point(658, 310);
+            this.moveright.Location = new System.Drawing.Point(659, 310);
             this.moveright.Name = "moveright";
             this.moveright.Size = new System.Drawing.Size(65, 62);
             this.moveright.TabIndex = 13;
@@ -348,7 +350,7 @@
             this.moveleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(158)))), ((int)(((byte)(205)))));
             this.moveleft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("moveleft.BackgroundImage")));
             this.moveleft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.moveleft.Location = new System.Drawing.Point(601, 310);
+            this.moveleft.Location = new System.Drawing.Point(600, 310);
             this.moveleft.Name = "moveleft";
             this.moveleft.Size = new System.Drawing.Size(65, 62);
             this.moveleft.TabIndex = 12;
@@ -361,6 +363,7 @@
             this.nameTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameTextBox.Location = new System.Drawing.Point(162, 31);
             this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(561, 35);
             this.nameTextBox.TabIndex = 12;
             // 
@@ -439,6 +442,7 @@
             this.Name = "tarifs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OurAccounting - Тарифы";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.tarifs_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.tarifs_FormClosed);
             this.Load += new System.EventHandler(this.tarifs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tarifsdata)).EndInit();

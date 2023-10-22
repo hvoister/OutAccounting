@@ -151,5 +151,22 @@ namespace OutAccounting
             show_button.Visible = false;
             
         }
+
+        private void authorization_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void authorization_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void accounting_button_Click(object sender, EventArgs e)
+        {
+            accounting accounting = new accounting();
+            accounting.Show();
+            this.Hide();
+        }
     }
 }

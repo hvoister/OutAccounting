@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -118,6 +119,10 @@ namespace OutAccounting
                 deletebutton.Visible = false;
                 moveleft.Visible = false;
                 moveright.Visible = false;
+
+                nameTextBox.ReadOnly = false;
+                price_per_monthTextBox.ReadOnly = false;
+                servicesTextBox.ReadOnly = false;
             }
             catch (Exception ex)
             {
@@ -157,6 +162,10 @@ namespace OutAccounting
                     deletebutton.Visible = true;
                     agreecreatebutton.Visible = false;
                     tarifsBindingSource.MoveFirst();
+
+                    nameTextBox.ReadOnly = true;
+                    price_per_monthTextBox.ReadOnly = true;
+                    servicesTextBox.ReadOnly = true;
                 }
             }
             catch
@@ -164,6 +173,11 @@ namespace OutAccounting
                 MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void tarifs_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace OutAccounting.forms
                 workerpic.Visible = true;
                 deletebutton.Visible = true;
                 createbitton.Visible = true;
-                deletbutton.Visible = false;
+                delete_panel.Visible = false;
             }
             else
             {
@@ -34,10 +34,17 @@ namespace OutAccounting.forms
                 workerpic.Visible = false;
                 deletebutton.Visible = false;
                 createbitton.Visible = false;
-                deletbutton.Visible = true;
+                delete_panel.Visible = true;
 
                 fullcustomers.Visible = true;
             }
+        }
+
+        private void customers_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "accountingDataSet.Customers". При необходимости она может быть перемещена или удалена.
+            this.customersTableAdapter.Fill(this.accountingDataSet.Customers);
+
         }
 
         private void backbutton_Click(object sender, EventArgs e)
@@ -55,11 +62,14 @@ namespace OutAccounting.forms
             }
         }
 
-            private void deletebutton_Click(object sender, EventArgs e)
+        private void customers_FormClosed(object sender, FormClosedEventArgs e)
         {
-            infopanel.Visible = false;
-            deletbutton.Visible = false;
-            delete_note.Enabled = true;
+            Application.Exit();
+        }
+
+        private void customers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void moveleft_Click(object sender, EventArgs e)
@@ -70,6 +80,11 @@ namespace OutAccounting.forms
         private void moveright_Click(object sender, EventArgs e)
         {
             customersBindingSource.MoveNext();
+        }
+
+        private void fullcustomers_Click(object sender, EventArgs e)
+        {
+            infopanel.Visible = false;
         }
 
         private void createbitton_Click(object sender, EventArgs e)
@@ -85,6 +100,7 @@ namespace OutAccounting.forms
                 innTextBox.Visible = false;
                 kppTextBox.Visible = false;
                 registration_formTextBox.Visible = false;
+                nameTextBox.Visible = false;
                 ogrnTextBox.Visible = false;
             }
             catch (Exception ex)
@@ -93,17 +109,31 @@ namespace OutAccounting.forms
             }
         }
 
+        private void registration_formTextBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ogrnMaskedBox.Mask = "";
+            ogrnMaskedBox.Enabled = true;
+            if (registration_formMaskedBox.SelectedIndex == 0)
+            {
+                ogrnMaskedBox.Mask = "000000000000000";
+            }
+            else
+            {
+                ogrnMaskedBox.Mask = "0000000000000";
+            }
+        }
+
         private void agreecreatebutton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (nameTextBox.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "")
+                if (orgname.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "")
                 {
                     MessageBox.Show("Введите данные во все поля для ввода!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    string cusname = nameTextBox.Text;
+                    string cusname = orgname.Text;
                     decimal inn = Convert.ToDecimal(innMaskedBox.Text);
                     decimal kpp = Convert.ToDecimal(kppMaskedBox.Text);
                     string registr = Convert.ToString(registration_formMaskedBox.SelectedItem);
@@ -137,6 +167,7 @@ namespace OutAccounting.forms
                     innTextBox.Visible = true;
                     kppTextBox.Visible = true;
                     registration_formTextBox.Visible = true;
+                    nameTextBox.Visible = true;
                     ogrnTextBox.Visible = true;
                 }
             }
@@ -147,11 +178,11 @@ namespace OutAccounting.forms
 
         }
 
-        private void customers_Load(object sender, EventArgs e)
+        private void deletebutton_Click(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "accountingDataSet.Customers". При необходимости она может быть перемещена или удалена.
-            this.customersTableAdapter.Fill(this.accountingDataSet.Customers);
-
+            infopanel.Visible = false;
+            delete_panel.Visible = false;
+            delete_note.Enabled = true;
         }
 
         private void delete_note_Click(object sender, EventArgs e)
@@ -173,23 +204,6 @@ namespace OutAccounting.forms
             }
         }
 
-        private void fullcustomers_Click(object sender, EventArgs e)
-        {
-            infopanel.Visible = false;
-        }
-
-        private void registration_formTextBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ogrnMaskedBox.Mask = "";
-            ogrnMaskedBox.Enabled = true;
-            if (registration_formMaskedBox.SelectedIndex == 0)
-            {
-                ogrnMaskedBox.Mask = "000000000000000";
-            }
-            else
-            {
-                ogrnMaskedBox.Mask = "0000000000000";
-            }
-        }
+        
     }
 }
