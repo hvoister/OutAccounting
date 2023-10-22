@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -86,8 +87,8 @@ namespace OutAccounting.forms
 
         private void agree_add_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 string reqcusname = Convert.ToString(customer_name.SelectedValue);
                 string reqtarifname = Convert.ToString(tarif_name.SelectedValue);
                 DateTime start_date = DateTime.Now.ToLocalTime();
@@ -148,11 +149,61 @@ namespace OutAccounting.forms
                 {
                     MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void delete_note_Click(object sender, EventArgs e)
+        {
+            string customer_name, tarif_name, start_date, finish_date, totalprice;
+            Int32 selectedRowCount =  accountingtable.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount == 1)
+            {
+                foreach (DataGridViewRow row in accountingtable.SelectedRows)
+                {
+                    customer_name = row.Cells[0].Value.ToString();
+                    tarif_name = row.Cells[1].Value.ToString();
+                    totalprice = row.Cells[4].Value.ToString();
+                    try
+                    {
+                        DialogResult result = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (result == DialogResult.Yes)
+                        {
+                            SqlCommand cmd_cusID = new SqlCommand($"Select id_customer from customers where name = N'{customer_name}'", dataBase.getConnection());
+                            SqlCommand cmd_tarifID = new SqlCommand($"Select id_tarif from tarifs where name = N'{tarif_name}'", dataBase.getConnection());
+                            dataBase.openConnection();
+                            int cusid = Convert.ToInt32(cmd_cusID.ExecuteScalar());
+                            int tarifid = Convert.ToInt32(cmd_tarifID.ExecuteScalar());
+
+                            string querystring = $"delete from accounting where customer = {cusid} and tarif = {tarifid} and total = {totalprice}";
+                            SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
+
+                            command.ExecuteNonQuery();
+                            SqlDataAdapter da = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
+                            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+
+                            DataSet ds = new DataSet();
+                            da.Fill(ds, "Result");
+
+                            accountingtable.DataSource = ds.Tables["Result"];
+                            dataBase.closeConnection();
+                            MessageBox.Show("Данные успешно удалены!");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(accounting));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label tarifLabel;
             System.Windows.Forms.Label dateEndLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(accounting));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.accountingDataSet = new OutAccounting.other.accountingDataSet();
             this.app_name = new System.Windows.Forms.Label();
             this.backbutton = new System.Windows.Forms.PictureBox();
@@ -43,14 +43,15 @@
             this.delete_note = new System.Windows.Forms.Button();
             this.add_button = new System.Windows.Forms.Button();
             this.add_panel = new System.Windows.Forms.Panel();
-            this.tarif_name = new System.Windows.Forms.ComboBox();
-            this.end_date = new System.Windows.Forms.MaskedTextBox();
-            this.customer_name = new System.Windows.Forms.ComboBox();
             this.agree_add = new System.Windows.Forms.Button();
+            this.customer_name = new System.Windows.Forms.ComboBox();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customersTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.CustomersTableAdapter();
+            this.end_date = new System.Windows.Forms.MaskedTextBox();
+            this.tarif_name = new System.Windows.Forms.ComboBox();
             this.tarifsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customersTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.CustomersTableAdapter();
             this.tarifsTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.TarifsTableAdapter();
+            this.delete_button_info = new System.Windows.Forms.ToolTip(this.components);
             nameLabel = new System.Windows.Forms.Label();
             tarifLabel = new System.Windows.Forms.Label();
             dateEndLabel = new System.Windows.Forms.Label();
@@ -61,6 +62,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            nameLabel.Location = new System.Drawing.Point(48, 96);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(94, 27);
+            nameLabel.TabIndex = 22;
+            nameLabel.Text = "Клиент:";
+            // 
+            // tarifLabel
+            // 
+            tarifLabel.AutoSize = true;
+            tarifLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            tarifLabel.Location = new System.Drawing.Point(48, 146);
+            tarifLabel.Name = "tarifLabel";
+            tarifLabel.Size = new System.Drawing.Size(84, 27);
+            tarifLabel.TabIndex = 24;
+            tarifLabel.Text = "Тариф:";
+            // 
+            // dateEndLabel
+            // 
+            dateEndLabel.AutoSize = true;
+            dateEndLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            dateEndLabel.Location = new System.Drawing.Point(48, 197);
+            dateEndLabel.Name = "dateEndLabel";
+            dateEndLabel.Size = new System.Drawing.Size(351, 27);
+            dateEndLabel.TabIndex = 27;
+            dateEndLabel.Text = "Дата окончания оказания услуг:";
             // 
             // accountingDataSet
             // 
@@ -99,35 +130,35 @@
             this.accountingtable.AllowUserToResizeColumns = false;
             this.accountingtable.AllowUserToResizeRows = false;
             this.accountingtable.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.accountingtable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.accountingtable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.accountingtable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.accountingtable.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.accountingtable.DefaultCellStyle = dataGridViewCellStyle2;
             this.accountingtable.GridColor = System.Drawing.SystemColors.Control;
             this.accountingtable.Location = new System.Drawing.Point(156, 207);
             this.accountingtable.Name = "accountingtable";
             this.accountingtable.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.accountingtable.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.accountingtable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.accountingtable.Size = new System.Drawing.Size(763, 294);
             this.accountingtable.TabIndex = 15;
             // 
@@ -143,7 +174,9 @@
             this.delete_note.TabIndex = 17;
             this.delete_note.Text = "Удалить";
             this.delete_note.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.delete_button_info.SetToolTip(this.delete_note, "Для удаления необходимо выделить соответствующую строку!");
             this.delete_note.UseVisualStyleBackColor = false;
+            this.delete_note.Click += new System.EventHandler(this.delete_note_Click);
             // 
             // add_button
             // 
@@ -170,75 +203,11 @@
             this.add_panel.Controls.Add(this.tarif_name);
             this.add_panel.Controls.Add(tarifLabel);
             this.add_panel.Controls.Add(nameLabel);
-            this.add_panel.Location = new System.Drawing.Point(141, 196);
+            this.add_panel.Location = new System.Drawing.Point(142, 195);
             this.add_panel.Name = "add_panel";
             this.add_panel.Size = new System.Drawing.Size(790, 375);
             this.add_panel.TabIndex = 20;
             this.add_panel.Visible = false;
-            // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            nameLabel.Location = new System.Drawing.Point(48, 96);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(94, 27);
-            nameLabel.TabIndex = 22;
-            nameLabel.Text = "Клиент:";
-            // 
-            // tarifLabel
-            // 
-            tarifLabel.AutoSize = true;
-            tarifLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            tarifLabel.Location = new System.Drawing.Point(48, 146);
-            tarifLabel.Name = "tarifLabel";
-            tarifLabel.Size = new System.Drawing.Size(84, 27);
-            tarifLabel.TabIndex = 24;
-            tarifLabel.Text = "Тариф:";
-            // 
-            // tarif_name
-            // 
-            this.tarif_name.DataSource = this.tarifsBindingSource;
-            this.tarif_name.DisplayMember = "name";
-            this.tarif_name.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.tarif_name.FormattingEnabled = true;
-            this.tarif_name.Location = new System.Drawing.Point(138, 143);
-            this.tarif_name.Name = "tarif_name";
-            this.tarif_name.Size = new System.Drawing.Size(622, 35);
-            this.tarif_name.TabIndex = 25;
-            this.tarif_name.ValueMember = "name";
-            // 
-            // end_date
-            // 
-            this.end_date.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.end_date.Location = new System.Drawing.Point(405, 194);
-            this.end_date.Mask = "00/00/0000";
-            this.end_date.Name = "end_date";
-            this.end_date.Size = new System.Drawing.Size(355, 35);
-            this.end_date.TabIndex = 26;
-            this.end_date.ValidatingType = typeof(System.DateTime);
-            // 
-            // dateEndLabel
-            // 
-            dateEndLabel.AutoSize = true;
-            dateEndLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            dateEndLabel.Location = new System.Drawing.Point(48, 197);
-            dateEndLabel.Name = "dateEndLabel";
-            dateEndLabel.Size = new System.Drawing.Size(351, 27);
-            dateEndLabel.TabIndex = 27;
-            dateEndLabel.Text = "Дата окончания оказания услуг:";
-            // 
-            // customer_name
-            // 
-            this.customer_name.DataSource = this.customersBindingSource;
-            this.customer_name.DisplayMember = "name";
-            this.customer_name.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.customer_name.FormattingEnabled = true;
-            this.customer_name.Location = new System.Drawing.Point(148, 93);
-            this.customer_name.Name = "customer_name";
-            this.customer_name.Size = new System.Drawing.Size(612, 35);
-            this.customer_name.TabIndex = 28;
-            this.customer_name.ValueMember = "name";
             // 
             // agree_add
             // 
@@ -255,19 +224,53 @@
             this.agree_add.UseVisualStyleBackColor = false;
             this.agree_add.Click += new System.EventHandler(this.agree_add_Click);
             // 
+            // customer_name
+            // 
+            this.customer_name.DataSource = this.customersBindingSource;
+            this.customer_name.DisplayMember = "name";
+            this.customer_name.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.customer_name.FormattingEnabled = true;
+            this.customer_name.Location = new System.Drawing.Point(148, 93);
+            this.customer_name.Name = "customer_name";
+            this.customer_name.Size = new System.Drawing.Size(612, 35);
+            this.customer_name.TabIndex = 28;
+            this.customer_name.ValueMember = "name";
+            // 
             // customersBindingSource
             // 
             this.customersBindingSource.DataMember = "Customers";
             this.customersBindingSource.DataSource = this.accountingDataSet;
             // 
-            // customersTableAdapter
+            // end_date
             // 
-            this.customersTableAdapter.ClearBeforeFill = true;
+            this.end_date.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.end_date.Location = new System.Drawing.Point(405, 194);
+            this.end_date.Mask = "00/00/0000";
+            this.end_date.Name = "end_date";
+            this.end_date.Size = new System.Drawing.Size(355, 35);
+            this.end_date.TabIndex = 26;
+            this.end_date.ValidatingType = typeof(System.DateTime);
+            // 
+            // tarif_name
+            // 
+            this.tarif_name.DataSource = this.tarifsBindingSource;
+            this.tarif_name.DisplayMember = "name";
+            this.tarif_name.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.tarif_name.FormattingEnabled = true;
+            this.tarif_name.Location = new System.Drawing.Point(138, 143);
+            this.tarif_name.Name = "tarif_name";
+            this.tarif_name.Size = new System.Drawing.Size(622, 35);
+            this.tarif_name.TabIndex = 25;
+            this.tarif_name.ValueMember = "name";
             // 
             // tarifsBindingSource
             // 
             this.tarifsBindingSource.DataMember = "Tarifs";
             this.tarifsBindingSource.DataSource = this.accountingDataSet;
+            // 
+            // customersTableAdapter
+            // 
+            this.customersTableAdapter.ClearBeforeFill = true;
             // 
             // tarifsTableAdapter
             // 
@@ -324,5 +327,6 @@
         private other.accountingDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
         private System.Windows.Forms.BindingSource tarifsBindingSource;
         private other.accountingDataSetTableAdapters.TarifsTableAdapter tarifsTableAdapter;
+        private System.Windows.Forms.ToolTip delete_button_info;
     }
 }

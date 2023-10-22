@@ -93,7 +93,7 @@
             this.entrance.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.entrance.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entrance.ForeColor = System.Drawing.Color.White;
-            this.entrance.Location = new System.Drawing.Point(1, 376);
+            this.entrance.Location = new System.Drawing.Point(-2, 376);
             this.entrance.Name = "entrance";
             this.entrance.Size = new System.Drawing.Size(312, 60);
             this.entrance.TabIndex = 3;
@@ -108,7 +108,7 @@
             this.tarifs.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.tarifs.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tarifs.ForeColor = System.Drawing.Color.White;
-            this.tarifs.Location = new System.Drawing.Point(1, 442);
+            this.tarifs.Location = new System.Drawing.Point(-2, 442);
             this.tarifs.Name = "tarifs";
             this.tarifs.Size = new System.Drawing.Size(312, 46);
             this.tarifs.TabIndex = 4;
@@ -180,7 +180,7 @@
             this.menupanel.Controls.Add(this.tarifs_button);
             this.menupanel.Controls.Add(this.customers_button);
             this.menupanel.Controls.Add(this.accounting_button);
-            this.menupanel.Location = new System.Drawing.Point(-6, 171);
+            this.menupanel.Location = new System.Drawing.Point(-6, 169);
             this.menupanel.Name = "menupanel";
             this.menupanel.Size = new System.Drawing.Size(391, 397);
             this.menupanel.TabIndex = 10;
