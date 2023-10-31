@@ -59,7 +59,7 @@ namespace OutAccounting.forms
 
         private void backbutton_Click(object sender, EventArgs e)
         {
-            if (add_panel.Visible == false)
+            if (add_panel.Visible == false && search_panel.Visible == false)
             {
                 authorization authorization = new authorization();
                 authorization.Show();
@@ -67,7 +67,17 @@ namespace OutAccounting.forms
             }
             else
             {
+                SqlDataAdapter da = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
+                SqlCommandBuilder cb = new SqlCommandBuilder(da);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Result");
+
+                accountingtable.DataSource = ds.Tables["Result"];
+                dataBase.closeConnection();
+
                 add_panel.Visible = false;
+                search_panel.Visible = false;
             }
         }
 
@@ -92,7 +102,11 @@ namespace OutAccounting.forms
                 string reqcusname = Convert.ToString(customer_name.SelectedValue);
                 string reqtarifname = Convert.ToString(tarif_name.SelectedValue);
                 DateTime start_date = DateTime.Now.ToLocalTime();
-                DateTime finish_date = Convert.ToDateTime(end_date.Text);
+
+                int months = ((int)months_count.Value);
+                string finish_date_str = Convert.ToString(start_date.AddMonths(months));
+
+                DateTime finish_date = Convert.ToDateTime(finish_date_str);
 
                 if (finish_date > start_date)
                 {
@@ -106,27 +120,12 @@ namespace OutAccounting.forms
                     int tarifid = Convert.ToInt32(cmd_tarifID.ExecuteScalar());
                     dataBase.closeConnection();
 
-                    int months = 0;
-                    if ((finish_date.Year - start_date.Year) == 0)
-                    {
-                        months = finish_date.Month - start_date.Month;
-                    }
-                    else
-                    {
-                        if (finish_date.Month != start_date.Month)
-                        {
-                            months = ((12 - start_date.Month) + finish_date.Month) * (finish_date.Year - start_date.Year);
-                        }
-                        else
-                        { months = 12 * (finish_date.Year - start_date.Year); }
-                    }
-
                     SqlCommand cmd_tarifprice = new SqlCommand($"Select price_per_month from tarifs where ID_tarif = N'{tarifid}'", dataBase.getConnection());
                     dataBase.openConnection();
                     int tarifprice = Convert.ToInt32(cmd_tarifprice.ExecuteScalar());
                     dataBase.closeConnection();
 
-                    int total = tarifprice * months;
+                    int total = tarifprice * Convert.ToInt32(months_count.Value);
 
                     dataBase.openConnection();
 
@@ -204,6 +203,28 @@ namespace OutAccounting.forms
             {
                 MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void search_open_Click(object sender, EventArgs e)
+        {
+            search_panel.Visible = true;
+        }
+
+        private void customer_search_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string reqcusname = Convert.ToString(customer_search.SelectedValue);
+            SqlCommand cmd_cusID = new SqlCommand($"Select id_customer from customers where name = N'{reqcusname}'", dataBase.getConnection());
+            dataBase.openConnection();
+            int selectedCustomer_id = Convert.ToInt32(cmd_cusID.ExecuteScalar());
+
+            SqlDataAdapter da = new SqlDataAdapter($"select Customers.name AS [Клиент], Tarifs.name AS [Тариф], Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif where Customers.ID_customer = {selectedCustomer_id};", dataBase.getConnection());
+            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Result");
+
+            accountingtable.DataSource = ds.Tables["Result"];
+            dataBase.closeConnection();
         }
     }
 }

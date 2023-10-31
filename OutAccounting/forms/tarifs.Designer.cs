@@ -32,6 +32,7 @@
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label price_per_monthLabel;
             System.Windows.Forms.Label servicesLabel;
+            System.Windows.Forms.Label label1;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -61,9 +62,13 @@
             this.gueststarif = new System.Windows.Forms.PictureBox();
             this.backbutton = new System.Windows.Forms.PictureBox();
             this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
+            this.search_open = new System.Windows.Forms.PictureBox();
+            this.search_panel = new System.Windows.Forms.Panel();
+            this.search_text = new System.Windows.Forms.ComboBox();
             nameLabel = new System.Windows.Forms.Label();
             price_per_monthLabel = new System.Windows.Forms.Label();
             servicesLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsdata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).BeginInit();
@@ -79,6 +84,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bosspic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.search_open)).BeginInit();
+            this.search_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -110,6 +117,16 @@
             servicesLabel.Size = new System.Drawing.Size(88, 27);
             servicesLabel.TabIndex = 13;
             servicesLabel.Text = "Услуги:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            label1.Location = new System.Drawing.Point(18, 16);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(203, 27);
+            label1.TabIndex = 23;
+            label1.Text = "Название тарифа:";
             // 
             // app_name
             // 
@@ -256,7 +273,7 @@
             this.infopanel.Controls.Add(this.workerpic);
             this.infopanel.Controls.Add(this.bosspic);
             this.infopanel.Controls.Add(this.gueststarif);
-            this.infopanel.Location = new System.Drawing.Point(134, 197);
+            this.infopanel.Location = new System.Drawing.Point(132, 190);
             this.infopanel.Name = "infopanel";
             this.infopanel.Size = new System.Drawing.Size(753, 386);
             this.infopanel.TabIndex = 10;
@@ -421,6 +438,43 @@
             this.tableAdapterManager.UpdateOrder = OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.WorkersTableAdapter = null;
             // 
+            // search_open
+            // 
+            this.search_open.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
+            this.search_open.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("search_open.BackgroundImage")));
+            this.search_open.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.search_open.Location = new System.Drawing.Point(211, 116);
+            this.search_open.Name = "search_open";
+            this.search_open.Size = new System.Drawing.Size(50, 51);
+            this.search_open.TabIndex = 23;
+            this.search_open.TabStop = false;
+            this.search_open.Click += new System.EventHandler(this.search_open_Click);
+            // 
+            // search_panel
+            // 
+            this.search_panel.BackColor = System.Drawing.Color.White;
+            this.search_panel.Controls.Add(this.search_text);
+            this.search_panel.Controls.Add(label1);
+            this.search_panel.Location = new System.Drawing.Point(132, 513);
+            this.search_panel.Name = "search_panel";
+            this.search_panel.Size = new System.Drawing.Size(747, 62);
+            this.search_panel.TabIndex = 24;
+            this.search_panel.Visible = false;
+            // 
+            // search_text
+            // 
+            this.search_text.DataSource = this.tarifsBindingSource;
+            this.search_text.DisplayMember = "name";
+            this.search_text.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.search_text.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.search_text.FormattingEnabled = true;
+            this.search_text.Location = new System.Drawing.Point(227, 11);
+            this.search_text.Name = "search_text";
+            this.search_text.Size = new System.Drawing.Size(501, 35);
+            this.search_text.TabIndex = 24;
+            this.search_text.ValueMember = "name";
+            this.search_text.SelectedIndexChanged += new System.EventHandler(this.search_text_SelectedIndexChanged);
+            // 
             // tarifs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,6 +482,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1056, 660);
+            this.Controls.Add(this.search_panel);
+            this.Controls.Add(this.search_open);
             this.Controls.Add(this.backbutton);
             this.Controls.Add(this.infopanel);
             this.Controls.Add(this.deletbutton);
@@ -461,6 +517,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bosspic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.search_open)).EndInit();
+            this.search_panel.ResumeLayout(false);
+            this.search_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,5 +552,8 @@
         private System.Windows.Forms.PictureBox fulltarifs;
         private System.Windows.Forms.PictureBox gueststarif;
         private System.Windows.Forms.PictureBox agreecreatebutton;
+        private System.Windows.Forms.PictureBox search_open;
+        private System.Windows.Forms.Panel search_panel;
+        private System.Windows.Forms.ComboBox search_text;
     }
 }

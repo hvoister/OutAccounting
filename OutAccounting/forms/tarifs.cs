@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,6 +87,7 @@ namespace OutAccounting
             {
                 infopanel.Visible = true;
                 delete_note.Enabled = false;
+                search_panel.Visible = false;
             }
         }
 
@@ -178,6 +180,20 @@ namespace OutAccounting
         private void tarifs_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void search_open_Click(object sender, EventArgs e)
+        {
+            deletbutton.Visible = true;
+            infopanel.Visible = false;
+            search_panel.Visible = true;
+        }
+
+        private void search_text_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string name = "name";
+            int index = tarifsBindingSource.Find(name, search_text.SelectedValue);
+            tarifsBindingSource.Position = index;
         }
     }
 }

@@ -162,7 +162,7 @@
             this.today_lab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
             this.today_lab.Font = new System.Drawing.Font("Linux Biolinum G", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.today_lab.ForeColor = System.Drawing.Color.White;
-            this.today_lab.Location = new System.Drawing.Point(701, 542);
+            this.today_lab.Location = new System.Drawing.Point(713, 542);
             this.today_lab.Name = "today_lab";
             this.today_lab.Size = new System.Drawing.Size(227, 31);
             this.today_lab.TabIndex = 9;

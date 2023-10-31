@@ -59,6 +59,7 @@ namespace OutAccounting.forms
             {
                 infopanel.Visible = true;
                 delete_note.Enabled = false;
+                search_panel.Visible = false;
             }
         }
 
@@ -204,6 +205,18 @@ namespace OutAccounting.forms
             }
         }
 
-        
+        private void search_open_Click(object sender, EventArgs e)
+        {
+            deletebutton.Visible = true;
+            infopanel.Visible = false;
+            search_panel.Visible = true;
+        }
+
+        private void search_text_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string name = "name";
+            int index = customersBindingSource.Find(name, search_text.SelectedValue);
+            customersBindingSource.Position = index;
+        }
     }
 }

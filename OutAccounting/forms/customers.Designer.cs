@@ -34,10 +34,11 @@
             System.Windows.Forms.Label kppLabel;
             System.Windows.Forms.Label registration_formLabel;
             System.Windows.Forms.Label ogrnLabel;
+            System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(customers));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backbutton = new System.Windows.Forms.PictureBox();
             this.app_name = new System.Windows.Forms.Label();
             this.agreecreatebutton = new System.Windows.Forms.PictureBox();
@@ -65,18 +66,22 @@
             this.delete_note = new System.Windows.Forms.Button();
             this.delete_panel = new System.Windows.Forms.PictureBox();
             this.customersDataGridView = new System.Windows.Forms.DataGridView();
-            this.customersTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.CustomersTableAdapter();
-            this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ogrn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customersTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.CustomersTableAdapter();
+            this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
+            this.search_panel = new System.Windows.Forms.Panel();
+            this.search_text = new System.Windows.Forms.ComboBox();
+            this.search_open = new System.Windows.Forms.PictureBox();
             nameLabel = new System.Windows.Forms.Label();
             innLabel = new System.Windows.Forms.Label();
             kppLabel = new System.Windows.Forms.Label();
             registration_formLabel = new System.Windows.Forms.Label();
             ogrnLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreecreatebutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deletebutton)).BeginInit();
@@ -92,6 +97,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.delete_panel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).BeginInit();
+            this.search_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.search_open)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -143,6 +150,16 @@
             ogrnLabel.Size = new System.Drawing.Size(78, 27);
             ogrnLabel.TabIndex = 25;
             ogrnLabel.Text = "ОГРН:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            label1.Location = new System.Drawing.Point(18, 16);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(158, 27);
+            label1.TabIndex = 23;
+            label1.Text = "Организация:";
             // 
             // backbutton
             // 
@@ -266,9 +283,9 @@
             this.infopanel.Controls.Add(this.workerpic);
             this.infopanel.Controls.Add(this.bosspic);
             this.infopanel.Controls.Add(this.gueststarif);
-            this.infopanel.Location = new System.Drawing.Point(132, 199);
+            this.infopanel.Location = new System.Drawing.Point(134, 191);
             this.infopanel.Name = "infopanel";
-            this.infopanel.Size = new System.Drawing.Size(753, 392);
+            this.infopanel.Size = new System.Drawing.Size(751, 392);
             this.infopanel.TabIndex = 17;
             // 
             // nameTextBox
@@ -350,6 +367,7 @@
             // 
             // registration_formMaskedBox
             // 
+            this.registration_formMaskedBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.registration_formMaskedBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
             this.registration_formMaskedBox.FormattingEnabled = true;
             this.registration_formMaskedBox.Items.AddRange(new object[] {
@@ -454,14 +472,14 @@
             this.customersDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.customersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.customersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.customersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -470,47 +488,31 @@
             this.dataGridViewTextBoxColumn5,
             this.ogrn});
             this.customersDataGridView.DataSource = this.customersBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.customersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.customersDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.customersDataGridView.GridColor = System.Drawing.SystemColors.Control;
             this.customersDataGridView.Location = new System.Drawing.Point(155, 212);
             this.customersDataGridView.Name = "customersDataGridView";
             this.customersDataGridView.ReadOnly = true;
             this.customersDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.customersDataGridView.ShowCellToolTips = false;
             this.customersDataGridView.ShowEditingIcon = false;
             this.customersDataGridView.Size = new System.Drawing.Size(705, 296);
             this.customersDataGridView.TabIndex = 17;
-            // 
-            // customersTableAdapter
-            // 
-            this.customersTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AccountingTableAdapter = null;
-            this.tableAdapterManager.AuthTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CustomersTableAdapter = this.customersTableAdapter;
-            this.tableAdapterManager.DepartmentsTableAdapter = null;
-            this.tableAdapterManager.PostsTableAdapter = null;
-            this.tableAdapterManager.TarifsTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.WorkersTableAdapter = null;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -552,6 +554,59 @@
             this.ogrn.ReadOnly = true;
             this.ogrn.Width = 116;
             // 
+            // customersTableAdapter
+            // 
+            this.customersTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AccountingTableAdapter = null;
+            this.tableAdapterManager.AuthTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CustomersTableAdapter = this.customersTableAdapter;
+            this.tableAdapterManager.DepartmentsTableAdapter = null;
+            this.tableAdapterManager.PostsTableAdapter = null;
+            this.tableAdapterManager.TarifsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.WorkersTableAdapter = null;
+            // 
+            // search_panel
+            // 
+            this.search_panel.BackColor = System.Drawing.Color.White;
+            this.search_panel.Controls.Add(this.search_text);
+            this.search_panel.Controls.Add(label1);
+            this.search_panel.Location = new System.Drawing.Point(134, 512);
+            this.search_panel.Name = "search_panel";
+            this.search_panel.Size = new System.Drawing.Size(747, 62);
+            this.search_panel.TabIndex = 25;
+            this.search_panel.Visible = false;
+            // 
+            // search_text
+            // 
+            this.search_text.DataSource = this.customersBindingSource;
+            this.search_text.DisplayMember = "name";
+            this.search_text.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.search_text.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.search_text.FormattingEnabled = true;
+            this.search_text.Location = new System.Drawing.Point(182, 13);
+            this.search_text.Name = "search_text";
+            this.search_text.Size = new System.Drawing.Size(544, 35);
+            this.search_text.TabIndex = 24;
+            this.search_text.ValueMember = "name";
+            this.search_text.SelectedIndexChanged += new System.EventHandler(this.search_text_SelectedIndexChanged);
+            // 
+            // search_open
+            // 
+            this.search_open.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
+            this.search_open.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("search_open.BackgroundImage")));
+            this.search_open.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.search_open.Location = new System.Drawing.Point(211, 116);
+            this.search_open.Name = "search_open";
+            this.search_open.Size = new System.Drawing.Size(50, 51);
+            this.search_open.TabIndex = 25;
+            this.search_open.TabStop = false;
+            this.search_open.Click += new System.EventHandler(this.search_open_Click);
+            // 
             // customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -559,6 +614,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1060, 664);
+            this.Controls.Add(this.search_open);
+            this.Controls.Add(this.search_panel);
             this.Controls.Add(this.infopanel);
             this.Controls.Add(this.customersDataGridView);
             this.Controls.Add(this.delete_panel);
@@ -592,6 +649,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gueststarif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.delete_panel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).EndInit();
+            this.search_panel.ResumeLayout(false);
+            this.search_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.search_open)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -633,5 +693,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn ogrn;
+        private System.Windows.Forms.Panel search_panel;
+        private System.Windows.Forms.ComboBox search_text;
+        private System.Windows.Forms.PictureBox search_open;
     }
 }
