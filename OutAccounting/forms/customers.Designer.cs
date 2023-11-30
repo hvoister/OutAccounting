@@ -197,7 +197,7 @@
             this.agreecreatebutton.Name = "agreecreatebutton";
             this.agreecreatebutton.Size = new System.Drawing.Size(355, 46);
             this.agreecreatebutton.TabIndex = 6;
-            this.agreecreatebutton.Text = "Добавить запись";
+            this.agreecreatebutton.Text = "Добавить клиента";
             this.agreecreatebutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.agreecreatebutton.UseVisualStyleBackColor = false;
             this.agreecreatebutton.Click += new System.EventHandler(this.agreecreatebutton_Click);

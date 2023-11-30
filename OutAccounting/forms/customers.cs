@@ -18,6 +18,8 @@ namespace OutAccounting.forms
     public partial class customers : Form
     {
         dataBase dataBase = new dataBase();
+        string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Customers_docs";
+        string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
         public customers()
         {
             InitializeComponent();
@@ -176,33 +178,37 @@ namespace OutAccounting.forms
                     SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
                     command.ExecuteNonQuery();
                     dataBase.closeConnection();
-
-                    string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Customers_docs";
-                    Word._Application oWord = new Word.Application();
-                    oWord.Visible = false;
-                    Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
-                    oDoc.Bookmarks["int_orgname"].Range.Text = cusname;
-                    oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString(); 
-                    oDoc.Bookmarks["int_curmonth"].Range.Text = DateTime.Today.ToString("MMMM", new CultureInfo("ru-RU"));
-                    oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
-
-                    DirectoryInfo folder = new DirectoryInfo(pathSave);
-                    if (folder.Exists == false)
+                    try
                     {
-                        Directory.CreateDirectory(pathSave);
+                        Word._Application oWord = new Word.Application();
+                        oWord.Visible = false;
+                        Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
+                        oDoc.Bookmarks["int_orgname"].Range.Text = cusname;
+                        oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString();
+                        oDoc.Bookmarks["int_curmonth"].Range.Text = months_list [DateTime.Now.Month-1];
+                        oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
+
+                        DirectoryInfo folder = new DirectoryInfo(pathSave);
+                        if (folder.Exists == false)
+                        {
+                            Directory.CreateDirectory(pathSave);
+                        }
+                        string saveFolder = folder.FullName + $"\\{cusname}";
+                        if (Directory.Exists(saveFolder) == false)
+                        {
+                            Directory.CreateDirectory(saveFolder);
+                            pathSave = saveFolder;
+                        }
+
+                        oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{cusname}.doc");
+                        oDoc.Close();
+                        oWord.Quit();
+                        MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
-                    string saveFolder = folder.FullName + $"\\{cusname}";
-                    if (Directory.Exists(saveFolder) == false)
+                    catch
                     {
-                        Directory.CreateDirectory(saveFolder);
-                        pathSave = saveFolder;
+                        MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{cusname}.doc");
-                    oDoc.Close();
-                    oWord.Quit();
-                    MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
                     dataBase.openConnection();
                     SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
                     SqlCommandBuilder cb = new SqlCommandBuilder(da);
@@ -257,6 +263,13 @@ namespace OutAccounting.forms
                             da.Fill(ds, "Result");
                             customersDataGridView.DataSource = ds.Tables["Result"];
                             dataBase.closeConnection();
+
+                            DirectoryInfo folder = new DirectoryInfo(pathSave);
+                            if (folder.Exists)
+                            {
+                                DirectoryInfo cus_folder = new DirectoryInfo(pathSave);
+                                Directory.Delete(cus_folder.ToString(), true);
+                            }
                             MessageBox.Show("Данные успешно удалены!");
                         }
                     }

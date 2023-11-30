@@ -1,4 +1,5 @@
 ﻿using dataBaseConnection;
+using Microsoft.Office.Interop.Word;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -6,18 +7,24 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Application = System.Windows.Forms.Application;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace OutAccounting.forms
 {
     public partial class accounting : Form
     {
         dataBase dataBase = new dataBase();
+        string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Customers_docs";
+        string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
         public accounting()
         {
             InitializeComponent();
@@ -51,12 +58,12 @@ namespace OutAccounting.forms
 
         private void accounting_FormClosed(object sender, FormClosedEventArgs e)
         {
-                Application.Exit();
+            Application.Exit();
         }
 
         private void accounting_FormClosing(object sender, FormClosingEventArgs e)
         {
-                Application.Exit();
+            Application.Exit();
         }
 
         private void backbutton_Click(object sender, EventArgs e)
@@ -128,30 +135,76 @@ namespace OutAccounting.forms
                     dataBase.openConnection();
                     int cusid = Convert.ToInt32(cmd_cusID.ExecuteScalar());
                     int tarifid = Convert.ToInt32(cmd_tarifID.ExecuteScalar());
-                    dataBase.closeConnection();
-
                     SqlCommand cmd_tarifprice = new SqlCommand($"Select price_per_month from tarifs where ID_tarif = N'{tarifid}'", dataBase.getConnection());
-                    dataBase.openConnection();
                     int tarifprice = Convert.ToInt32(cmd_tarifprice.ExecuteScalar());
                     dataBase.closeConnection();
 
                     int total = tarifprice * Convert.ToInt32(months_count.Value);
 
                     dataBase.openConnection();
-
                     string querystring = $"insert into accounting (customer, tarif, start_date, end_date, total) values ({cusid}, {tarifid}, '{start}', '{end}', {total})";
                     SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-
                     command.ExecuteNonQuery();
+                    dataBase.closeConnection();
 
-                    MessageBox.Show("Данные успешно добавлены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    try
+                    {
+                        SqlCommand cmd_noteID = new SqlCommand($"Select ID_note from Accounting where customer = {cusid} AND tarif = {tarifid} and start_date = '{start}'", dataBase.getConnection());
+                        SqlCommand cmd_tarif = new SqlCommand($"Select services from tarifs where id_tarif = {tarifid}", dataBase.getConnection());
+                        SqlCommand cmd_INN = new SqlCommand($"Select inn from customers where id_customer = {cusid}", dataBase.getConnection());
+                        SqlCommand cmd_KPP = new SqlCommand($"Select kpp from customers where id_customer = {cusid}", dataBase.getConnection());
+                        SqlCommand cmd_regform = new SqlCommand($"Select registration_form from customers where id_customer = {cusid}", dataBase.getConnection());
+                        SqlCommand cmd_OGRN = new SqlCommand($"Select ogrn from customers where id_customer = {cusid}", dataBase.getConnection());
+
+                        dataBase.openConnection();
+                        int number = Convert.ToInt32(cmd_noteID.ExecuteScalar());
+                        string tarifop = Convert.ToString(cmd_tarif.ExecuteScalar());
+                        decimal INN = Convert.ToDecimal(cmd_INN.ExecuteScalar());
+                        decimal KPP = Convert.ToDecimal(cmd_KPP.ExecuteScalar());
+                        string regform = Convert.ToString(cmd_regform.ExecuteScalar());
+                        decimal OGRN = Convert.ToDecimal(cmd_OGRN.ExecuteScalar());
+                        dataBase.closeConnection();
+
+                        Word._Application oWord = new Word.Application();
+                        oWord.Visible = false;
+                        Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\customer_add2.dotx");
+                        oDoc.Bookmarks["in_number"].Range.Text = number.ToString();
+                        oDoc.Bookmarks["in_date"].Range.Text = start_date.Day.ToString();
+                        oDoc.Bookmarks["in_month"].Range.Text = months_list[start_date.Month - 1];
+                        oDoc.Bookmarks["in_year"].Range.Text = start_date.Year.ToString();
+                        oDoc.Bookmarks["in_customer"].Range.Text = reqcusname;
+                        oDoc.Bookmarks["in_accdate"].Range.Text = start_date.Day.ToString();
+                        oDoc.Bookmarks["in_price"].Range.Text = tarifprice.ToString();
+                        oDoc.Bookmarks["in_payday"].Range.Text = start_date.Day.ToString();
+                        oDoc.Bookmarks["in_stdate"].Range.Text = start_date.Day.ToString();
+                        oDoc.Bookmarks["in_stmonth"].Range.Text = months_list[start_date.Month - 1];
+                        oDoc.Bookmarks["in_styear"].Range.Text = start_date.Year.ToString();
+                        oDoc.Bookmarks["in_endate"].Range.Text = finish_date.Day.ToString();
+                        oDoc.Bookmarks["in_enmonth"].Range.Text = months_list[finish_date.Month - 1];
+                        oDoc.Bookmarks["in_enyear"].Range.Text = finish_date.Year.ToString();
+                        oDoc.Bookmarks["in_tarifop"].Range.Text = tarifop;
+                        oDoc.Bookmarks["in_orgname"].Range.Text = reqcusname;
+                        oDoc.Bookmarks["in_INN"].Range.Text = INN.ToString();
+                        oDoc.Bookmarks["in_KPP"].Range.Text = KPP.ToString();
+                        oDoc.Bookmarks["in_regform"].Range.Text = regform;
+                        oDoc.Bookmarks["in_OGRN"].Range.Text = OGRN.ToString();
+
+                        pathSave += $"\\{reqcusname}";
+                        oDoc.SaveAs(FileName: pathSave + $"\\Предоставление_услуг_{reqcusname}.doc");
+                        oDoc.Close();
+                        oWord.Quit();
+                        MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об оказании услуг!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
 
                     SqlDataAdapter da = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
                     SqlCommandBuilder cb = new SqlCommandBuilder(da);
-
                     DataSet ds = new DataSet();
                     da.Fill(ds, "Result");
-
                     accountingtable.DataSource = ds.Tables["Result"];
                     dataBase.closeConnection();
                     add_panel.Visible = false;
