@@ -5,10 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace OutAccounting.forms
 {
@@ -19,29 +22,36 @@ namespace OutAccounting.forms
         {
             InitializeComponent();
 
+            dataBase.openConnection();
+
+            SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
+            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Result");
+            customersDataGridView.DataSource = ds.Tables["Result"];
+            dataBase.closeConnection();
+
+            customersDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            customersDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            customersDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            customersDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            customersDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            customersDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             this.customersDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            if (current_user.level == 2)
+            if (current_user.level == 1)
             {
-                workerpic.Visible = true;
-                deletebutton.Visible = true;
-                createbitton.Visible = true;
-                delete_panel.Visible = false;
-            }
-            else
-            {
-                gueststarif.Visible = true;
-                workerpic.Visible = false;
-                deletebutton.Visible = false;
-                createbitton.Visible = false;
-                delete_panel.Visible = true;
-
-                fullcustomers.Visible = true;
-            }
+                delete_note.Visible = false;
+                add_button.Visible = false;
+                customersDataGridView.Size = new Size(817, 363);
+            };
         }
 
         private void customers_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "accountingDataSet.Workers". При необходимости она может быть перемещена или удалена.
+            this.workersTableAdapter.Fill(this.accountingDataSet.Workers);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "accountingDataSet.Customers". При необходимости она может быть перемещена или удалена.
             this.customersTableAdapter.Fill(this.accountingDataSet.Customers);
 
@@ -49,7 +59,7 @@ namespace OutAccounting.forms
 
         private void backbutton_Click(object sender, EventArgs e)
         {
-            if (infopanel.Visible == true)
+            if (infopanel.Visible == false && search_panel.Visible == false)
             {
                 authorization authorization = new authorization();
                 authorization.Show();
@@ -57,9 +67,29 @@ namespace OutAccounting.forms
             }
             else
             {
-                infopanel.Visible = true;
-                delete_note.Enabled = false;
+                dataBase.openConnection();
+                SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
+                SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Result");
+                customersDataGridView.DataSource = ds.Tables["Result"];
+                dataBase.closeConnection();
+
+                if (current_user.level == 1)
+                {
+                    delete_note.Visible = false;
+                    add_button.Visible = false;
+                    customersDataGridView.Size = new Size(817, 363);
+                };
+
+                infopanel.Visible = false;
                 search_panel.Visible = false;
+                search_open.Visible = true;
+
+                orgname.Clear();
+                innMaskedBox.Clear();
+                kppMaskedBox.Clear();
+                ogrnMaskedBox.Clear();
             }
         }
 
@@ -73,43 +103,6 @@ namespace OutAccounting.forms
             Application.Exit();
         }
 
-        private void moveleft_Click(object sender, EventArgs e)
-        {
-            customersBindingSource.MovePrevious();
-        }
-
-        private void moveright_Click(object sender, EventArgs e)
-        {
-            customersBindingSource.MoveNext();
-        }
-
-        private void fullcustomers_Click(object sender, EventArgs e)
-        {
-            infopanel.Visible = false;
-        }
-
-        private void createbitton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                customersBindingSource.AddNew();
-                agreecreatebutton.Visible = true;
-                deletebutton.Visible = false;
-                moveleft.Visible = false;
-                moveright.Visible = false;
-
-                innTextBox.Visible = false;
-                kppTextBox.Visible = false;
-                registration_formTextBox.Visible = false;
-                nameTextBox.Visible = false;
-                ogrnTextBox.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка введения данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void registration_formTextBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ogrnMaskedBox.Mask = "";
@@ -121,6 +114,39 @@ namespace OutAccounting.forms
             else
             {
                 ogrnMaskedBox.Mask = "0000000000000";
+            }
+        }
+
+        private void search_open_Click(object sender, EventArgs e)
+        {
+            customersDataGridView.Size = new Size(817, 311);
+
+            infopanel.Visible = false;
+            search_panel.Visible = true;
+            search_open.Visible = false;
+        }
+
+        private void search_text_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string reqcusname = Convert.ToString(search_text.SelectedValue);
+            SqlCommand cmd_cusID = new SqlCommand($"Select id_customer from customers where name = N'{reqcusname}'", dataBase.getConnection());
+            dataBase.openConnection();
+            int selectedCustomer_id = Convert.ToInt32(cmd_cusID.ExecuteScalar());
+
+            SqlDataAdapter da = new SqlDataAdapter($"select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker where Customers.ID_customer = {selectedCustomer_id};", dataBase.getConnection());
+            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Result");
+            customersDataGridView.DataSource = ds.Tables["Result"];
+            dataBase.closeConnection();
+        }
+
+        private void close_app_button_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
 
@@ -139,84 +165,112 @@ namespace OutAccounting.forms
                     decimal kpp = Convert.ToDecimal(kppMaskedBox.Text);
                     string registr = Convert.ToString(registration_formMaskedBox.SelectedItem);
                     decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
-                    
+                    string worker_sur = Convert.ToString(worker_surname.SelectedValue);
 
 
                     dataBase.openConnection();
-
-                    SqlCommand worker = new SqlCommand($"select id_worker from workers where account = {current_user.id}", dataBase.getConnection());
+                    SqlCommand worker = new SqlCommand($"select id_worker from workers where surname = '{worker_sur}'", dataBase.getConnection());
                     int seller = Convert.ToInt32(worker.ExecuteScalar());
-
 
                     string querystring = $"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{cusname}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})";
                     SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-
                     command.ExecuteNonQuery();
-
                     dataBase.closeConnection();
-                    MessageBox.Show("Данные успешно добавлены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-                    this.customersTableAdapter.Fill(this.accountingDataSet.Customers);
-                    agreecreatebutton.Visible = false;
+                    string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Customers_docs";
+                    Word._Application oWord = new Word.Application();
+                    oWord.Visible = false;
+                    Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
+                    oDoc.Bookmarks["int_orgname"].Range.Text = cusname;
+                    oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString(); 
+                    oDoc.Bookmarks["int_curmonth"].Range.Text = DateTime.Today.ToString("MMMM", new CultureInfo("ru-RU"));
+                    oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
 
-                    moveleft.Visible = true;
-                    moveright.Visible = true;
-                    deletebutton.Visible = true;
-                    agreecreatebutton.Visible = false;
-                    customersBindingSource.MoveFirst();
+                    DirectoryInfo folder = new DirectoryInfo(pathSave);
+                    if (folder.Exists == false)
+                    {
+                        Directory.CreateDirectory(pathSave);
+                    }
+                    string saveFolder = folder.FullName + $"\\{cusname}";
+                    if (Directory.Exists(saveFolder) == false)
+                    {
+                        Directory.CreateDirectory(saveFolder);
+                        pathSave = saveFolder;
+                    }
 
-                    innTextBox.Visible = true;
-                    kppTextBox.Visible = true;
-                    registration_formTextBox.Visible = true;
-                    nameTextBox.Visible = true;
-                    ogrnTextBox.Visible = true;
+                    oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{cusname}.doc");
+                    oDoc.Close();
+                    oWord.Quit();
+                    MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    dataBase.openConnection();
+                    SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
+                    SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "Result");
+                    customersDataGridView.DataSource = ds.Tables["Result"];
+                    dataBase.closeConnection();
+
+                    infopanel.Visible = false;
+                    orgname.Clear();
+                    innMaskedBox.Clear();
+                    kppMaskedBox.Clear();
+                    ogrnMaskedBox.Clear();
                 }
             }
             catch
             {
                 MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
-        private void deletebutton_Click(object sender, EventArgs e)
+        private void add_button_Click(object sender, EventArgs e)
         {
-            infopanel.Visible = false;
-            delete_panel.Visible = false;
-            delete_note.Enabled = true;
+            infopanel.Visible = true;
         }
 
         private void delete_note_Click(object sender, EventArgs e)
         {
-            try
+            string customer_name, INN, OGRN;
+            Int32 selectedRowCount = customersDataGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount == 1)
             {
-                DialogResult result = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
+                foreach (DataGridViewRow row in customersDataGridView.SelectedRows)
                 {
-                    customersBindingSource.RemoveCurrent();
-                    customersTableAdapter.Update(accountingDataSet);
-                    MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    try
+                    {
+                        DialogResult result = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (result == DialogResult.Yes)
+                        {
+                            customer_name = row.Cells[0].Value.ToString();
+                            INN = row.Cells[1].Value.ToString();
+                            OGRN = row.Cells[4].Value.ToString();
+
+                            dataBase.openConnection();
+                            string querystring = $"delete from customers where name = '{customer_name}' and inn = {INN} and ogrn = {OGRN}";
+                            SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
+                            command.ExecuteNonQuery();
+
+                            SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
+                            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                            DataSet ds = new DataSet();
+                            da.Fill(ds, "Result");
+                            customersDataGridView.DataSource = ds.Tables["Result"];
+                            dataBase.closeConnection();
+                            MessageBox.Show("Данные успешно удалены!");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Ошибка удаления, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
             }
-            catch
+            else
             {
-                MessageBox.Show("Операция не была проведена! Нечего удалять.", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void search_open_Click(object sender, EventArgs e)
-        {
-            deletebutton.Visible = true;
-            infopanel.Visible = false;
-            search_panel.Visible = true;
-        }
-
-        private void search_text_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string name = "name";
-            int index = customersBindingSource.Find(name, search_text.SelectedValue);
-            customersBindingSource.Position = index;
         }
     }
 }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutAccounting", "OutAccount
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dataBaseConnection", "dataBaseConnection\dataBaseConnection.csproj", "{99BCC873-66C5-4834-9B39-5EB167BBC677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dataTest", "dataTest\dataTest.csproj", "{3E20DC68-2463-48B4-915B-F04211059949}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{99BCC873-66C5-4834-9B39-5EB167BBC677}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99BCC873-66C5-4834-9B39-5EB167BBC677}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99BCC873-66C5-4834-9B39-5EB167BBC677}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E20DC68-2463-48B4-915B-F04211059949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E20DC68-2463-48B4-915B-F04211059949}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E20DC68-2463-48B4-915B-F04211059949}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E20DC68-2463-48B4-915B-F04211059949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

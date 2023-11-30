@@ -47,10 +47,12 @@
             this.backauth_button = new System.Windows.Forms.Button();
             this.hide_button = new System.Windows.Forms.PictureBox();
             this.show_button = new System.Windows.Forms.PictureBox();
+            this.close_app_button = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menupanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.show_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -71,7 +73,7 @@
             this.login.Multiline = true;
             this.login.Name = "login";
             this.login.Size = new System.Drawing.Size(338, 46);
-            this.login.TabIndex = 1;
+            this.login.TabIndex = 0;
             this.login.TextChanged += new System.EventHandler(this.login_TextChanged);
             // 
             // password
@@ -84,7 +86,7 @@
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(338, 46);
-            this.password.TabIndex = 2;
+            this.password.TabIndex = 1;
             this.password.TextChanged += new System.EventHandler(this.password_TextChanged);
             // 
             // entrance
@@ -96,7 +98,7 @@
             this.entrance.Location = new System.Drawing.Point(-2, 376);
             this.entrance.Name = "entrance";
             this.entrance.Size = new System.Drawing.Size(312, 60);
-            this.entrance.TabIndex = 3;
+            this.entrance.TabIndex = 2;
             this.entrance.Text = "Войти";
             this.entrance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.entrance.UseVisualStyleBackColor = false;
@@ -111,7 +113,7 @@
             this.tarifs.Location = new System.Drawing.Point(-2, 442);
             this.tarifs.Name = "tarifs";
             this.tarifs.Size = new System.Drawing.Size(312, 46);
-            this.tarifs.TabIndex = 4;
+            this.tarifs.TabIndex = 3;
             this.tarifs.Text = "Тарифы";
             this.tarifs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tarifs.UseVisualStyleBackColor = false;
@@ -127,7 +129,7 @@
             this.app_name.Name = "app_name";
             this.app_name.Padding = new System.Windows.Forms.Padding(0, 7, 3, 3);
             this.app_name.Size = new System.Drawing.Size(581, 79);
-            this.app_name.TabIndex = 5;
+            this.app_name.TabIndex = 7;
             this.app_name.Text = "OutAccounting";
             // 
             // pas_mask
@@ -180,10 +182,10 @@
             this.menupanel.Controls.Add(this.tarifs_button);
             this.menupanel.Controls.Add(this.customers_button);
             this.menupanel.Controls.Add(this.accounting_button);
-            this.menupanel.Location = new System.Drawing.Point(-6, 169);
+            this.menupanel.Location = new System.Drawing.Point(-6, 168);
             this.menupanel.Name = "menupanel";
             this.menupanel.Size = new System.Drawing.Size(391, 397);
-            this.menupanel.TabIndex = 10;
+            this.menupanel.TabIndex = 4;
             this.menupanel.Visible = false;
             // 
             // tarifs_button
@@ -195,7 +197,7 @@
             this.tarifs_button.Location = new System.Drawing.Point(-1, 189);
             this.tarifs_button.Name = "tarifs_button";
             this.tarifs_button.Size = new System.Drawing.Size(345, 46);
-            this.tarifs_button.TabIndex = 14;
+            this.tarifs_button.TabIndex = 2;
             this.tarifs_button.Text = "Тарифы";
             this.tarifs_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tarifs_button.UseVisualStyleBackColor = false;
@@ -210,7 +212,7 @@
             this.customers_button.Location = new System.Drawing.Point(-1, 134);
             this.customers_button.Name = "customers_button";
             this.customers_button.Size = new System.Drawing.Size(345, 46);
-            this.customers_button.TabIndex = 13;
+            this.customers_button.TabIndex = 1;
             this.customers_button.Text = "Клиенты";
             this.customers_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.customers_button.UseVisualStyleBackColor = false;
@@ -225,7 +227,7 @@
             this.accounting_button.Location = new System.Drawing.Point(-1, 80);
             this.accounting_button.Name = "accounting_button";
             this.accounting_button.Size = new System.Drawing.Size(345, 46);
-            this.accounting_button.TabIndex = 12;
+            this.accounting_button.TabIndex = 0;
             this.accounting_button.Text = "Учёт услуг";
             this.accounting_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.accounting_button.UseVisualStyleBackColor = false;
@@ -240,7 +242,7 @@
             this.backauth_button.Location = new System.Drawing.Point(385, 176);
             this.backauth_button.Name = "backauth_button";
             this.backauth_button.Size = new System.Drawing.Size(195, 46);
-            this.backauth_button.TabIndex = 11;
+            this.backauth_button.TabIndex = 5;
             this.backauth_button.Text = "Назад";
             this.backauth_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.backauth_button.UseVisualStyleBackColor = false;
@@ -272,12 +274,25 @@
             this.show_button.TabStop = false;
             this.show_button.Click += new System.EventHandler(this.show_button_Click);
             // 
+            // close_app_button
+            // 
+            this.close_app_button.BackColor = System.Drawing.Color.Transparent;
+            this.close_app_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("close_app_button.BackgroundImage")));
+            this.close_app_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.close_app_button.Location = new System.Drawing.Point(872, 4);
+            this.close_app_button.Name = "close_app_button";
+            this.close_app_button.Size = new System.Drawing.Size(53, 50);
+            this.close_app_button.TabIndex = 14;
+            this.close_app_button.TabStop = false;
+            this.close_app_button.Click += new System.EventHandler(this.close_app_button_Click);
+            // 
             // authorization
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 582);
+            this.Controls.Add(this.close_app_button);
             this.Controls.Add(this.menupanel);
             this.Controls.Add(this.show_button);
             this.Controls.Add(this.hide_button);
@@ -291,7 +306,7 @@
             this.Controls.Add(this.password);
             this.Controls.Add(this.login);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -304,6 +319,7 @@
             this.menupanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.show_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,6 +344,7 @@
         private System.Windows.Forms.Button accounting_button;
         private System.Windows.Forms.PictureBox hide_button;
         private System.Windows.Forms.PictureBox show_button;
+        private System.Windows.Forms.PictureBox close_app_button;
     }
 }
 

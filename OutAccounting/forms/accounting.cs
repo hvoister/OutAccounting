@@ -24,7 +24,9 @@ namespace OutAccounting.forms
 
             dataBase.openConnection();
 
-            SqlDataAdapter da = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
+            SqlDataAdapter da = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
+                "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +
+                "from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
             SqlCommandBuilder cb = new SqlCommandBuilder(da);
 
             DataSet ds = new DataSet();
@@ -49,12 +51,12 @@ namespace OutAccounting.forms
 
         private void accounting_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+                Application.Exit();
         }
 
         private void accounting_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+                Application.Exit();
         }
 
         private void backbutton_Click(object sender, EventArgs e)
@@ -76,8 +78,16 @@ namespace OutAccounting.forms
                 accountingtable.DataSource = ds.Tables["Result"];
                 dataBase.closeConnection();
 
+                if (current_user.level == 1)
+                {
+                    delete_note.Visible = false;
+                    add_button.Visible = false;
+                    accountingtable.Size = new Size(763, 349);
+                }
+
                 add_panel.Visible = false;
                 search_panel.Visible = false;
+                search_open.Visible = true;
             }
         }
 
@@ -134,6 +144,8 @@ namespace OutAccounting.forms
 
                     command.ExecuteNonQuery();
 
+                    MessageBox.Show("Данные успешно добавлены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
                     SqlDataAdapter da = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
                     SqlCommandBuilder cb = new SqlCommandBuilder(da);
 
@@ -157,7 +169,7 @@ namespace OutAccounting.forms
 
         private void delete_note_Click(object sender, EventArgs e)
         {
-            string customer_name, tarif_name, start_date, finish_date, totalprice;
+            string customer_name, tarif_name, totalprice;
             Int32 selectedRowCount =  accountingtable.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount == 1)
             {
@@ -207,7 +219,9 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
+            accountingtable.Size = new Size(763, 294);
             search_panel.Visible = true;
+            search_open.Visible = false;
         }
 
         private void customer_search_SelectedIndexChanged(object sender, EventArgs e)
@@ -225,6 +239,15 @@ namespace OutAccounting.forms
 
             accountingtable.DataSource = ds.Tables["Result"];
             dataBase.closeConnection();
+        }
+
+        private void close_app_button_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

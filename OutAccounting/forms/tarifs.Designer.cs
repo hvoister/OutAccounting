@@ -33,9 +33,9 @@
             System.Windows.Forms.Label price_per_monthLabel;
             System.Windows.Forms.Label servicesLabel;
             System.Windows.Forms.Label label1;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tarifs));
             this.app_name = new System.Windows.Forms.Label();
             this.tarifsdata = new System.Windows.Forms.DataGridView();
@@ -65,6 +65,7 @@
             this.search_open = new System.Windows.Forms.PictureBox();
             this.search_panel = new System.Windows.Forms.Panel();
             this.search_text = new System.Windows.Forms.ComboBox();
+            this.close_app_button = new System.Windows.Forms.PictureBox();
             nameLabel = new System.Windows.Forms.Label();
             price_per_monthLabel = new System.Windows.Forms.Label();
             servicesLabel = new System.Windows.Forms.Label();
@@ -86,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.search_open)).BeginInit();
             this.search_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -122,7 +124,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            label1.Location = new System.Drawing.Point(18, 16);
+            label1.Location = new System.Drawing.Point(15, 16);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(203, 27);
             label1.TabIndex = 23;
@@ -151,45 +153,45 @@
             this.tarifsdata.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.tarifsdata.BackgroundColor = System.Drawing.Color.White;
             this.tarifsdata.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tarifsdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tarifsdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.pricepermonthDataGridViewTextBoxColumn,
             this.servicesDataGridViewTextBoxColumn});
             this.tarifsdata.DataSource = this.tarifsBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tarifsdata.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tarifsdata.DefaultCellStyle = dataGridViewCellStyle2;
             this.tarifsdata.GridColor = System.Drawing.SystemColors.Control;
             this.tarifsdata.Location = new System.Drawing.Point(155, 212);
             this.tarifsdata.Name = "tarifsdata";
             this.tarifsdata.ReadOnly = true;
             this.tarifsdata.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tarifsdata.ShowCellToolTips = false;
             this.tarifsdata.ShowEditingIcon = false;
             this.tarifsdata.Size = new System.Drawing.Size(705, 296);
-            this.tarifsdata.TabIndex = 7;
+            this.tarifsdata.TabIndex = 3;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -239,7 +241,7 @@
             this.delete_note.Location = new System.Drawing.Point(97, 514);
             this.delete_note.Name = "delete_note";
             this.delete_note.Size = new System.Drawing.Size(316, 46);
-            this.delete_note.TabIndex = 8;
+            this.delete_note.TabIndex = 1;
             this.delete_note.Text = "Удалить";
             this.delete_note.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.delete_note.UseVisualStyleBackColor = false;
@@ -273,10 +275,10 @@
             this.infopanel.Controls.Add(this.workerpic);
             this.infopanel.Controls.Add(this.bosspic);
             this.infopanel.Controls.Add(this.gueststarif);
-            this.infopanel.Location = new System.Drawing.Point(132, 190);
+            this.infopanel.Location = new System.Drawing.Point(132, 194);
             this.infopanel.Name = "infopanel";
             this.infopanel.Size = new System.Drawing.Size(753, 386);
-            this.infopanel.TabIndex = 10;
+            this.infopanel.TabIndex = 0;
             // 
             // agreecreatebutton
             // 
@@ -337,7 +339,7 @@
             this.price_per_monthTextBox.Name = "price_per_monthTextBox";
             this.price_per_monthTextBox.ReadOnly = true;
             this.price_per_monthTextBox.Size = new System.Drawing.Size(512, 35);
-            this.price_per_monthTextBox.TabIndex = 13;
+            this.price_per_monthTextBox.TabIndex = 1;
             // 
             // servicesTextBox
             // 
@@ -348,7 +350,7 @@
             this.servicesTextBox.Name = "servicesTextBox";
             this.servicesTextBox.ReadOnly = true;
             this.servicesTextBox.Size = new System.Drawing.Size(591, 179);
-            this.servicesTextBox.TabIndex = 14;
+            this.servicesTextBox.TabIndex = 2;
             // 
             // moveright
             // 
@@ -382,7 +384,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(561, 35);
-            this.nameTextBox.TabIndex = 12;
+            this.nameTextBox.TabIndex = 0;
             // 
             // workerpic
             // 
@@ -434,6 +436,7 @@
             this.tableAdapterManager.CustomersTableAdapter = null;
             this.tableAdapterManager.DepartmentsTableAdapter = null;
             this.tableAdapterManager.PostsTableAdapter = null;
+            this.tableAdapterManager.Service_informationTableAdapter = null;
             this.tableAdapterManager.TarifsTableAdapter = this.tarifsTableAdapter;
             this.tableAdapterManager.UpdateOrder = OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.WorkersTableAdapter = null;
@@ -455,10 +458,10 @@
             this.search_panel.BackColor = System.Drawing.Color.White;
             this.search_panel.Controls.Add(this.search_text);
             this.search_panel.Controls.Add(label1);
-            this.search_panel.Location = new System.Drawing.Point(132, 513);
+            this.search_panel.Location = new System.Drawing.Point(134, 512);
             this.search_panel.Name = "search_panel";
-            this.search_panel.Size = new System.Drawing.Size(747, 62);
-            this.search_panel.TabIndex = 24;
+            this.search_panel.Size = new System.Drawing.Size(745, 62);
+            this.search_panel.TabIndex = 2;
             this.search_panel.Visible = false;
             // 
             // search_text
@@ -468,12 +471,24 @@
             this.search_text.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.search_text.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
             this.search_text.FormattingEnabled = true;
-            this.search_text.Location = new System.Drawing.Point(227, 11);
+            this.search_text.Location = new System.Drawing.Point(224, 12);
             this.search_text.Name = "search_text";
             this.search_text.Size = new System.Drawing.Size(501, 35);
-            this.search_text.TabIndex = 24;
+            this.search_text.TabIndex = 0;
             this.search_text.ValueMember = "name";
             this.search_text.SelectedIndexChanged += new System.EventHandler(this.search_text_SelectedIndexChanged);
+            // 
+            // close_app_button
+            // 
+            this.close_app_button.BackColor = System.Drawing.Color.Transparent;
+            this.close_app_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("close_app_button.BackgroundImage")));
+            this.close_app_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.close_app_button.Location = new System.Drawing.Point(999, 5);
+            this.close_app_button.Name = "close_app_button";
+            this.close_app_button.Size = new System.Drawing.Size(53, 50);
+            this.close_app_button.TabIndex = 25;
+            this.close_app_button.TabStop = false;
+            this.close_app_button.Click += new System.EventHandler(this.close_app_button_Click);
             // 
             // tarifs
             // 
@@ -482,6 +497,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1056, 660);
+            this.Controls.Add(this.close_app_button);
             this.Controls.Add(this.search_panel);
             this.Controls.Add(this.search_open);
             this.Controls.Add(this.backbutton);
@@ -491,7 +507,7 @@
             this.Controls.Add(this.tarifsdata);
             this.Controls.Add(this.app_name);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -520,6 +536,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.search_open)).EndInit();
             this.search_panel.ResumeLayout(false);
             this.search_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -555,5 +572,6 @@
         private System.Windows.Forms.PictureBox search_open;
         private System.Windows.Forms.Panel search_panel;
         private System.Windows.Forms.ComboBox search_text;
+        private System.Windows.Forms.PictureBox close_app_button;
     }
 }

@@ -88,6 +88,7 @@ namespace OutAccounting
                 infopanel.Visible = true;
                 delete_note.Enabled = false;
                 search_panel.Visible = false;
+                search_open.Visible = true;
             }
         }
 
@@ -187,6 +188,7 @@ namespace OutAccounting
             deletbutton.Visible = true;
             infopanel.Visible = false;
             search_panel.Visible = true;
+            search_open.Visible = false;
         }
 
         private void search_text_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,6 +196,15 @@ namespace OutAccounting
             string name = "name";
             int index = tarifsBindingSource.Find(name, search_text.SelectedValue);
             tarifsBindingSource.Position = index;
+        }
+
+        private void close_app_button_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }
