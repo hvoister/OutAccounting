@@ -160,5 +160,14 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="content\authorization_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="content\background_table_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="content\background_tables.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

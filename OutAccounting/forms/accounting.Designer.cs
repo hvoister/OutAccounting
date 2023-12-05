@@ -32,54 +32,62 @@
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label tarifLabel;
             System.Windows.Forms.Label dateEndLabel;
-            System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(accounting));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Label customerSearchLabel;
             this.accountingDataSet = new OutAccounting.other.accountingDataSet();
-            this.app_name = new System.Windows.Forms.Label();
-            this.backbutton = new System.Windows.Forms.PictureBox();
-            this.accountingtable = new System.Windows.Forms.DataGridView();
-            this.delete_note = new System.Windows.Forms.Button();
-            this.add_button = new System.Windows.Forms.Button();
-            this.add_panel = new System.Windows.Forms.Panel();
-            this.months_count = new System.Windows.Forms.NumericUpDown();
-            this.agree_add = new System.Windows.Forms.Button();
-            this.customer_name = new System.Windows.Forms.ComboBox();
+            this.appName = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.PictureBox();
+            this.accountingTable = new System.Windows.Forms.DataGridView();
+            this.deleteNote = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.addPanel = new System.Windows.Forms.Panel();
+            this.monthsCountText = new System.Windows.Forms.NumericUpDown();
+            this.agreeAddButton = new System.Windows.Forms.Button();
+            this.customerNameText = new System.Windows.Forms.ComboBox();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.end_date = new System.Windows.Forms.MaskedTextBox();
-            this.tarif_name = new System.Windows.Forms.ComboBox();
+            this.tarifNameText = new System.Windows.Forms.ComboBox();
             this.tarifsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customersTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.CustomersTableAdapter();
             this.tarifsTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.TarifsTableAdapter();
             this.delete_button_info = new System.Windows.Forms.ToolTip(this.components);
-            this.search_panel = new System.Windows.Forms.Panel();
-            this.customer_search = new System.Windows.Forms.ComboBox();
-            this.search_open = new System.Windows.Forms.PictureBox();
+            this.searchOpenButton = new System.Windows.Forms.PictureBox();
             this.accountingTableAdapter1 = new OutAccounting.other.accountingDataSetTableAdapters.AccountingTableAdapter();
-            this.close_app_button = new System.Windows.Forms.PictureBox();
+            this.closeAppButton = new System.Windows.Forms.PictureBox();
+            this.bigWindowModeButton = new System.Windows.Forms.PictureBox();
+            this.viewPanel = new System.Windows.Forms.Panel();
+            this.customerSearchText = new System.Windows.Forms.ComboBox();
+            this.searchPanel = new System.Windows.Forms.Panel();
+            this.buttonsNamePanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             nameLabel = new System.Windows.Forms.Label();
             tarifLabel = new System.Windows.Forms.Label();
             dateEndLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
+            customerSearchLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountingtable)).BeginInit();
-            this.add_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.months_count)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountingTable)).BeginInit();
+            this.addPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.monthsCountText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).BeginInit();
-            this.search_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.search_open)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchOpenButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeAppButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bigWindowModeButton)).BeginInit();
+            this.viewPanel.SuspendLayout();
+            this.searchPanel.SuspendLayout();
+            this.buttonsNamePanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // nameLabel
             // 
+            nameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             nameLabel.AutoSize = true;
             nameLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            nameLabel.Location = new System.Drawing.Point(48, 96);
+            nameLabel.Location = new System.Drawing.Point(3, 15);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new System.Drawing.Size(94, 27);
             nameLabel.TabIndex = 22;
@@ -87,9 +95,10 @@
             // 
             // tarifLabel
             // 
+            tarifLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             tarifLabel.AutoSize = true;
             tarifLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            tarifLabel.Location = new System.Drawing.Point(48, 146);
+            tarifLabel.Location = new System.Drawing.Point(3, 72);
             tarifLabel.Name = "tarifLabel";
             tarifLabel.Size = new System.Drawing.Size(84, 27);
             tarifLabel.TabIndex = 24;
@@ -97,219 +106,206 @@
             // 
             // dateEndLabel
             // 
+            dateEndLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             dateEndLabel.AutoSize = true;
             dateEndLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            dateEndLabel.Location = new System.Drawing.Point(48, 196);
+            dateEndLabel.Location = new System.Drawing.Point(3, 115);
             dateEndLabel.Name = "dateEndLabel";
-            dateEndLabel.Size = new System.Drawing.Size(438, 27);
+            dateEndLabel.Size = new System.Drawing.Size(231, 54);
             dateEndLabel.TabIndex = 27;
             dateEndLabel.Text = "Продолжительность договора в месяцах:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            label1.Location = new System.Drawing.Point(9, 16);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(94, 27);
-            label1.TabIndex = 23;
-            label1.Text = "Клиент:";
             // 
             // accountingDataSet
             // 
             this.accountingDataSet.DataSetName = "accountingDataSet";
             this.accountingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // app_name
+            // appName
             // 
-            this.app_name.AutoSize = true;
-            this.app_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
-            this.app_name.Font = new System.Drawing.Font("Linux Biolinum G", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.app_name.ForeColor = System.Drawing.Color.White;
-            this.app_name.Location = new System.Drawing.Point(602, 99);
-            this.app_name.Name = "app_name";
-            this.app_name.Padding = new System.Windows.Forms.Padding(0, 7, 3, 3);
-            this.app_name.Size = new System.Drawing.Size(329, 83);
-            this.app_name.TabIndex = 13;
-            this.app_name.Text = "Учёт услуг";
+            this.appName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.appName.AutoSize = true;
+            this.appName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
+            this.appName.Font = new System.Drawing.Font("Linux Biolinum G", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appName.ForeColor = System.Drawing.Color.White;
+            this.appName.Location = new System.Drawing.Point(460, 0);
+            this.appName.Name = "appName";
+            this.appName.Padding = new System.Windows.Forms.Padding(0, 7, 3, 3);
+            this.appName.Size = new System.Drawing.Size(329, 83);
+            this.appName.TabIndex = 13;
+            this.appName.Text = "Учёт услуг";
             // 
-            // backbutton
+            // backButton
             // 
-            this.backbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
-            this.backbutton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backbutton.BackgroundImage")));
-            this.backbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.backbutton.Location = new System.Drawing.Point(156, 114);
-            this.backbutton.Name = "backbutton";
-            this.backbutton.Size = new System.Drawing.Size(55, 53);
-            this.backbutton.TabIndex = 14;
-            this.backbutton.TabStop = false;
-            this.backbutton.Click += new System.EventHandler(this.backbutton_Click);
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
+            this.backButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backButton.BackgroundImage")));
+            this.backButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.backButton.Location = new System.Drawing.Point(14, 19);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(55, 53);
+            this.backButton.TabIndex = 14;
+            this.backButton.TabStop = false;
+            this.backButton.Click += new System.EventHandler(this.backbutton_Click);
             // 
-            // accountingtable
+            // accountingTable
             // 
-            this.accountingtable.AllowUserToAddRows = false;
-            this.accountingtable.AllowUserToDeleteRows = false;
-            this.accountingtable.AllowUserToResizeColumns = false;
-            this.accountingtable.AllowUserToResizeRows = false;
-            this.accountingtable.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.accountingtable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.accountingtable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.accountingtable.DefaultCellStyle = dataGridViewCellStyle2;
-            this.accountingtable.GridColor = System.Drawing.SystemColors.Control;
-            this.accountingtable.Location = new System.Drawing.Point(156, 207);
-            this.accountingtable.Name = "accountingtable";
-            this.accountingtable.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.accountingtable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.accountingtable.Size = new System.Drawing.Size(763, 294);
-            this.accountingtable.TabIndex = 0;
+            this.accountingTable.AllowUserToAddRows = false;
+            this.accountingTable.AllowUserToDeleteRows = false;
+            this.accountingTable.AllowUserToResizeColumns = false;
+            this.accountingTable.AllowUserToResizeRows = false;
+            this.accountingTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.accountingTable.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.accountingTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.accountingTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.accountingTable.DefaultCellStyle = dataGridViewCellStyle23;
+            this.accountingTable.GridColor = System.Drawing.SystemColors.Control;
+            this.accountingTable.Location = new System.Drawing.Point(14, 10);
+            this.accountingTable.Name = "accountingTable";
+            this.accountingTable.ReadOnly = true;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.accountingTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            this.accountingTable.Size = new System.Drawing.Size(763, 294);
+            this.accountingTable.TabIndex = 0;
             // 
-            // delete_note
+            // deleteNote
             // 
-            this.delete_note.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
-            this.delete_note.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.delete_note.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delete_note.ForeColor = System.Drawing.Color.White;
-            this.delete_note.Location = new System.Drawing.Point(546, 510);
-            this.delete_note.Name = "delete_note";
-            this.delete_note.Size = new System.Drawing.Size(373, 46);
-            this.delete_note.TabIndex = 2;
-            this.delete_note.Text = "Удалить";
-            this.delete_note.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.delete_button_info.SetToolTip(this.delete_note, "Для удаления необходимо выделить соответствующую строку!");
-            this.delete_note.UseVisualStyleBackColor = false;
-            this.delete_note.Click += new System.EventHandler(this.delete_note_Click);
+            this.deleteNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.deleteNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteNote.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteNote.ForeColor = System.Drawing.Color.White;
+            this.deleteNote.Location = new System.Drawing.Point(404, 314);
+            this.deleteNote.Name = "deleteNote";
+            this.deleteNote.Size = new System.Drawing.Size(373, 46);
+            this.deleteNote.TabIndex = 2;
+            this.deleteNote.Text = "Удалить";
+            this.deleteNote.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.delete_button_info.SetToolTip(this.deleteNote, "Для удаления необходимо выделить соответствующую строку!");
+            this.deleteNote.UseVisualStyleBackColor = false;
+            this.deleteNote.Click += new System.EventHandler(this.delete_note_Click);
             // 
-            // add_button
+            // addButton
             // 
-            this.add_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
-            this.add_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_button.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.add_button.ForeColor = System.Drawing.Color.White;
-            this.add_button.Location = new System.Drawing.Point(156, 510);
-            this.add_button.Name = "add_button";
-            this.add_button.Size = new System.Drawing.Size(373, 46);
-            this.add_button.TabIndex = 1;
-            this.add_button.Text = "Добавить";
-            this.add_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.add_button.UseVisualStyleBackColor = false;
-            this.add_button.Click += new System.EventHandler(this.add_button_Click);
+            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.ForeColor = System.Drawing.Color.White;
+            this.addButton.Location = new System.Drawing.Point(14, 314);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(373, 46);
+            this.addButton.TabIndex = 1;
+            this.addButton.Text = "Добавить";
+            this.addButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.add_button_Click);
             // 
-            // add_panel
+            // addPanel
             // 
-            this.add_panel.BackColor = System.Drawing.Color.White;
-            this.add_panel.Controls.Add(this.months_count);
-            this.add_panel.Controls.Add(this.agree_add);
-            this.add_panel.Controls.Add(this.customer_name);
-            this.add_panel.Controls.Add(dateEndLabel);
-            this.add_panel.Controls.Add(this.end_date);
-            this.add_panel.Controls.Add(this.tarif_name);
-            this.add_panel.Controls.Add(tarifLabel);
-            this.add_panel.Controls.Add(nameLabel);
-            this.add_panel.Location = new System.Drawing.Point(141, 192);
-            this.add_panel.Name = "add_panel";
-            this.add_panel.Size = new System.Drawing.Size(790, 375);
-            this.add_panel.TabIndex = 4;
-            this.add_panel.Visible = false;
+            this.addPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.addPanel.BackColor = System.Drawing.Color.White;
+            this.addPanel.Controls.Add(this.tableLayoutPanel1);
+            this.addPanel.Location = new System.Drawing.Point(141, 195);
+            this.addPanel.Name = "addPanel";
+            this.addPanel.Size = new System.Drawing.Size(790, 375);
+            this.addPanel.TabIndex = 4;
+            this.addPanel.Visible = false;
             // 
-            // months_count
+            // monthsCountText
             // 
-            this.months_count.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.months_count.Location = new System.Drawing.Point(492, 192);
-            this.months_count.Maximum = new decimal(new int[] {
+            this.monthsCountText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.monthsCountText.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.monthsCountText.Location = new System.Drawing.Point(254, 125);
+            this.monthsCountText.Maximum = new decimal(new int[] {
             24,
             0,
             0,
             0});
-            this.months_count.Minimum = new decimal(new int[] {
+            this.monthsCountText.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.months_count.Name = "months_count";
-            this.months_count.Size = new System.Drawing.Size(268, 35);
-            this.months_count.TabIndex = 2;
-            this.months_count.Value = new decimal(new int[] {
+            this.monthsCountText.Name = "monthsCountText";
+            this.monthsCountText.Size = new System.Drawing.Size(478, 35);
+            this.monthsCountText.TabIndex = 2;
+            this.monthsCountText.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // agree_add
+            // agreeAddButton
             // 
-            this.agree_add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
-            this.agree_add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.agree_add.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agree_add.ForeColor = System.Drawing.Color.White;
-            this.agree_add.Location = new System.Drawing.Point(405, 241);
-            this.agree_add.Name = "agree_add";
-            this.agree_add.Size = new System.Drawing.Size(355, 46);
-            this.agree_add.TabIndex = 3;
-            this.agree_add.Text = "Добавить запись";
-            this.agree_add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.agree_add.UseVisualStyleBackColor = false;
-            this.agree_add.Click += new System.EventHandler(this.agree_add_Click);
+            this.agreeAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.agreeAddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.agreeAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.agreeAddButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agreeAddButton.ForeColor = System.Drawing.Color.White;
+            this.agreeAddButton.Location = new System.Drawing.Point(254, 177);
+            this.agreeAddButton.Name = "agreeAddButton";
+            this.agreeAddButton.Size = new System.Drawing.Size(478, 46);
+            this.agreeAddButton.TabIndex = 3;
+            this.agreeAddButton.Text = "Добавить запись";
+            this.agreeAddButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.agreeAddButton.UseVisualStyleBackColor = false;
+            this.agreeAddButton.Click += new System.EventHandler(this.agree_add_Click);
             // 
-            // customer_name
+            // customerNameText
             // 
-            this.customer_name.DataSource = this.customersBindingSource;
-            this.customer_name.DisplayMember = "name";
-            this.customer_name.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.customer_name.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.customer_name.FormattingEnabled = true;
-            this.customer_name.Location = new System.Drawing.Point(148, 93);
-            this.customer_name.Name = "customer_name";
-            this.customer_name.Size = new System.Drawing.Size(612, 35);
-            this.customer_name.TabIndex = 0;
-            this.customer_name.ValueMember = "name";
+            this.customerNameText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.customerNameText.DataSource = this.customersBindingSource;
+            this.customerNameText.DisplayMember = "name";
+            this.customerNameText.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.customerNameText.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.customerNameText.FormattingEnabled = true;
+            this.customerNameText.Location = new System.Drawing.Point(254, 11);
+            this.customerNameText.Name = "customerNameText";
+            this.customerNameText.Size = new System.Drawing.Size(478, 35);
+            this.customerNameText.TabIndex = 0;
+            this.customerNameText.ValueMember = "name";
             // 
             // customersBindingSource
             // 
             this.customersBindingSource.DataMember = "Customers";
             this.customersBindingSource.DataSource = this.accountingDataSet;
             // 
-            // end_date
+            // tarifNameText
             // 
-            this.end_date.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.end_date.Location = new System.Drawing.Point(525, 192);
-            this.end_date.Mask = "00/00/0000";
-            this.end_date.Name = "end_date";
-            this.end_date.Size = new System.Drawing.Size(10, 35);
-            this.end_date.TabIndex = 26;
-            this.end_date.ValidatingType = typeof(System.DateTime);
-            // 
-            // tarif_name
-            // 
-            this.tarif_name.DataSource = this.tarifsBindingSource;
-            this.tarif_name.DisplayMember = "name";
-            this.tarif_name.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tarif_name.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.tarif_name.FormattingEnabled = true;
-            this.tarif_name.Location = new System.Drawing.Point(138, 143);
-            this.tarif_name.Name = "tarif_name";
-            this.tarif_name.Size = new System.Drawing.Size(622, 35);
-            this.tarif_name.TabIndex = 1;
-            this.tarif_name.ValueMember = "name";
+            this.tarifNameText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tarifNameText.DataSource = this.tarifsBindingSource;
+            this.tarifNameText.DisplayMember = "name";
+            this.tarifNameText.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tarifNameText.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.tarifNameText.FormattingEnabled = true;
+            this.tarifNameText.Location = new System.Drawing.Point(254, 68);
+            this.tarifNameText.Name = "tarifNameText";
+            this.tarifNameText.Size = new System.Drawing.Size(478, 35);
+            this.tarifNameText.TabIndex = 1;
+            this.tarifNameText.ValueMember = "name";
             // 
             // tarifsBindingSource
             // 
@@ -324,58 +320,142 @@
             // 
             this.tarifsTableAdapter.ClearBeforeFill = true;
             // 
-            // search_panel
+            // searchOpenButton
             // 
-            this.search_panel.BackColor = System.Drawing.Color.White;
-            this.search_panel.Controls.Add(this.customer_search);
-            this.search_panel.Controls.Add(label1);
-            this.search_panel.Location = new System.Drawing.Point(142, 506);
-            this.search_panel.Name = "search_panel";
-            this.search_panel.Size = new System.Drawing.Size(789, 62);
-            this.search_panel.TabIndex = 3;
-            this.search_panel.Visible = false;
-            // 
-            // customer_search
-            // 
-            this.customer_search.DataSource = this.customersBindingSource;
-            this.customer_search.DisplayMember = "name";
-            this.customer_search.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.customer_search.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.customer_search.FormattingEnabled = true;
-            this.customer_search.Location = new System.Drawing.Point(109, 13);
-            this.customer_search.Name = "customer_search";
-            this.customer_search.Size = new System.Drawing.Size(668, 35);
-            this.customer_search.TabIndex = 0;
-            this.customer_search.ValueMember = "name";
-            this.customer_search.SelectedIndexChanged += new System.EventHandler(this.customer_search_SelectedIndexChanged);
-            // 
-            // search_open
-            // 
-            this.search_open.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
-            this.search_open.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("search_open.BackgroundImage")));
-            this.search_open.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.search_open.Location = new System.Drawing.Point(217, 114);
-            this.search_open.Name = "search_open";
-            this.search_open.Size = new System.Drawing.Size(50, 51);
-            this.search_open.TabIndex = 22;
-            this.search_open.TabStop = false;
-            this.search_open.Click += new System.EventHandler(this.search_open_Click);
+            this.searchOpenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
+            this.searchOpenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("searchOpenButton.BackgroundImage")));
+            this.searchOpenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.searchOpenButton.Location = new System.Drawing.Point(75, 19);
+            this.searchOpenButton.Name = "searchOpenButton";
+            this.searchOpenButton.Size = new System.Drawing.Size(50, 51);
+            this.searchOpenButton.TabIndex = 22;
+            this.searchOpenButton.TabStop = false;
+            this.searchOpenButton.Click += new System.EventHandler(this.search_open_Click);
             // 
             // accountingTableAdapter1
             // 
             this.accountingTableAdapter1.ClearBeforeFill = true;
             // 
-            // close_app_button
+            // closeAppButton
             // 
-            this.close_app_button.BackColor = System.Drawing.Color.Transparent;
-            this.close_app_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("close_app_button.BackgroundImage")));
-            this.close_app_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.close_app_button.Location = new System.Drawing.Point(1059, 4);
-            this.close_app_button.Name = "close_app_button";
-            this.close_app_button.Size = new System.Drawing.Size(53, 50);
-            this.close_app_button.TabIndex = 23;
-            this.close_app_button.TabStop = false;
-            this.close_app_button.Click += new System.EventHandler(this.close_app_button_Click);
+            this.closeAppButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeAppButton.BackColor = System.Drawing.Color.Transparent;
+            this.closeAppButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("closeAppButton.BackgroundImage")));
+            this.closeAppButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closeAppButton.Location = new System.Drawing.Point(1059, 4);
+            this.closeAppButton.Name = "closeAppButton";
+            this.closeAppButton.Size = new System.Drawing.Size(53, 50);
+            this.closeAppButton.TabIndex = 23;
+            this.closeAppButton.TabStop = false;
+            this.closeAppButton.Click += new System.EventHandler(this.close_app_button_Click);
+            // 
+            // bigWindowModeButton
+            // 
+            this.bigWindowModeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bigWindowModeButton.BackColor = System.Drawing.Color.Transparent;
+            this.bigWindowModeButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bigWindowModeButton.BackgroundImage")));
+            this.bigWindowModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bigWindowModeButton.InitialImage = null;
+            this.bigWindowModeButton.Location = new System.Drawing.Point(1000, 4);
+            this.bigWindowModeButton.Name = "bigWindowModeButton";
+            this.bigWindowModeButton.Size = new System.Drawing.Size(53, 50);
+            this.bigWindowModeButton.TabIndex = 29;
+            this.bigWindowModeButton.TabStop = false;
+            this.bigWindowModeButton.Click += new System.EventHandler(this.bigWindowModeButton_Click);
+            // 
+            // viewPanel
+            // 
+            this.viewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewPanel.BackColor = System.Drawing.Color.White;
+            this.viewPanel.Controls.Add(this.searchPanel);
+            this.viewPanel.Controls.Add(this.accountingTable);
+            this.viewPanel.Controls.Add(this.addButton);
+            this.viewPanel.Controls.Add(this.deleteNote);
+            this.viewPanel.Location = new System.Drawing.Point(142, 196);
+            this.viewPanel.Name = "viewPanel";
+            this.viewPanel.Size = new System.Drawing.Size(789, 372);
+            this.viewPanel.TabIndex = 30;
+            // 
+            // customerSearchLabel
+            // 
+            customerSearchLabel.AutoSize = true;
+            customerSearchLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            customerSearchLabel.Location = new System.Drawing.Point(9, 16);
+            customerSearchLabel.Name = "customerSearchLabel";
+            customerSearchLabel.Size = new System.Drawing.Size(94, 27);
+            customerSearchLabel.TabIndex = 23;
+            customerSearchLabel.Text = "Клиент:";
+            // 
+            // customerSearchText
+            // 
+            this.customerSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customerSearchText.DataSource = this.customersBindingSource;
+            this.customerSearchText.DisplayMember = "name";
+            this.customerSearchText.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.customerSearchText.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.customerSearchText.FormattingEnabled = true;
+            this.customerSearchText.Location = new System.Drawing.Point(109, 13);
+            this.customerSearchText.Name = "customerSearchText";
+            this.customerSearchText.Size = new System.Drawing.Size(668, 35);
+            this.customerSearchText.TabIndex = 0;
+            this.customerSearchText.ValueMember = "name";
+            this.customerSearchText.SelectedIndexChanged += new System.EventHandler(this.customer_search_SelectedIndexChanged);
+            // 
+            // searchPanel
+            // 
+            this.searchPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchPanel.BackColor = System.Drawing.Color.White;
+            this.searchPanel.Controls.Add(this.customerSearchText);
+            this.searchPanel.Controls.Add(customerSearchLabel);
+            this.searchPanel.Location = new System.Drawing.Point(1, 308);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.Size = new System.Drawing.Size(789, 62);
+            this.searchPanel.TabIndex = 3;
+            this.searchPanel.Visible = false;
+            // 
+            // buttonsNamePanel
+            // 
+            this.buttonsNamePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonsNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
+            this.buttonsNamePanel.Controls.Add(this.appName);
+            this.buttonsNamePanel.Controls.Add(this.backButton);
+            this.buttonsNamePanel.Controls.Add(this.searchOpenButton);
+            this.buttonsNamePanel.Location = new System.Drawing.Point(143, 95);
+            this.buttonsNamePanel.Name = "buttonsNamePanel";
+            this.buttonsNamePanel.Size = new System.Drawing.Size(789, 91);
+            this.buttonsNamePanel.TabIndex = 24;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.21053F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.78947F));
+            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.agreeAddButton, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.monthsCountText, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.customerNameText, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(tarifLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(dateEndLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tarifNameText, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(30, 66);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(735, 230);
+            this.tableLayoutPanel1.TabIndex = 28;
             // 
             // accounting
             // 
@@ -384,15 +464,11 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1116, 654);
-            this.Controls.Add(this.close_app_button);
-            this.Controls.Add(this.search_open);
-            this.Controls.Add(this.search_panel);
-            this.Controls.Add(this.add_panel);
-            this.Controls.Add(this.add_button);
-            this.Controls.Add(this.delete_note);
-            this.Controls.Add(this.accountingtable);
-            this.Controls.Add(this.backbutton);
-            this.Controls.Add(this.app_name);
+            this.Controls.Add(this.addPanel);
+            this.Controls.Add(this.bigWindowModeButton);
+            this.Controls.Add(this.closeAppButton);
+            this.Controls.Add(this.viewPanel);
+            this.Controls.Add(this.buttonsNamePanel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -405,45 +481,52 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.accounting_FormClosed);
             this.Load += new System.EventHandler(this.accounting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backbutton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountingtable)).EndInit();
-            this.add_panel.ResumeLayout(false);
-            this.add_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.months_count)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountingTable)).EndInit();
+            this.addPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.monthsCountText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).EndInit();
-            this.search_panel.ResumeLayout(false);
-            this.search_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.search_open)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchOpenButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeAppButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bigWindowModeButton)).EndInit();
+            this.viewPanel.ResumeLayout(false);
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
+            this.buttonsNamePanel.ResumeLayout(false);
+            this.buttonsNamePanel.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private other.accountingDataSet accountingDataSet;
-        private System.Windows.Forms.Label app_name;
-        private System.Windows.Forms.PictureBox backbutton;
-        private System.Windows.Forms.DataGridView accountingtable;
-        private System.Windows.Forms.Button delete_note;
-        private System.Windows.Forms.Button add_button;
-        private System.Windows.Forms.Panel add_panel;
-        private System.Windows.Forms.MaskedTextBox end_date;
-        private System.Windows.Forms.ComboBox tarif_name;
-        private System.Windows.Forms.ComboBox customer_name;
-        private System.Windows.Forms.Button agree_add;
+        private System.Windows.Forms.Label appName;
+        private System.Windows.Forms.PictureBox backButton;
+        private System.Windows.Forms.DataGridView accountingTable;
+        private System.Windows.Forms.Button deleteNote;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Panel addPanel;
+        private System.Windows.Forms.ComboBox tarifNameText;
+        private System.Windows.Forms.ComboBox customerNameText;
+        private System.Windows.Forms.Button agreeAddButton;
         private System.Windows.Forms.BindingSource customersBindingSource;
         private other.accountingDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
         private System.Windows.Forms.BindingSource tarifsBindingSource;
         private other.accountingDataSetTableAdapters.TarifsTableAdapter tarifsTableAdapter;
         private System.Windows.Forms.ToolTip delete_button_info;
-        private System.Windows.Forms.NumericUpDown months_count;
-        private System.Windows.Forms.Panel search_panel;
-        private System.Windows.Forms.PictureBox search_open;
+        private System.Windows.Forms.NumericUpDown monthsCountText;
+        private System.Windows.Forms.PictureBox searchOpenButton;
         private other.accountingDataSetTableAdapters.AccountingTableAdapter accountingTableAdapter1;
-        private System.Windows.Forms.ComboBox customer_search;
-        private System.Windows.Forms.PictureBox close_app_button;
+        private System.Windows.Forms.PictureBox closeAppButton;
+        private System.Windows.Forms.PictureBox bigWindowModeButton;
+        private System.Windows.Forms.Panel viewPanel;
+        private System.Windows.Forms.Panel searchPanel;
+        private System.Windows.Forms.ComboBox customerSearchText;
+        private System.Windows.Forms.Panel buttonsNamePanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

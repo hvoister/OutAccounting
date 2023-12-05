@@ -21,84 +21,81 @@ namespace OutAccounting
     public partial class authorization : Form
     {
         public current_user user;
-
         dataBase dataBase = new dataBase();
 
         public authorization()
         {
             InitializeComponent();
 
-            today_lab.Text = Convert.ToString(DateTime.Now);
+            todayLabel.Text = Convert.ToString(DateTime.Now.ToString("dd.MM.yyyy")) + " " + Convert.ToString(DateTime.Now.ToString("HH:mm:ss")) + "     ";
 
             if (current_user.login != "guest" && current_user.login != null)
             {
-                menupanel.Visible = true;
-                backauth_button.Visible = true;
+                menuPanel.Visible = true;
+                backauthButton.Visible = true;
             }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            today_lab.Text = Convert.ToString(DateTime.Now);
+            todayLabel.Text = Convert.ToString(DateTime.Now.ToString("dd.MM.yyyy")) + " " + Convert.ToString(DateTime.Now.ToString("HH:mm:ss")) + "     ";
         }
 
         private void login_TextChanged(object sender, EventArgs e)
         {
-            if (login.Text != "")
-                log_mask.Visible = false;
-            else log_mask.Visible = true;
+            if (loginTextBox.Text != "")
+                logMask.Visible = false;
+            else logMask.Visible = true;
         }
 
         private void password_TextChanged(object sender, EventArgs e)
         {
-            if (password.Text != "")
-                pas_mask.Visible = false;
-            else pas_mask.Visible = true;
+            if (passwordTextBox.Text != "")
+                pasMask.Visible = false;
+            else pasMask.Visible = true;
         }
 
         private void entrance_Click(object sender, EventArgs e)
         {
-            if ((login.Text == "") || (password.Text == ""))
+            if ((loginTextBox.Text == "") || (passwordTextBox.Text == ""))
             {
                 MessageBox.Show("Введите данные во все поля для ввода!", "Заполните все данные!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                current_user.login = login.Text.Trim();
-                current_user.password = password.Text.Trim();
+                current_user.login = loginTextBox.Text.Trim();
+                current_user.password = passwordTextBox.Text.Trim();
 
                 try
                 {
+                    SqlDataAdapter checkUserExists = new SqlDataAdapter();
+                    DataTable resultTable = new DataTable();
 
-                    SqlDataAdapter adapter = new SqlDataAdapter();
-                    DataTable table = new DataTable();
-
-                    string querystring = $"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'";
-                    SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-                    adapter.SelectCommand = command;
-                    adapter.Fill(table);
-                    if (table.Rows.Count == 1)
+                    SqlCommand userExistsCommand = new SqlCommand($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
+                    checkUserExists.SelectCommand = userExistsCommand;
+                    checkUserExists.Fill(resultTable);
+                    if (resultTable.Rows.Count == 1)
                     {
-                        SqlCommand user_ID = new SqlCommand($"Select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
                         dataBase.openConnection();
-                        int input_ID = Convert.ToInt32(user_ID.ExecuteScalar());
+                        int input_ID = Convert.ToInt32(userExistsCommand.ExecuteScalar());
                         current_user.id = input_ID;
-                        SqlCommand level = new SqlCommand($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
-                        current_user.level = Convert.ToInt32(level.ExecuteScalar());
+
+                        SqlCommand levelCommand = new SqlCommand($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
+                        current_user.level = Convert.ToInt32(levelCommand.ExecuteScalar());
                         dataBase.closeConnection();
                         MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK);
-                        menupanel.Visible = true;
-                        backauth_button.Visible = true;
-                        login.Clear();
-                        password.Clear();
+
+                        menuPanel.Visible = true;
+                        backauthButton.Visible = true;
+                        loginTextBox.Clear();
+                        passwordTextBox.Clear();
                     }
                     else
                     {
-
                         MessageBox.Show("Такого аккаунта не существует! \nПроверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Ошибка входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     MessageBox.Show("Проверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Неизвестная ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -119,8 +116,8 @@ namespace OutAccounting
 
         private void backauth_button_Click(object sender, EventArgs e)
         {
-            menupanel.Visible = false;
-            backauth_button.Visible = false;
+            menuPanel.Visible = false;
+            backauthButton.Visible = false;
             
         }
 
@@ -140,16 +137,16 @@ namespace OutAccounting
 
         private void hide_button_Click(object sender, EventArgs e)
         {
-            password.UseSystemPasswordChar = false;
+            passwordTextBox.UseSystemPasswordChar = false;
             hide_button.Visible = false;
-            show_button.Visible = true;
+            showButton.Visible = true;
         }
 
         private void show_button_Click(object sender, EventArgs e)
         {
-            password.UseSystemPasswordChar = true;
+            passwordTextBox.UseSystemPasswordChar = true;
             hide_button.Visible = true;
-            show_button.Visible = false;
+            showButton.Visible = false;
             
         }
 

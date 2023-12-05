@@ -31,28 +31,28 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(authorization));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.login = new System.Windows.Forms.TextBox();
-            this.password = new System.Windows.Forms.TextBox();
-            this.entrance = new System.Windows.Forms.Button();
-            this.tarifs = new System.Windows.Forms.Button();
-            this.app_name = new System.Windows.Forms.Label();
-            this.pas_mask = new System.Windows.Forms.Label();
-            this.log_mask = new System.Windows.Forms.Label();
-            this.today_lab = new System.Windows.Forms.Label();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.entranceButton = new System.Windows.Forms.Button();
+            this.tarifGuestButton = new System.Windows.Forms.Button();
+            this.appName = new System.Windows.Forms.Label();
+            this.pasMask = new System.Windows.Forms.Label();
+            this.logMask = new System.Windows.Forms.Label();
+            this.todayLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.menupanel = new System.Windows.Forms.Panel();
-            this.tarifs_button = new System.Windows.Forms.Button();
-            this.customers_button = new System.Windows.Forms.Button();
-            this.accounting_button = new System.Windows.Forms.Button();
-            this.backauth_button = new System.Windows.Forms.Button();
+            this.menuPanel = new System.Windows.Forms.Panel();
+            this.tarifsButton = new System.Windows.Forms.Button();
+            this.customersButton = new System.Windows.Forms.Button();
+            this.accountingButton = new System.Windows.Forms.Button();
+            this.backauthButton = new System.Windows.Forms.Button();
             this.hide_button = new System.Windows.Forms.PictureBox();
-            this.show_button = new System.Windows.Forms.PictureBox();
-            this.close_app_button = new System.Windows.Forms.PictureBox();
+            this.showButton = new System.Windows.Forms.PictureBox();
+            this.closeAppButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menupanel.SuspendLayout();
+            this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.show_button)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeAppButton)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -64,111 +64,111 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // login
+            // loginTextBox
             // 
-            this.login.BackColor = System.Drawing.Color.White;
-            this.login.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.login.Location = new System.Drawing.Point(22, 218);
-            this.login.Multiline = true;
-            this.login.Name = "login";
-            this.login.Size = new System.Drawing.Size(338, 46);
-            this.login.TabIndex = 0;
-            this.login.TextChanged += new System.EventHandler(this.login_TextChanged);
+            this.loginTextBox.BackColor = System.Drawing.Color.White;
+            this.loginTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.loginTextBox.Location = new System.Drawing.Point(22, 218);
+            this.loginTextBox.Multiline = true;
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(338, 46);
+            this.loginTextBox.TabIndex = 0;
+            this.loginTextBox.TextChanged += new System.EventHandler(this.login_TextChanged);
             // 
-            // password
+            // passwordTextBox
             // 
-            this.password.BackColor = System.Drawing.Color.White;
-            this.password.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.password.Location = new System.Drawing.Point(22, 282);
-            this.password.Multiline = true;
-            this.password.Name = "password";
-            this.password.PasswordChar = '*';
-            this.password.Size = new System.Drawing.Size(338, 46);
-            this.password.TabIndex = 1;
-            this.password.TextChanged += new System.EventHandler(this.password_TextChanged);
+            this.passwordTextBox.BackColor = System.Drawing.Color.White;
+            this.passwordTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.passwordTextBox.Location = new System.Drawing.Point(22, 282);
+            this.passwordTextBox.Multiline = true;
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
+            this.passwordTextBox.Size = new System.Drawing.Size(338, 46);
+            this.passwordTextBox.TabIndex = 1;
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.password_TextChanged);
             // 
-            // entrance
+            // entranceButton
             // 
-            this.entrance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.entrance.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.entrance.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.entrance.ForeColor = System.Drawing.Color.White;
-            this.entrance.Location = new System.Drawing.Point(-2, 376);
-            this.entrance.Name = "entrance";
-            this.entrance.Size = new System.Drawing.Size(312, 60);
-            this.entrance.TabIndex = 2;
-            this.entrance.Text = "Войти";
-            this.entrance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.entrance.UseVisualStyleBackColor = false;
-            this.entrance.Click += new System.EventHandler(this.entrance_Click);
+            this.entranceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.entranceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.entranceButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entranceButton.ForeColor = System.Drawing.Color.White;
+            this.entranceButton.Location = new System.Drawing.Point(-2, 376);
+            this.entranceButton.Name = "entranceButton";
+            this.entranceButton.Size = new System.Drawing.Size(312, 60);
+            this.entranceButton.TabIndex = 2;
+            this.entranceButton.Text = "Войти";
+            this.entranceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.entranceButton.UseVisualStyleBackColor = false;
+            this.entranceButton.Click += new System.EventHandler(this.entrance_Click);
             // 
-            // tarifs
+            // tarifGuestButton
             // 
-            this.tarifs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.tarifs.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.tarifs.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tarifs.ForeColor = System.Drawing.Color.White;
-            this.tarifs.Location = new System.Drawing.Point(-2, 442);
-            this.tarifs.Name = "tarifs";
-            this.tarifs.Size = new System.Drawing.Size(312, 46);
-            this.tarifs.TabIndex = 3;
-            this.tarifs.Text = "Тарифы";
-            this.tarifs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tarifs.UseVisualStyleBackColor = false;
-            this.tarifs.Click += new System.EventHandler(this.tarifs_Click);
+            this.tarifGuestButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.tarifGuestButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.tarifGuestButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tarifGuestButton.ForeColor = System.Drawing.Color.White;
+            this.tarifGuestButton.Location = new System.Drawing.Point(-2, 442);
+            this.tarifGuestButton.Name = "tarifGuestButton";
+            this.tarifGuestButton.Size = new System.Drawing.Size(312, 46);
+            this.tarifGuestButton.TabIndex = 3;
+            this.tarifGuestButton.Text = "Тарифы";
+            this.tarifGuestButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tarifGuestButton.UseVisualStyleBackColor = false;
+            this.tarifGuestButton.Click += new System.EventHandler(this.tarifs_Click);
             // 
-            // app_name
+            // appName
             // 
-            this.app_name.AutoSize = true;
-            this.app_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.app_name.Font = new System.Drawing.Font("Copperplate Gothic Light", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.app_name.ForeColor = System.Drawing.Color.White;
-            this.app_name.Location = new System.Drawing.Point(-2, 86);
-            this.app_name.Name = "app_name";
-            this.app_name.Padding = new System.Windows.Forms.Padding(0, 7, 3, 3);
-            this.app_name.Size = new System.Drawing.Size(581, 79);
-            this.app_name.TabIndex = 7;
-            this.app_name.Text = "OutAccounting";
+            this.appName.AutoSize = true;
+            this.appName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.appName.Font = new System.Drawing.Font("Copperplate Gothic Light", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appName.ForeColor = System.Drawing.Color.White;
+            this.appName.Location = new System.Drawing.Point(-2, 86);
+            this.appName.Name = "appName";
+            this.appName.Padding = new System.Windows.Forms.Padding(0, 7, 3, 3);
+            this.appName.Size = new System.Drawing.Size(581, 79);
+            this.appName.TabIndex = 7;
+            this.appName.Text = "OutAccounting";
             // 
-            // pas_mask
+            // pasMask
             // 
-            this.pas_mask.AutoSize = true;
-            this.pas_mask.BackColor = System.Drawing.Color.White;
-            this.pas_mask.Enabled = false;
-            this.pas_mask.Font = new System.Drawing.Font("Linux Biolinum G", 24F);
-            this.pas_mask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.pas_mask.Location = new System.Drawing.Point(34, 285);
-            this.pas_mask.Name = "pas_mask";
-            this.pas_mask.Size = new System.Drawing.Size(114, 37);
-            this.pas_mask.TabIndex = 6;
-            this.pas_mask.Text = "пароль";
+            this.pasMask.AutoSize = true;
+            this.pasMask.BackColor = System.Drawing.Color.White;
+            this.pasMask.Enabled = false;
+            this.pasMask.Font = new System.Drawing.Font("Linux Biolinum G", 24F);
+            this.pasMask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.pasMask.Location = new System.Drawing.Point(34, 285);
+            this.pasMask.Name = "pasMask";
+            this.pasMask.Size = new System.Drawing.Size(114, 37);
+            this.pasMask.TabIndex = 6;
+            this.pasMask.Text = "пароль";
             // 
-            // log_mask
+            // logMask
             // 
-            this.log_mask.AutoSize = true;
-            this.log_mask.BackColor = System.Drawing.Color.White;
-            this.log_mask.Enabled = false;
-            this.log_mask.Font = new System.Drawing.Font("Linux Biolinum G", 24F);
-            this.log_mask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.log_mask.Location = new System.Drawing.Point(34, 221);
-            this.log_mask.Name = "log_mask";
-            this.log_mask.Size = new System.Drawing.Size(99, 37);
-            this.log_mask.TabIndex = 7;
-            this.log_mask.Text = "логин";
+            this.logMask.AutoSize = true;
+            this.logMask.BackColor = System.Drawing.Color.White;
+            this.logMask.Enabled = false;
+            this.logMask.Font = new System.Drawing.Font("Linux Biolinum G", 24F);
+            this.logMask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.logMask.Location = new System.Drawing.Point(34, 221);
+            this.logMask.Name = "logMask";
+            this.logMask.Size = new System.Drawing.Size(99, 37);
+            this.logMask.TabIndex = 7;
+            this.logMask.Text = "логин";
             // 
-            // today_lab
+            // todayLabel
             // 
-            this.today_lab.AutoSize = true;
-            this.today_lab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
-            this.today_lab.Font = new System.Drawing.Font("Linux Biolinum G", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.today_lab.ForeColor = System.Drawing.Color.White;
-            this.today_lab.Location = new System.Drawing.Point(713, 542);
-            this.today_lab.Name = "today_lab";
-            this.today_lab.Size = new System.Drawing.Size(227, 31);
-            this.today_lab.TabIndex = 9;
-            this.today_lab.Text = "00.00.0000 00:00:00";
+            this.todayLabel.AutoSize = true;
+            this.todayLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
+            this.todayLabel.Font = new System.Drawing.Font("Linux Biolinum G", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.todayLabel.ForeColor = System.Drawing.Color.White;
+            this.todayLabel.Location = new System.Drawing.Point(698, 542);
+            this.todayLabel.Name = "todayLabel";
+            this.todayLabel.Size = new System.Drawing.Size(283, 31);
+            this.todayLabel.TabIndex = 9;
+            this.todayLabel.Text = "00.00.0000 00:00:00        ";
             // 
             // timer
             // 
@@ -176,78 +176,78 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // menupanel
+            // menuPanel
             // 
-            this.menupanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
-            this.menupanel.Controls.Add(this.tarifs_button);
-            this.menupanel.Controls.Add(this.customers_button);
-            this.menupanel.Controls.Add(this.accounting_button);
-            this.menupanel.Location = new System.Drawing.Point(-6, 168);
-            this.menupanel.Name = "menupanel";
-            this.menupanel.Size = new System.Drawing.Size(391, 397);
-            this.menupanel.TabIndex = 4;
-            this.menupanel.Visible = false;
+            this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
+            this.menuPanel.Controls.Add(this.tarifsButton);
+            this.menuPanel.Controls.Add(this.customersButton);
+            this.menuPanel.Controls.Add(this.accountingButton);
+            this.menuPanel.Location = new System.Drawing.Point(-6, 168);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.Size = new System.Drawing.Size(391, 397);
+            this.menuPanel.TabIndex = 4;
+            this.menuPanel.Visible = false;
             // 
-            // tarifs_button
+            // tarifsButton
             // 
-            this.tarifs_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.tarifs_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.tarifs_button.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tarifs_button.ForeColor = System.Drawing.Color.White;
-            this.tarifs_button.Location = new System.Drawing.Point(-1, 189);
-            this.tarifs_button.Name = "tarifs_button";
-            this.tarifs_button.Size = new System.Drawing.Size(345, 46);
-            this.tarifs_button.TabIndex = 2;
-            this.tarifs_button.Text = "Тарифы";
-            this.tarifs_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tarifs_button.UseVisualStyleBackColor = false;
-            this.tarifs_button.Click += new System.EventHandler(this.tarifs_button_Click);
+            this.tarifsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.tarifsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.tarifsButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tarifsButton.ForeColor = System.Drawing.Color.White;
+            this.tarifsButton.Location = new System.Drawing.Point(-1, 189);
+            this.tarifsButton.Name = "tarifsButton";
+            this.tarifsButton.Size = new System.Drawing.Size(345, 46);
+            this.tarifsButton.TabIndex = 2;
+            this.tarifsButton.Text = "Тарифы";
+            this.tarifsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tarifsButton.UseVisualStyleBackColor = false;
+            this.tarifsButton.Click += new System.EventHandler(this.tarifs_button_Click);
             // 
-            // customers_button
+            // customersButton
             // 
-            this.customers_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.customers_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.customers_button.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customers_button.ForeColor = System.Drawing.Color.White;
-            this.customers_button.Location = new System.Drawing.Point(-1, 134);
-            this.customers_button.Name = "customers_button";
-            this.customers_button.Size = new System.Drawing.Size(345, 46);
-            this.customers_button.TabIndex = 1;
-            this.customers_button.Text = "Клиенты";
-            this.customers_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.customers_button.UseVisualStyleBackColor = false;
-            this.customers_button.Click += new System.EventHandler(this.customers_button_Click);
+            this.customersButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.customersButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.customersButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customersButton.ForeColor = System.Drawing.Color.White;
+            this.customersButton.Location = new System.Drawing.Point(-1, 134);
+            this.customersButton.Name = "customersButton";
+            this.customersButton.Size = new System.Drawing.Size(345, 46);
+            this.customersButton.TabIndex = 1;
+            this.customersButton.Text = "Клиенты";
+            this.customersButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.customersButton.UseVisualStyleBackColor = false;
+            this.customersButton.Click += new System.EventHandler(this.customers_button_Click);
             // 
-            // accounting_button
+            // accountingButton
             // 
-            this.accounting_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.accounting_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.accounting_button.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accounting_button.ForeColor = System.Drawing.Color.White;
-            this.accounting_button.Location = new System.Drawing.Point(-1, 80);
-            this.accounting_button.Name = "accounting_button";
-            this.accounting_button.Size = new System.Drawing.Size(345, 46);
-            this.accounting_button.TabIndex = 0;
-            this.accounting_button.Text = "Учёт услуг";
-            this.accounting_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.accounting_button.UseVisualStyleBackColor = false;
-            this.accounting_button.Click += new System.EventHandler(this.accounting_button_Click);
+            this.accountingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.accountingButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.accountingButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accountingButton.ForeColor = System.Drawing.Color.White;
+            this.accountingButton.Location = new System.Drawing.Point(-1, 80);
+            this.accountingButton.Name = "accountingButton";
+            this.accountingButton.Size = new System.Drawing.Size(345, 46);
+            this.accountingButton.TabIndex = 0;
+            this.accountingButton.Text = "Учёт услуг";
+            this.accountingButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.accountingButton.UseVisualStyleBackColor = false;
+            this.accountingButton.Click += new System.EventHandler(this.accounting_button_Click);
             // 
-            // backauth_button
+            // backauthButton
             // 
-            this.backauth_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.backauth_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.backauth_button.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backauth_button.ForeColor = System.Drawing.Color.White;
-            this.backauth_button.Location = new System.Drawing.Point(385, 176);
-            this.backauth_button.Name = "backauth_button";
-            this.backauth_button.Size = new System.Drawing.Size(195, 46);
-            this.backauth_button.TabIndex = 5;
-            this.backauth_button.Text = "Назад";
-            this.backauth_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backauth_button.UseVisualStyleBackColor = false;
-            this.backauth_button.Visible = false;
-            this.backauth_button.Click += new System.EventHandler(this.backauth_button_Click);
+            this.backauthButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.backauthButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.backauthButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backauthButton.ForeColor = System.Drawing.Color.White;
+            this.backauthButton.Location = new System.Drawing.Point(385, 176);
+            this.backauthButton.Name = "backauthButton";
+            this.backauthButton.Size = new System.Drawing.Size(195, 46);
+            this.backauthButton.TabIndex = 5;
+            this.backauthButton.Text = "Назад";
+            this.backauthButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.backauthButton.UseVisualStyleBackColor = false;
+            this.backauthButton.Visible = false;
+            this.backauthButton.Click += new System.EventHandler(this.backauth_button_Click);
             // 
             // hide_button
             // 
@@ -262,29 +262,29 @@
             this.hide_button.Visible = false;
             this.hide_button.Click += new System.EventHandler(this.hide_button_Click);
             // 
-            // show_button
+            // showButton
             // 
-            this.show_button.BackColor = System.Drawing.Color.White;
-            this.show_button.Image = ((System.Drawing.Image)(resources.GetObject("show_button.Image")));
-            this.show_button.Location = new System.Drawing.Point(312, 285);
-            this.show_button.Name = "show_button";
-            this.show_button.Size = new System.Drawing.Size(40, 40);
-            this.show_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.show_button.TabIndex = 13;
-            this.show_button.TabStop = false;
-            this.show_button.Click += new System.EventHandler(this.show_button_Click);
+            this.showButton.BackColor = System.Drawing.Color.White;
+            this.showButton.Image = ((System.Drawing.Image)(resources.GetObject("showButton.Image")));
+            this.showButton.Location = new System.Drawing.Point(312, 285);
+            this.showButton.Name = "showButton";
+            this.showButton.Size = new System.Drawing.Size(40, 40);
+            this.showButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.showButton.TabIndex = 13;
+            this.showButton.TabStop = false;
+            this.showButton.Click += new System.EventHandler(this.show_button_Click);
             // 
-            // close_app_button
+            // closeAppButton
             // 
-            this.close_app_button.BackColor = System.Drawing.Color.Transparent;
-            this.close_app_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("close_app_button.BackgroundImage")));
-            this.close_app_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.close_app_button.Location = new System.Drawing.Point(872, 4);
-            this.close_app_button.Name = "close_app_button";
-            this.close_app_button.Size = new System.Drawing.Size(53, 50);
-            this.close_app_button.TabIndex = 14;
-            this.close_app_button.TabStop = false;
-            this.close_app_button.Click += new System.EventHandler(this.close_app_button_Click);
+            this.closeAppButton.BackColor = System.Drawing.Color.Transparent;
+            this.closeAppButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("closeAppButton.BackgroundImage")));
+            this.closeAppButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closeAppButton.Location = new System.Drawing.Point(872, 4);
+            this.closeAppButton.Name = "closeAppButton";
+            this.closeAppButton.Size = new System.Drawing.Size(53, 50);
+            this.closeAppButton.TabIndex = 14;
+            this.closeAppButton.TabStop = false;
+            this.closeAppButton.Click += new System.EventHandler(this.close_app_button_Click);
             // 
             // authorization
             // 
@@ -292,19 +292,19 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 582);
-            this.Controls.Add(this.close_app_button);
-            this.Controls.Add(this.menupanel);
-            this.Controls.Add(this.show_button);
+            this.Controls.Add(this.closeAppButton);
+            this.Controls.Add(this.menuPanel);
+            this.Controls.Add(this.showButton);
             this.Controls.Add(this.hide_button);
-            this.Controls.Add(this.backauth_button);
-            this.Controls.Add(this.today_lab);
-            this.Controls.Add(this.log_mask);
-            this.Controls.Add(this.pas_mask);
-            this.Controls.Add(this.app_name);
-            this.Controls.Add(this.tarifs);
-            this.Controls.Add(this.entrance);
-            this.Controls.Add(this.password);
-            this.Controls.Add(this.login);
+            this.Controls.Add(this.backauthButton);
+            this.Controls.Add(this.todayLabel);
+            this.Controls.Add(this.logMask);
+            this.Controls.Add(this.pasMask);
+            this.Controls.Add(this.appName);
+            this.Controls.Add(this.tarifGuestButton);
+            this.Controls.Add(this.entranceButton);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.loginTextBox);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -316,10 +316,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.authorization_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.authorization_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menupanel.ResumeLayout(false);
+            this.menuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.show_button)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeAppButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,23 +328,23 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox login;
-        private System.Windows.Forms.TextBox password;
-        private System.Windows.Forms.Button entrance;
-        private System.Windows.Forms.Button tarifs;
-        private System.Windows.Forms.Label app_name;
-        private System.Windows.Forms.Label pas_mask;
-        private System.Windows.Forms.Label log_mask;
-        private System.Windows.Forms.Label today_lab;
+        private System.Windows.Forms.TextBox loginTextBox;
+        private System.Windows.Forms.TextBox passwordTextBox;
+        private System.Windows.Forms.Button entranceButton;
+        private System.Windows.Forms.Button tarifGuestButton;
+        private System.Windows.Forms.Label appName;
+        private System.Windows.Forms.Label pasMask;
+        private System.Windows.Forms.Label logMask;
+        private System.Windows.Forms.Label todayLabel;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Panel menupanel;
-        private System.Windows.Forms.Button backauth_button;
-        private System.Windows.Forms.Button tarifs_button;
-        private System.Windows.Forms.Button customers_button;
-        private System.Windows.Forms.Button accounting_button;
+        private System.Windows.Forms.Panel menuPanel;
+        private System.Windows.Forms.Button backauthButton;
+        private System.Windows.Forms.Button tarifsButton;
+        private System.Windows.Forms.Button customersButton;
+        private System.Windows.Forms.Button accountingButton;
         private System.Windows.Forms.PictureBox hide_button;
-        private System.Windows.Forms.PictureBox show_button;
-        private System.Windows.Forms.PictureBox close_app_button;
+        private System.Windows.Forms.PictureBox showButton;
+        private System.Windows.Forms.PictureBox closeAppButton;
     }
 }
 

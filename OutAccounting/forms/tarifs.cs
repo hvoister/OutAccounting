@@ -21,26 +21,16 @@ namespace OutAccounting
         public tarifs()
         {
             InitializeComponent();
-            this.tarifsdata.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            this.tarifsDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            tarifsDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            tarifsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            tarifsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            if (current_user.level == 2)
-            {
-                workerpic.Visible = true;
-                deletebutton.Visible = true;
-                createbitton.Visible = true;
-                deletbutton.Visible = false;
-
-                gueststarif.Visible = false;
-            }
-            else
-            {
-                gueststarif.Visible = true;
-                workerpic.Visible = false;
-                deletebutton.Visible = false;
-                createbitton.Visible = false;
-                deletbutton.Visible = true;
-
-                fulltarifs.Visible = true;
+            if (current_user.level != 2)
+            { 
+                tarifsDataGridView.Size = new Size(712, 348);
+                addTarifButton.Visible = false;
+                deleteNote.Visible = false;
             }
         }
 
@@ -60,8 +50,8 @@ namespace OutAccounting
         {
             try
             {
-                DialogResult result = MessageBox.Show("Вы уверены, что хотите \nудалить данный тариф?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
+                DialogResult exitResult = MessageBox.Show("Вы уверены, что хотите \nудалить данный тариф?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (exitResult == DialogResult.Yes)
                 {
                     tarifsBindingSource.RemoveCurrent();
                     tarifsTableAdapter.Update(accountingDataSet);
@@ -71,13 +61,12 @@ namespace OutAccounting
             catch
             {
                 MessageBox.Show("Операция не была проведена! Нечего удалять.", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
         private void backbutton_Click(object sender, EventArgs e)
         {
-            if (infopanel.Visible == true) 
+            if (infoPanel.Visible == false && searchPanel.Visible == false) 
             {
                 authorization authorization = new authorization();
                 authorization.Show();
@@ -85,51 +74,10 @@ namespace OutAccounting
             }
             else 
             {
-                infopanel.Visible = true;
-                delete_note.Enabled = false;
-                search_panel.Visible = false;
-                search_open.Visible = true;
-            }
-        }
-
-        private void moveleft_Click(object sender, EventArgs e)
-        {
-            tarifsBindingSource.MovePrevious();
-        }
-
-        private void moveright_Click(object sender, EventArgs e)
-        {
-            tarifsBindingSource.MoveNext();
-        }
-
-        private void deletebutton_Click(object sender, EventArgs e)
-        {
-            infopanel.Visible = false;
-            delete_note.Enabled = true;
-        }
-
-        private void fulltarifs_Click(object sender, EventArgs e)
-        {
-            infopanel.Visible = false;
-        }
-
-        private void createbitton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                tarifsBindingSource.AddNew();
-                agreecreatebutton.Visible = true;
-                deletebutton.Visible = false;
-                moveleft.Visible = false;
-                moveright.Visible = false;
-
-                nameTextBox.ReadOnly = false;
-                price_per_monthTextBox.ReadOnly = false;
-                servicesTextBox.ReadOnly = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка введения данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (WindowState != FormWindowState.Maximized && (current_user.level == 1 || current_user.level == 0)) tarifsDataGridView.Size = new Size(712, 348);
+                infoPanel.Visible = false;
+                searchOpenButton.Visible = true;
+                searchPanel.Visible = false;
             }
         }
 
@@ -143,32 +91,18 @@ namespace OutAccounting
                 }
                 else
                 {
-                    string tarname = nameTextBox.Text;
+                    string tarName = nameTextBox.Text;
                     double price = Convert.ToDouble(price_per_monthTextBox.Text);
                     string description = servicesTextBox.Text;
 
                     dataBase.openConnection();
-
-                    string querystring = $"insert into tarifs (name, price_per_month, services) values (N'{tarname}', {price} , N'{description}')";
-                    SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-
+                    SqlCommand command = new SqlCommand($"insert into tarifs (name, price_per_month, services) values (N'{tarName}', {price} , N'{description}')", dataBase.getConnection());
                     command.ExecuteNonQuery();
-
                     dataBase.closeConnection();
                     MessageBox.Show("Данные успешно добавлены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                     this.tarifsTableAdapter.Fill(this.accountingDataSet.Tarifs);
-                    agreecreatebutton.Visible = false;
-
-                    moveleft.Visible = true;
-                    moveright.Visible = true;
-                    deletebutton.Visible = true;
-                    agreecreatebutton.Visible = false;
-                    tarifsBindingSource.MoveFirst();
-
-                    nameTextBox.ReadOnly = true;
-                    price_per_monthTextBox.ReadOnly = true;
-                    servicesTextBox.ReadOnly = true;
+                    infoPanel.Visible=false;
                 }
             }
             catch
@@ -185,16 +119,15 @@ namespace OutAccounting
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            deletbutton.Visible = true;
-            infopanel.Visible = false;
-            search_panel.Visible = true;
-            search_open.Visible = false;
+            if (current_user.level == 1 && (WindowState != FormWindowState.Maximized)) tarifsDataGridView.Size = new Size(712, 296);   
+            searchPanel.Visible = true;
+            searchOpenButton.Visible = false;
         }
 
         private void search_text_SelectedIndexChanged(object sender, EventArgs e)
         {
             string name = "name";
-            int index = tarifsBindingSource.Find(name, search_text.SelectedValue);
+            int index = tarifsBindingSource.Find(name, searchText.SelectedValue);
             tarifsBindingSource.Position = index;
         }
 
@@ -205,6 +138,29 @@ namespace OutAccounting
             {
                 Application.Exit();
             }
+        }
+
+        private void addTarifButton_Click(object sender, EventArgs e)
+        {
+            infoPanel.Visible = true;
+        }
+
+        private void bigWindowModeButton_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                this.BackgroundImage = Properties.Resources.background_table_big;
+                tarifsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+                tarifsDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+                this.BackgroundImage = Properties.Resources.authorization_background;
+                tarifsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+                tarifsDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+            };
         }
     }
 }

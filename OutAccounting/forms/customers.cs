@@ -1,4 +1,5 @@
 ﻿using dataBaseConnection;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,26 +13,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
+using Application = System.Windows.Forms.Application;
+using DataTable = System.Data.DataTable;
+using Font = System.Drawing.Font;
+using static System.Windows.Forms.LinkLabel;
 
 namespace OutAccounting.forms
 {
     public partial class customers : Form
     {
         dataBase dataBase = new dataBase();
-        string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Customers_docs";
+        string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
         string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
+
+        public void updateCustomerTable()
+        {
+            dataBase.openConnection();
+            SqlDataAdapter tableViewDataAdapter = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
+            SqlCommandBuilder tableViewCommandBiulder = new SqlCommandBuilder(tableViewDataAdapter);
+            DataSet tableViewResult = new DataSet();
+            tableViewDataAdapter.Fill(tableViewResult, "Result");
+            customersDataGridView.DataSource = tableViewResult.Tables["Result"];
+            dataBase.closeConnection();
+        }
+
         public customers()
         {
             InitializeComponent();
 
-            dataBase.openConnection();
-
-            SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
-            SqlCommandBuilder cb = new SqlCommandBuilder(da);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Result");
-            customersDataGridView.DataSource = ds.Tables["Result"];
-            dataBase.closeConnection();
+            updateCustomerTable();
 
             customersDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             customersDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -61,7 +71,7 @@ namespace OutAccounting.forms
 
         private void backbutton_Click(object sender, EventArgs e)
         {
-            if (infopanel.Visible == false && search_panel.Visible == false)
+            if (createNewPanel.Visible == false && searchPanel.Visible == false)
             {
                 authorization authorization = new authorization();
                 authorization.Show();
@@ -69,26 +79,20 @@ namespace OutAccounting.forms
             }
             else
             {
-                dataBase.openConnection();
-                SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
-                SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                DataSet ds = new DataSet();
-                da.Fill(ds, "Result");
-                customersDataGridView.DataSource = ds.Tables["Result"];
-                dataBase.closeConnection();
+                updateCustomerTable();
 
                 if (current_user.level == 1)
                 {
                     delete_note.Visible = false;
                     add_button.Visible = false;
-                    customersDataGridView.Size = new Size(817, 363);
+                    if (WindowState != FormWindowState.Maximized) customersDataGridView.Size = new Size(817, 363);
                 };
 
-                infopanel.Visible = false;
-                search_panel.Visible = false;
-                search_open.Visible = true;
+                createNewPanel.Visible = false;
+                searchPanel.Visible = false;
+                searchOpenButton.Visible = true;
 
-                orgname.Clear();
+                orgName.Clear();
                 innMaskedBox.Clear();
                 kppMaskedBox.Clear();
                 ogrnMaskedBox.Clear();
@@ -121,32 +125,28 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            customersDataGridView.Size = new Size(817, 311);
+            if (current_user.level == 1 && (WindowState != FormWindowState.Maximized)) customersDataGridView.Size = new Size(817, 311);
 
-            infopanel.Visible = false;
-            search_panel.Visible = true;
-            search_open.Visible = false;
+            createNewPanel.Visible = false;
+            searchPanel.Visible = true;
+            searchOpenButton.Visible = false;
         }
 
         private void search_text_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string reqcusname = Convert.ToString(search_text.SelectedValue);
-            SqlCommand cmd_cusID = new SqlCommand($"Select id_customer from customers where name = N'{reqcusname}'", dataBase.getConnection());
+            string requestCustomerName = Convert.ToString(search_text.SelectedValue);
+            SqlCommand customerIDCommand = new SqlCommand($"Select id_customer from customers where name = N'{requestCustomerName}'", dataBase.getConnection());
             dataBase.openConnection();
-            int selectedCustomer_id = Convert.ToInt32(cmd_cusID.ExecuteScalar());
-
-            SqlDataAdapter da = new SqlDataAdapter($"select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker where Customers.ID_customer = {selectedCustomer_id};", dataBase.getConnection());
-            SqlCommandBuilder cb = new SqlCommandBuilder(da);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Result");
-            customersDataGridView.DataSource = ds.Tables["Result"];
+            int selectedCustomer_id = Convert.ToInt32(customerIDCommand.ExecuteScalar());
             dataBase.closeConnection();
+
+            updateCustomerTable();
         }
 
         private void close_app_button_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (result == DialogResult.Yes)
+            DialogResult exitResult = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (exitResult == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -156,72 +156,78 @@ namespace OutAccounting.forms
         {
             try
             {
-                if (orgname.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "")
+                if (orgName.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "")
                 {
                     MessageBox.Show("Введите данные во все поля для ввода!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    string cusname = orgname.Text;
+                    string customerName = orgName.Text;
                     decimal inn = Convert.ToDecimal(innMaskedBox.Text);
                     decimal kpp = Convert.ToDecimal(kppMaskedBox.Text);
                     string registr = Convert.ToString(registration_formMaskedBox.SelectedItem);
                     decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
-                    string worker_sur = Convert.ToString(worker_surname.SelectedValue);
+                    string workerSurname = Convert.ToString(worker_surname.SelectedValue);
 
 
-                    dataBase.openConnection();
-                    SqlCommand worker = new SqlCommand($"select id_worker from workers where surname = '{worker_sur}'", dataBase.getConnection());
-                    int seller = Convert.ToInt32(worker.ExecuteScalar());
-
-                    string querystring = $"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{cusname}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})";
-                    SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-                    command.ExecuteNonQuery();
-                    dataBase.closeConnection();
-                    try
+                    SqlDataAdapter checkCustomerExists = new SqlDataAdapter();
+                    DataTable resultTable = new DataTable();
+                    SqlCommand customerExitstsCommand = new SqlCommand($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';", dataBase.getConnection());
+                    checkCustomerExists.SelectCommand = customerExitstsCommand;
+                    checkCustomerExists.Fill(resultTable);
+                    if (resultTable.Rows.Count != 0)
                     {
-                        Word._Application oWord = new Word.Application();
-                        oWord.Visible = false;
-                        Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
-                        oDoc.Bookmarks["int_orgname"].Range.Text = cusname;
-                        oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString();
-                        oDoc.Bookmarks["int_curmonth"].Range.Text = months_list [DateTime.Now.Month-1];
-                        oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
-
-                        DirectoryInfo folder = new DirectoryInfo(pathSave);
-                        if (folder.Exists == false)
-                        {
-                            Directory.CreateDirectory(pathSave);
-                        }
-                        string saveFolder = folder.FullName + $"\\{cusname}";
-                        if (Directory.Exists(saveFolder) == false)
-                        {
-                            Directory.CreateDirectory(saveFolder);
-                            pathSave = saveFolder;
-                        }
-
-                        oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{cusname}.doc");
-                        oDoc.Close();
-                        oWord.Quit();
-                        MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Такой клиент уже есть в базе!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    catch
+                    else
                     {
-                        MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    dataBase.openConnection();
-                    SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
-                    SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds, "Result");
-                    customersDataGridView.DataSource = ds.Tables["Result"];
-                    dataBase.closeConnection();
+                        dataBase.openConnection();
+                        SqlCommand workerID = new SqlCommand($"select id_worker from workers where surname = '{workerSurname}'", dataBase.getConnection());
+                        int seller = Convert.ToInt32(workerID.ExecuteScalar());
 
-                    infopanel.Visible = false;
-                    orgname.Clear();
-                    innMaskedBox.Clear();
-                    kppMaskedBox.Clear();
-                    ogrnMaskedBox.Clear();
+                        SqlCommand customerInsertCommand = new SqlCommand($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})", dataBase.getConnection());
+                        customerInsertCommand.ExecuteNonQuery();
+                        dataBase.closeConnection();
+                        try
+                        {
+                            Word._Application oWord = new Word.Application();
+                            oWord.Visible = false;
+                            Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
+                            oDoc.Bookmarks["int_orgname"].Range.Text = customerName;
+                            oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString();
+                            oDoc.Bookmarks["int_curmonth"].Range.Text = months_list[DateTime.Now.Month - 1];
+                            oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
+
+                            DirectoryInfo folder = new DirectoryInfo(pathSave);
+                            if (folder.Exists == false)
+                            {
+                                Directory.CreateDirectory(pathSave);
+                            }
+                            string saveFolder = folder.FullName + $"\\{customerName}";
+                            if (Directory.Exists(saveFolder) == false)
+                            {
+                                Directory.CreateDirectory(saveFolder);
+                                pathSave = saveFolder;
+                            }
+
+                            oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{customerName}.doc");
+                            oDoc.Close();
+                            oWord.Quit();
+                            MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        };
+
+                        updateCustomerTable();
+
+                        createNewPanel.Visible = false;
+                        orgName.Clear();
+                        innMaskedBox.Clear();
+                        kppMaskedBox.Clear();
+                        ogrnMaskedBox.Clear();
+                    }
                 }
             }
             catch
@@ -232,12 +238,12 @@ namespace OutAccounting.forms
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            infopanel.Visible = true;
+            createNewPanel.Visible = true;
         }
 
         private void delete_note_Click(object sender, EventArgs e)
         {
-            string customer_name, INN, OGRN;
+            string customerName, INN, OGRN;
             Int32 selectedRowCount = customersDataGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount == 1)
             {
@@ -245,45 +251,57 @@ namespace OutAccounting.forms
                 {
                     try
                     {
-                        DialogResult result = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                        if (result == DialogResult.Yes)
+                        DialogResult deleteResult = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (deleteResult == DialogResult.Yes)
                         {
-                            customer_name = row.Cells[0].Value.ToString();
+                            customerName = row.Cells[0].Value.ToString();
                             INN = row.Cells[1].Value.ToString();
                             OGRN = row.Cells[4].Value.ToString();
 
                             dataBase.openConnection();
-                            string querystring = $"delete from customers where name = '{customer_name}' and inn = {INN} and ogrn = {OGRN}";
-                            SqlCommand command = new SqlCommand(querystring, dataBase.getConnection());
-                            command.ExecuteNonQuery();
-
-                            SqlDataAdapter da = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
-                            SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                            DataSet ds = new DataSet();
-                            da.Fill(ds, "Result");
-                            customersDataGridView.DataSource = ds.Tables["Result"];
+                            SqlCommand deleteCustomerCommand = new SqlCommand($"delete from customers where name = '{customerName}' and inn = {INN} and ogrn = {OGRN}", dataBase.getConnection());
+                            deleteCustomerCommand.ExecuteNonQuery();
                             dataBase.closeConnection();
+
+                            updateCustomerTable();
 
                             DirectoryInfo folder = new DirectoryInfo(pathSave);
                             if (folder.Exists)
                             {
-                                DirectoryInfo cus_folder = new DirectoryInfo(pathSave);
-                                Directory.Delete(cus_folder.ToString(), true);
+                                DirectoryInfo customerFolder = new DirectoryInfo(pathSave);
+                                Directory.Delete(customerFolder.ToString(), true);
                             }
-                            MessageBox.Show("Данные успешно удалены!");
+                            MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         }
                     }
                     catch
                     {
                         MessageBox.Show("Ошибка удаления, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
             }
             else
             {
                 MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void bigWindowModeButton_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                this.BackgroundImage = Properties.Resources.background_table_big;
+                customersDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+                customersDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+                this.BackgroundImage = Properties.Resources.authorization_background;
+                customersDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+                customersDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+            };
         }
     }
 }
