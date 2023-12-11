@@ -83,7 +83,7 @@ namespace OutAccounting
                         SqlCommand levelCommand = new SqlCommand($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
                         current_user.level = Convert.ToInt32(levelCommand.ExecuteScalar());
                         dataBase.closeConnection();
-                        MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK);
+                        MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                         menuPanel.Visible = true;
                         backauthButton.Visible = true;
@@ -169,7 +169,7 @@ namespace OutAccounting
 
         private void close_app_button_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 Application.Exit();

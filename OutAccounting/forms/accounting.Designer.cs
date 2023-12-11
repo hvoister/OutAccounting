@@ -32,11 +32,11 @@
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label tarifLabel;
             System.Windows.Forms.Label dateEndLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(accounting));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.Label customerSearchLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(accounting));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.accountingDataSet = new OutAccounting.other.accountingDataSet();
             this.appName = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.PictureBox();
@@ -44,8 +44,9 @@
             this.deleteNote = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.addPanel = new System.Windows.Forms.Panel();
-            this.monthsCountText = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.agreeAddButton = new System.Windows.Forms.Button();
+            this.monthsCountText = new System.Windows.Forms.NumericUpDown();
             this.customerNameText = new System.Windows.Forms.ComboBox();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tarifNameText = new System.Windows.Forms.ComboBox();
@@ -58,10 +59,9 @@
             this.closeAppButton = new System.Windows.Forms.PictureBox();
             this.bigWindowModeButton = new System.Windows.Forms.PictureBox();
             this.viewPanel = new System.Windows.Forms.Panel();
-            this.customerSearchText = new System.Windows.Forms.ComboBox();
             this.searchPanel = new System.Windows.Forms.Panel();
+            this.customerSearchText = new System.Windows.Forms.ComboBox();
             this.buttonsNamePanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             nameLabel = new System.Windows.Forms.Label();
             tarifLabel = new System.Windows.Forms.Label();
             dateEndLabel = new System.Windows.Forms.Label();
@@ -70,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.backButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingTable)).BeginInit();
             this.addPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.monthsCountText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).BeginInit();
@@ -79,7 +80,6 @@
             this.viewPanel.SuspendLayout();
             this.searchPanel.SuspendLayout();
             this.buttonsNamePanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -114,6 +114,16 @@
             dateEndLabel.Size = new System.Drawing.Size(231, 54);
             dateEndLabel.TabIndex = 27;
             dateEndLabel.Text = "Продолжительность договора в месяцах:";
+            // 
+            // customerSearchLabel
+            // 
+            customerSearchLabel.AutoSize = true;
+            customerSearchLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            customerSearchLabel.Location = new System.Drawing.Point(9, 16);
+            customerSearchLabel.Name = "customerSearchLabel";
+            customerSearchLabel.Size = new System.Drawing.Size(94, 27);
+            customerSearchLabel.TabIndex = 23;
+            customerSearchLabel.Text = "Клиент:";
             // 
             // accountingDataSet
             // 
@@ -156,35 +166,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.accountingTable.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.accountingTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.accountingTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.accountingTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.accountingTable.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.accountingTable.DefaultCellStyle = dataGridViewCellStyle5;
             this.accountingTable.GridColor = System.Drawing.SystemColors.Control;
             this.accountingTable.Location = new System.Drawing.Point(14, 10);
             this.accountingTable.Name = "accountingTable";
             this.accountingTable.ReadOnly = true;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.accountingTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.accountingTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.accountingTable.Size = new System.Drawing.Size(763, 294);
             this.accountingTable.TabIndex = 0;
             // 
@@ -234,6 +244,47 @@
             this.addPanel.TabIndex = 4;
             this.addPanel.Visible = false;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.21053F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.78947F));
+            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.agreeAddButton, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.monthsCountText, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.customerNameText, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(tarifLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(dateEndLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tarifNameText, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(30, 66);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(735, 230);
+            this.tableLayoutPanel1.TabIndex = 28;
+            // 
+            // agreeAddButton
+            // 
+            this.agreeAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.agreeAddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.agreeAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.agreeAddButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agreeAddButton.ForeColor = System.Drawing.Color.White;
+            this.agreeAddButton.Location = new System.Drawing.Point(254, 177);
+            this.agreeAddButton.Name = "agreeAddButton";
+            this.agreeAddButton.Size = new System.Drawing.Size(478, 46);
+            this.agreeAddButton.TabIndex = 3;
+            this.agreeAddButton.Text = "Добавить запись";
+            this.agreeAddButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.agreeAddButton.UseVisualStyleBackColor = false;
+            this.agreeAddButton.Click += new System.EventHandler(this.agree_add_Click);
+            // 
             // monthsCountText
             // 
             this.monthsCountText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -257,22 +308,6 @@
             0,
             0,
             0});
-            // 
-            // agreeAddButton
-            // 
-            this.agreeAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.agreeAddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
-            this.agreeAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.agreeAddButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agreeAddButton.ForeColor = System.Drawing.Color.White;
-            this.agreeAddButton.Location = new System.Drawing.Point(254, 177);
-            this.agreeAddButton.Name = "agreeAddButton";
-            this.agreeAddButton.Size = new System.Drawing.Size(478, 46);
-            this.agreeAddButton.TabIndex = 3;
-            this.agreeAddButton.Text = "Добавить запись";
-            this.agreeAddButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.agreeAddButton.UseVisualStyleBackColor = false;
-            this.agreeAddButton.Click += new System.EventHandler(this.agree_add_Click);
             // 
             // customerNameText
             // 
@@ -378,33 +413,6 @@
             this.viewPanel.Size = new System.Drawing.Size(789, 372);
             this.viewPanel.TabIndex = 30;
             // 
-            // customerSearchLabel
-            // 
-            customerSearchLabel.AutoSize = true;
-            customerSearchLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            customerSearchLabel.Location = new System.Drawing.Point(9, 16);
-            customerSearchLabel.Name = "customerSearchLabel";
-            customerSearchLabel.Size = new System.Drawing.Size(94, 27);
-            customerSearchLabel.TabIndex = 23;
-            customerSearchLabel.Text = "Клиент:";
-            // 
-            // customerSearchText
-            // 
-            this.customerSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customerSearchText.DataSource = this.customersBindingSource;
-            this.customerSearchText.DisplayMember = "name";
-            this.customerSearchText.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.customerSearchText.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.customerSearchText.FormattingEnabled = true;
-            this.customerSearchText.Location = new System.Drawing.Point(109, 13);
-            this.customerSearchText.Name = "customerSearchText";
-            this.customerSearchText.Size = new System.Drawing.Size(668, 35);
-            this.customerSearchText.TabIndex = 0;
-            this.customerSearchText.ValueMember = "name";
-            this.customerSearchText.SelectedIndexChanged += new System.EventHandler(this.customer_search_SelectedIndexChanged);
-            // 
             // searchPanel
             // 
             this.searchPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -417,6 +425,20 @@
             this.searchPanel.Size = new System.Drawing.Size(789, 62);
             this.searchPanel.TabIndex = 3;
             this.searchPanel.Visible = false;
+            // 
+            // customerSearchText
+            // 
+            this.customerSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customerSearchText.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.customerSearchText.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.customerSearchText.FormattingEnabled = true;
+            this.customerSearchText.Location = new System.Drawing.Point(109, 13);
+            this.customerSearchText.Name = "customerSearchText";
+            this.customerSearchText.Size = new System.Drawing.Size(668, 35);
+            this.customerSearchText.TabIndex = 0;
+            this.customerSearchText.SelectedIndexChanged += new System.EventHandler(this.customer_search_SelectedIndexChanged);
             // 
             // buttonsNamePanel
             // 
@@ -431,31 +453,6 @@
             this.buttonsNamePanel.Name = "buttonsNamePanel";
             this.buttonsNamePanel.Size = new System.Drawing.Size(789, 91);
             this.buttonsNamePanel.TabIndex = 24;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.21053F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.78947F));
-            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.agreeAddButton, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.monthsCountText, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.customerNameText, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(tarifLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(dateEndLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tarifNameText, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(30, 66);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(735, 230);
-            this.tableLayoutPanel1.TabIndex = 28;
             // 
             // accounting
             // 
@@ -484,6 +481,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.backButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingTable)).EndInit();
             this.addPanel.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.monthsCountText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).EndInit();
@@ -495,8 +494,6 @@
             this.searchPanel.PerformLayout();
             this.buttonsNamePanel.ResumeLayout(false);
             this.buttonsNamePanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

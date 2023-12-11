@@ -18,13 +18,16 @@ namespace OutAccounting
     public partial class tarifs : Form
     {
         dataBase dataBase = new dataBase();
+        workingWithData wWD = new workingWithData();
         public tarifs()
         {
             InitializeComponent();
-            this.tarifsDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            tarifsDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            tarifsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            tarifsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            for ( int i = 0; i < tarifsDataGridView.Columns.Count; i++ )
+            {
+                tarifsDataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            tarifsDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             if (current_user.level != 2)
             { 
@@ -95,13 +98,10 @@ namespace OutAccounting
                     double price = Convert.ToDouble(price_per_monthTextBox.Text);
                     string description = servicesTextBox.Text;
 
-                    dataBase.openConnection();
-                    SqlCommand command = new SqlCommand($"insert into tarifs (name, price_per_month, services) values (N'{tarName}', {price} , N'{description}')", dataBase.getConnection());
-                    command.ExecuteNonQuery();
-                    dataBase.closeConnection();
+                    wWD.operationsBuilder($"insert into tarifs (name, price_per_month, services) values (N'{tarName}', {price} , N'{description}');");
                     MessageBox.Show("Данные успешно добавлены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-                    this.tarifsTableAdapter.Fill(this.accountingDataSet.Tarifs);
+                    tarifsTableAdapter.Fill(accountingDataSet.Tarifs);
                     infoPanel.Visible=false;
                 }
             }
@@ -109,7 +109,6 @@ namespace OutAccounting
             {
                 MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
         private void tarifs_FormClosing(object sender, FormClosingEventArgs e)
@@ -133,7 +132,7 @@ namespace OutAccounting
 
         private void close_app_button_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 Application.Exit();

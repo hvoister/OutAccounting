@@ -24,31 +24,26 @@ namespace OutAccounting.forms
     public partial class accounting : Form
     {
         dataBase dataBase = new dataBase();
+        workingWithData wWD = new workingWithData();
+
+        string mainTable = "select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
+                "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +
+                "from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;";
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
         string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
-        public void updateAccountingTable()
-        {
-            dataBase.openConnection();
-            SqlDataAdapter tableViewDataAdapter = new SqlDataAdapter("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
-                "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +
-                "from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;", dataBase.getConnection());
-            SqlCommandBuilder tableViewCommandBuilder = new SqlCommandBuilder(tableViewDataAdapter);
-            DataSet tableView = new DataSet();
-            tableViewDataAdapter.Fill(tableView, "Result");
-            accountingTable.DataSource = tableView.Tables["Result"];
-            dataBase.closeConnection();
-        }
             public accounting()
         {
             InitializeComponent();
-            updateAccountingTable();
+            wWD.updateTable(mainTable, accountingTable);
 
             accountingTable.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             accountingTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             accountingTable.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             accountingTable.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             accountingTable.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            wWD.comboBoxFuller("SELECT name FROM customers;", "name", customerSearchText);
 
             if (current_user.level == 1)
             {
@@ -78,7 +73,7 @@ namespace OutAccounting.forms
             }
             else
             {
-                updateAccountingTable();
+                wWD.updateTable(mainTable, accountingTable);
 
                 if (current_user.level == 1)
                 {
@@ -125,37 +120,22 @@ namespace OutAccounting.forms
                     string start = startDate.ToString("O");
                     string end = finishDate.ToString("O");
 
-                    SqlCommand customerIDCommand = new SqlCommand($"Select id_customer from customers where name = N'{requestCustomerName}'", dataBase.getConnection());
-                    SqlCommand tarifIDCommand = new SqlCommand($"Select id_tarif from tarifs where name = N'{requestTarifName}'", dataBase.getConnection());
-                    dataBase.openConnection();
-                    int customerID = Convert.ToInt32(customerIDCommand.ExecuteScalar());
-                    int tarifId = Convert.ToInt32(tarifIDCommand.ExecuteScalar());
+                    int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{requestCustomerName}'"));
+                    int tarifId = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{requestTarifName}'"));
 
-                    SqlCommand tarifPriceCommand = new SqlCommand($"Select price_per_month from tarifs where ID_tarif = N'{tarifId}'", dataBase.getConnection());
-                    int tarifPrice = Convert.ToInt32(tarifPriceCommand.ExecuteScalar());
+                    int tarifPrice = Convert.ToInt32(wWD.executeScalar($"Select price_per_month from tarifs where ID_tarif = N'{tarifId}'"));
                     int total = tarifPrice * Convert.ToInt32(monthsCountText.Value);
 
-                    SqlCommand accountingInsertCommand = new SqlCommand($"insert into accounting (customer, tarif, start_date, end_date, total) values ({customerID}, {tarifId}, '{start}', '{end}', {total})", dataBase.getConnection());
-                    accountingInsertCommand.ExecuteNonQuery();
-                    dataBase.closeConnection();
+                    wWD.operationsBuilder($"insert into accounting (customer, tarif, start_date, end_date, total) values ({customerID}, {tarifId}, '{start}', '{end}', {total});");
 
                     try
                     {
-                        SqlCommand noteIDCommand = new SqlCommand($"Select ID_note from Accounting where customer = {customerID} AND tarif = {tarifId} and start_date = '{start}'", dataBase.getConnection());
-                        SqlCommand servicesCommand = new SqlCommand($"Select services from tarifs where id_tarif = {tarifId}", dataBase.getConnection());
-                        SqlCommand INNCommand = new SqlCommand($"Select inn from customers where id_customer = {customerID}", dataBase.getConnection());
-                        SqlCommand KPPCommand = new SqlCommand($"Select kpp from customers where id_customer = {customerID}", dataBase.getConnection());
-                        SqlCommand regFormCommand = new SqlCommand($"Select registration_form from customers where id_customer = {customerID}", dataBase.getConnection());
-                        SqlCommand OGRNCommand = new SqlCommand($"Select ogrn from customers where id_customer = {customerID}", dataBase.getConnection());
-
-                        dataBase.openConnection();
-                        int number = Convert.ToInt32(noteIDCommand.ExecuteScalar());
-                        string tarifDescription = Convert.ToString(servicesCommand.ExecuteScalar());
-                        decimal INN = Convert.ToDecimal(INNCommand.ExecuteScalar());
-                        decimal KPP = Convert.ToDecimal(KPPCommand.ExecuteScalar());
-                        string regform = Convert.ToString(regFormCommand.ExecuteScalar());
-                        decimal OGRN = Convert.ToDecimal(OGRNCommand.ExecuteScalar());
-                        dataBase.closeConnection();
+                        int number = Convert.ToInt32(wWD.executeScalar($"Select ID_note from Accounting where customer = {customerID} AND tarif = {tarifId} and start_date = '{start}'"));
+                        string tarifDescription = Convert.ToString(wWD.executeScalar($"Select services from tarifs where id_tarif = {tarifId}"));
+                        decimal INN = Convert.ToDecimal(wWD.executeScalar($"Select inn from customers where id_customer = {customerID}"));
+                        decimal KPP = Convert.ToDecimal(wWD.executeScalar($"Select kpp from customers where id_customer = {customerID}"));
+                        string regform = Convert.ToString(wWD.executeScalar($"Select registration_form from customers where id_customer = {customerID}"));
+                        decimal OGRN = Convert.ToDecimal(wWD.executeScalar($"Select ogrn from customers where id_customer = {customerID}"));
 
                         Word._Application oWord = new Word.Application();
                         oWord.Visible = false;
@@ -192,7 +172,8 @@ namespace OutAccounting.forms
                         MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    updateAccountingTable();
+                    wWD.updateTable(mainTable, accountingTable);
+                    wWD.comboBoxFuller("SELECT name FROM customers;", "name", customerSearchText);
 
                     addPanel.Visible = false;
                 }
@@ -223,17 +204,12 @@ namespace OutAccounting.forms
                         DialogResult deleteResult = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (deleteResult == DialogResult.Yes)
                         {
-                            SqlCommand customerIDCommand = new SqlCommand($"Select id_customer from customers where name = N'{customerName}'", dataBase.getConnection());
-                            SqlCommand tarifIDCommand = new SqlCommand($"Select id_tarif from tarifs where name = N'{tarifName}'", dataBase.getConnection());
-                            dataBase.openConnection();
-                            int customerID = Convert.ToInt32(customerIDCommand.ExecuteScalar());
-                            int tarifID = Convert.ToInt32(tarifIDCommand.ExecuteScalar());
+                            int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{customerName}'"));
+                            int tarifID = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{tarifName}'"));
 
-                            SqlCommand command = new SqlCommand($"delete from accounting where customer = {customerID} and tarif = {tarifID} and total = {totalPrice}", dataBase.getConnection());
-                            command.ExecuteNonQuery();
-                            dataBase.closeConnection();
+                            wWD.operationsBuilder($"delete from accounting where customer = {customerID} and tarif = {tarifID} and total = {totalPrice}");
 
-                            updateAccountingTable();
+                            wWD.updateTable(mainTable, accountingTable);
                             MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         }
                     }
@@ -241,7 +217,6 @@ namespace OutAccounting.forms
                     {
                         MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
             }
             else
@@ -260,16 +235,16 @@ namespace OutAccounting.forms
         private void customer_search_SelectedIndexChanged(object sender, EventArgs e)
         {
             string requesrCustomerName = Convert.ToString(customerSearchText.SelectedValue);
-            SqlCommand customerIdCommand = new SqlCommand($"Select id_customer from customers where name = N'{requesrCustomerName}'", dataBase.getConnection());
-            dataBase.openConnection();
-            int selectedCustomerID = Convert.ToInt32(customerIdCommand.ExecuteScalar());
-            dataBase.closeConnection();
-            updateAccountingTable();
+            int selectedCustomerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{requesrCustomerName}'"));
+
+            wWD.updateTable("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
+                "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +
+                $"from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif where ID_customer = {selectedCustomerID};", accountingTable);
         }
 
         private void close_app_button_Click(object sender, EventArgs e)
         {
-            DialogResult exitResult = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult exitResult = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exitResult == DialogResult.Yes)
             {
                 Application.Exit();

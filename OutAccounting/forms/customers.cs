@@ -23,34 +23,19 @@ namespace OutAccounting.forms
     public partial class customers : Form
     {
         dataBase dataBase = new dataBase();
+        workingWithData wWD = new workingWithData();
+
+        string mainTable = "select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;";
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
         string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
-        public void updateCustomerTable()
-        {
-            dataBase.openConnection();
-            SqlDataAdapter tableViewDataAdapter = new SqlDataAdapter("select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;", dataBase.getConnection());
-            SqlCommandBuilder tableViewCommandBiulder = new SqlCommandBuilder(tableViewDataAdapter);
-            DataSet tableViewResult = new DataSet();
-            tableViewDataAdapter.Fill(tableViewResult, "Result");
-            customersDataGridView.DataSource = tableViewResult.Tables["Result"];
-            dataBase.closeConnection();
-        }
 
         public customers()
         {
             InitializeComponent();
 
-            updateCustomerTable();
-
-            customersDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            customersDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            customersDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            customersDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            customersDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            customersDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            this.customersDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            wWD.updateTable(mainTable, customersDataGridView);
+            wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
 
             if (current_user.level == 1)
             {
@@ -79,7 +64,7 @@ namespace OutAccounting.forms
             }
             else
             {
-                updateCustomerTable();
+                wWD.updateTable(mainTable, customersDataGridView);
 
                 if (current_user.level == 1)
                 {
@@ -134,18 +119,15 @@ namespace OutAccounting.forms
 
         private void search_text_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string requestCustomerName = Convert.ToString(search_text.SelectedValue);
-            SqlCommand customerIDCommand = new SqlCommand($"Select id_customer from customers where name = N'{requestCustomerName}'", dataBase.getConnection());
-            dataBase.openConnection();
-            int selectedCustomer_id = Convert.ToInt32(customerIDCommand.ExecuteScalar());
-            dataBase.closeConnection();
+            string requestCustomerName = Convert.ToString(search_text.SelectedItem);
+            int selectedCustomer_id = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{requestCustomerName}';"));
 
-            updateCustomerTable();
+            wWD.updateTable($"select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker where ID_customer = {selectedCustomer_id};", customersDataGridView);
         }
 
         private void close_app_button_Click(object sender, EventArgs e)
         {
-            DialogResult exitResult = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult exitResult = MessageBox.Show("Вы уверены, что хотите закрыть приложение? \nВсе несохранённые данные будут потеряны.", "Подтверждение закрытия приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exitResult == DialogResult.Yes)
             {
                 Application.Exit();
@@ -169,7 +151,6 @@ namespace OutAccounting.forms
                     decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
                     string workerSurname = Convert.ToString(worker_surname.SelectedValue);
 
-
                     SqlDataAdapter checkCustomerExists = new SqlDataAdapter();
                     DataTable resultTable = new DataTable();
                     SqlCommand customerExitstsCommand = new SqlCommand($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';", dataBase.getConnection());
@@ -181,13 +162,10 @@ namespace OutAccounting.forms
                     }
                     else
                     {
-                        dataBase.openConnection();
-                        SqlCommand workerID = new SqlCommand($"select id_worker from workers where surname = '{workerSurname}'", dataBase.getConnection());
-                        int seller = Convert.ToInt32(workerID.ExecuteScalar());
+                        int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where surname = '{workerSurname}'"));
 
-                        SqlCommand customerInsertCommand = new SqlCommand($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})", dataBase.getConnection());
-                        customerInsertCommand.ExecuteNonQuery();
-                        dataBase.closeConnection();
+                        wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
+
                         try
                         {
                             Word._Application oWord = new Word.Application();
@@ -213,6 +191,7 @@ namespace OutAccounting.forms
                             oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{customerName}.doc");
                             oDoc.Close();
                             oWord.Quit();
+
                             MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         }
                         catch
@@ -220,7 +199,8 @@ namespace OutAccounting.forms
                             MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         };
 
-                        updateCustomerTable();
+                        wWD.updateTable(mainTable, customersDataGridView);
+                        wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
 
                         createNewPanel.Visible = false;
                         orgName.Clear();
@@ -258,12 +238,9 @@ namespace OutAccounting.forms
                             INN = row.Cells[1].Value.ToString();
                             OGRN = row.Cells[4].Value.ToString();
 
-                            dataBase.openConnection();
-                            SqlCommand deleteCustomerCommand = new SqlCommand($"delete from customers where name = '{customerName}' and inn = {INN} and ogrn = {OGRN}", dataBase.getConnection());
-                            deleteCustomerCommand.ExecuteNonQuery();
-                            dataBase.closeConnection();
+                            wWD.operationsBuilder($"delete from customers where name = '{customerName}' and inn = {INN} and ogrn = {OGRN}");
 
-                            updateCustomerTable();
+                            wWD.updateTable(mainTable, customersDataGridView);
 
                             DirectoryInfo folder = new DirectoryInfo(pathSave);
                             if (folder.Exists)
