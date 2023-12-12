@@ -67,5 +67,19 @@ namespace dataBaseConnection
             dataBase.closeConnection();
             return result;
         }
+
+        public int noteExistsCheck(string query)
+        {
+            dataBase.openConnection();
+
+            DataTable resultTable = new DataTable();
+            SqlDataAdapter noteExistsCheck = new SqlDataAdapter(query, dataBase.getConnection());
+            noteExistsCheck.Fill(resultTable);
+
+            dataBase.closeConnection();
+
+            int result = resultTable.Rows.Count;
+            return result;
+        }
     }
 }

@@ -96,6 +96,7 @@
     <EmbeddedResource Include="forms\tarifs.resx">
       <DependentUpon>tarifs.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="content\linux-biolinum-g.ttf" />
     <None Include="other\accountingDataSet.xsc">
       <DependentUpon>accountingDataSet.xsd</DependentUpon>
     </None>

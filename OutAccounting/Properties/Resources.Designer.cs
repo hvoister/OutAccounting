@@ -89,5 +89,15 @@ namespace OutAccounting.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] linux_biolinum_g {
+            get {
+                object obj = ResourceManager.GetObject("linux_biolinum_g", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

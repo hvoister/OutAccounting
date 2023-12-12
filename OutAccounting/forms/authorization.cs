@@ -22,6 +22,7 @@ namespace OutAccounting
     {
         public current_user user;
         dataBase dataBase = new dataBase();
+        workingWithData wWD = new workingWithData();
 
         public authorization()
         {
@@ -68,21 +69,12 @@ namespace OutAccounting
 
                 try
                 {
-                    SqlDataAdapter checkUserExists = new SqlDataAdapter();
-                    DataTable resultTable = new DataTable();
-
-                    SqlCommand userExistsCommand = new SqlCommand($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
-                    checkUserExists.SelectCommand = userExistsCommand;
-                    checkUserExists.Fill(resultTable);
-                    if (resultTable.Rows.Count == 1)
+                    int userExists = wWD.noteExistsCheck($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'");
+                    if (userExists == 1)
                     {
-                        dataBase.openConnection();
-                        int input_ID = Convert.ToInt32(userExistsCommand.ExecuteScalar());
-                        current_user.id = input_ID;
+                        current_user.id = Convert.ToInt32(wWD.executeScalar($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
+                        current_user.level = Convert.ToInt32(wWD.executeScalar($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
 
-                        SqlCommand levelCommand = new SqlCommand($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'", dataBase.getConnection());
-                        current_user.level = Convert.ToInt32(levelCommand.ExecuteScalar());
-                        dataBase.closeConnection();
                         MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                         menuPanel.Visible = true;

@@ -151,12 +151,8 @@ namespace OutAccounting.forms
                     decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
                     string workerSurname = Convert.ToString(worker_surname.SelectedValue);
 
-                    SqlDataAdapter checkCustomerExists = new SqlDataAdapter();
-                    DataTable resultTable = new DataTable();
-                    SqlCommand customerExitstsCommand = new SqlCommand($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';", dataBase.getConnection());
-                    checkCustomerExists.SelectCommand = customerExitstsCommand;
-                    checkCustomerExists.Fill(resultTable);
-                    if (resultTable.Rows.Count != 0)
+                    int customerExists = wWD.noteExistsCheck($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';");
+                    if (customerExists != 0)
                     {
                         MessageBox.Show("Такой клиент уже есть в базе!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -240,8 +236,6 @@ namespace OutAccounting.forms
 
                             wWD.operationsBuilder($"delete from customers where name = '{customerName}' and inn = {INN} and ogrn = {OGRN}");
 
-                            wWD.updateTable(mainTable, customersDataGridView);
-
                             DirectoryInfo folder = new DirectoryInfo(pathSave);
                             if (folder.Exists)
                             {
@@ -249,6 +243,7 @@ namespace OutAccounting.forms
                                 Directory.Delete(customerFolder.ToString(), true);
                             }
                             MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            wWD.updateTable(mainTable, customersDataGridView);
                         }
                     }
                     catch
