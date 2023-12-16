@@ -36,15 +36,13 @@
             System.Windows.Forms.Label ogrnLabel;
             System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(customers));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backButton = new System.Windows.Forms.PictureBox();
             this.app_name = new System.Windows.Forms.Label();
             this.createNewPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.worker_surname_label = new System.Windows.Forms.Label();
-            this.worker_surname = new System.Windows.Forms.ComboBox();
             this.workersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.accountingDataSet = new OutAccounting.other.accountingDataSet();
             this.ogrnMaskedBox = new System.Windows.Forms.MaskedTextBox();
@@ -93,7 +91,7 @@
             nameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             nameLabel.AutoSize = true;
             nameLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            nameLabel.Location = new System.Drawing.Point(3, 66);
+            nameLabel.Location = new System.Drawing.Point(3, 17);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new System.Drawing.Size(158, 27);
             nameLabel.TabIndex = 21;
@@ -104,7 +102,7 @@
             innLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             innLabel.AutoSize = true;
             innLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            innLabel.Location = new System.Drawing.Point(3, 119);
+            innLabel.Location = new System.Drawing.Point(3, 79);
             innLabel.Name = "innLabel";
             innLabel.Size = new System.Drawing.Size(68, 27);
             innLabel.TabIndex = 22;
@@ -115,7 +113,7 @@
             kppLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             kppLabel.AutoSize = true;
             kppLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            kppLabel.Location = new System.Drawing.Point(3, 172);
+            kppLabel.Location = new System.Drawing.Point(3, 141);
             kppLabel.Name = "kppLabel";
             kppLabel.Size = new System.Drawing.Size(66, 27);
             kppLabel.TabIndex = 23;
@@ -126,7 +124,7 @@
             registration_formLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             registration_formLabel.AutoSize = true;
             registration_formLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            registration_formLabel.Location = new System.Drawing.Point(3, 225);
+            registration_formLabel.Location = new System.Drawing.Point(3, 203);
             registration_formLabel.Name = "registration_formLabel";
             registration_formLabel.Size = new System.Drawing.Size(227, 27);
             registration_formLabel.TabIndex = 24;
@@ -137,7 +135,7 @@
             ogrnLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             ogrnLabel.AutoSize = true;
             ogrnLabel.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            ogrnLabel.Location = new System.Drawing.Point(3, 278);
+            ogrnLabel.Location = new System.Drawing.Point(3, 265);
             ogrnLabel.Name = "ogrnLabel";
             ogrnLabel.Size = new System.Drawing.Size(78, 27);
             ogrnLabel.TabIndex = 25;
@@ -200,57 +198,29 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.worker_surname_label, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.worker_surname, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ogrnMaskedBox, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.orgName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(ogrnLabel, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.registration_formMaskedBox, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.kppMaskedBox, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(registration_formLabel, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(innLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.innMaskedBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(kppLabel, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.agreecreatebutton, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.ogrnMaskedBox, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.orgName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(ogrnLabel, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.registration_formMaskedBox, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.kppMaskedBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(registration_formLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(innLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.innMaskedBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(kppLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.agreecreatebutton, 1, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(35, 9);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28509F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28943F));
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66582F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66582F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66582F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66582F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66582F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.67088F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(783, 373);
             this.tableLayoutPanel1.TabIndex = 31;
-            // 
-            // worker_surname_label
-            // 
-            this.worker_surname_label.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.worker_surname_label.AutoSize = true;
-            this.worker_surname_label.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.worker_surname_label.Location = new System.Drawing.Point(3, 13);
-            this.worker_surname_label.Name = "worker_surname_label";
-            this.worker_surname_label.Size = new System.Drawing.Size(133, 27);
-            this.worker_surname_label.TabIndex = 30;
-            this.worker_surname_label.Text = "Сотрудник:";
-            // 
-            // worker_surname
-            // 
-            this.worker_surname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.worker_surname.DataSource = this.workersBindingSource;
-            this.worker_surname.DisplayMember = "surname";
-            this.worker_surname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.worker_surname.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.worker_surname.FormattingEnabled = true;
-            this.worker_surname.Location = new System.Drawing.Point(236, 9);
-            this.worker_surname.Name = "worker_surname";
-            this.worker_surname.Size = new System.Drawing.Size(544, 35);
-            this.worker_surname.TabIndex = 0;
-            this.worker_surname.ValueMember = "surname";
             // 
             // workersBindingSource
             // 
@@ -267,7 +237,7 @@
             this.ogrnMaskedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ogrnMaskedBox.Enabled = false;
             this.ogrnMaskedBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.ogrnMaskedBox.Location = new System.Drawing.Point(236, 274);
+            this.ogrnMaskedBox.Location = new System.Drawing.Point(236, 261);
             this.ogrnMaskedBox.Name = "ogrnMaskedBox";
             this.ogrnMaskedBox.Size = new System.Drawing.Size(544, 35);
             this.ogrnMaskedBox.TabIndex = 5;
@@ -276,7 +246,7 @@
             // 
             this.orgName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.orgName.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.orgName.Location = new System.Drawing.Point(236, 62);
+            this.orgName.Location = new System.Drawing.Point(236, 13);
             this.orgName.Name = "orgName";
             this.orgName.Size = new System.Drawing.Size(544, 35);
             this.orgName.TabIndex = 1;
@@ -295,7 +265,7 @@
             "Некоммерческая организация (НКО)",
             "Обособленное подразделение (ОП)",
             "Товарищество собственников жилья (ТСЖ)"});
-            this.registration_formMaskedBox.Location = new System.Drawing.Point(236, 221);
+            this.registration_formMaskedBox.Location = new System.Drawing.Point(236, 199);
             this.registration_formMaskedBox.Name = "registration_formMaskedBox";
             this.registration_formMaskedBox.Size = new System.Drawing.Size(544, 35);
             this.registration_formMaskedBox.TabIndex = 4;
@@ -305,7 +275,7 @@
             // 
             this.kppMaskedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.kppMaskedBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.kppMaskedBox.Location = new System.Drawing.Point(236, 168);
+            this.kppMaskedBox.Location = new System.Drawing.Point(236, 137);
             this.kppMaskedBox.Mask = "000000000";
             this.kppMaskedBox.Name = "kppMaskedBox";
             this.kppMaskedBox.Size = new System.Drawing.Size(544, 35);
@@ -315,7 +285,7 @@
             // 
             this.innMaskedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.innMaskedBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.innMaskedBox.Location = new System.Drawing.Point(236, 115);
+            this.innMaskedBox.Location = new System.Drawing.Point(236, 75);
             this.innMaskedBox.Mask = "000000000000";
             this.innMaskedBox.Name = "innMaskedBox";
             this.innMaskedBox.Size = new System.Drawing.Size(544, 35);
@@ -328,7 +298,7 @@
             this.agreecreatebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.agreecreatebutton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agreecreatebutton.ForeColor = System.Drawing.Color.White;
-            this.agreecreatebutton.Location = new System.Drawing.Point(236, 322);
+            this.agreecreatebutton.Location = new System.Drawing.Point(236, 318);
             this.agreecreatebutton.Name = "agreecreatebutton";
             this.agreecreatebutton.Size = new System.Drawing.Size(544, 46);
             this.agreecreatebutton.TabIndex = 6;
@@ -354,36 +324,36 @@
             this.customersDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.customersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.customersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.customersDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.customersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.customersDataGridView.GridColor = System.Drawing.SystemColors.Control;
             this.customersDataGridView.Location = new System.Drawing.Point(14, 8);
             this.customersDataGridView.Name = "customersDataGridView";
             this.customersDataGridView.ReadOnly = true;
             this.customersDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.customersDataGridView.ShowCellToolTips = false;
             this.customersDataGridView.ShowEditingIcon = false;
             this.customersDataGridView.Size = new System.Drawing.Size(817, 311);
@@ -396,6 +366,8 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.AccountingTableAdapter = null;
+            this.tableAdapterManager.ArchiveAccountingTableAdapter = null;
+            this.tableAdapterManager.ArchiveWorkersTableAdapter = null;
             this.tableAdapterManager.AuthTableAdapter = null;
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CustomersTableAdapter = this.customersTableAdapter;
@@ -601,8 +573,6 @@
         private System.Windows.Forms.PictureBox closeAppButton;
         private System.Windows.Forms.BindingSource workersBindingSource;
         private other.accountingDataSetTableAdapters.WorkersTableAdapter workersTableAdapter;
-        private System.Windows.Forms.Label worker_surname_label;
-        private System.Windows.Forms.ComboBox worker_surname;
         private System.Windows.Forms.Button add_button;
         private System.Windows.Forms.Button delete_note;
         private System.Windows.Forms.Panel viewPanel;

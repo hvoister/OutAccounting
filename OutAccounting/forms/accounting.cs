@@ -33,8 +33,8 @@ namespace OutAccounting.forms
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
         string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
-            public accounting()
-        {
+    public accounting()
+    {
             InitializeComponent();
             wWD.updateTable(mainTable, accountingTable);
 
@@ -52,7 +52,7 @@ namespace OutAccounting.forms
                 addButton.Visible = false;
                 accountingTable.Size = new Size(763, 349);
             }
-        }
+    }
 
         private void accounting_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -75,7 +75,6 @@ namespace OutAccounting.forms
             else
             {
                 wWD.updateTable(mainTable, accountingTable);
-
                 if (current_user.level == 1)
                 {
                     deleteNote.Visible = false;
@@ -91,7 +90,23 @@ namespace OutAccounting.forms
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            addPanel.Visible = true;
+            int customersExist = wWD.noteExistsCheck("SELECT ID_customer FROM customers;");
+            int tarifsExist = wWD.noteExistsCheck("SELECT ID_tarif FROM tarifs;");
+            if (customersExist != 0)
+            {
+                if (tarifsExist != 0)
+                {
+                    addPanel.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Добавьте тарифы для работы с заказами!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Добавьте клиентов для работы с заказами!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void accounting_Load(object sender, EventArgs e)
@@ -105,95 +120,95 @@ namespace OutAccounting.forms
 
         private void agree_add_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string requestCustomerName = Convert.ToString(customerNameText.SelectedValue);
-                string requestTarifName = Convert.ToString(tarifNameText.SelectedValue);
-                DateTime startDate = DateTime.Now.ToLocalTime();
-
-                int months = ((int)monthsCountText.Value);
-                string finishDateString = Convert.ToString(startDate.AddMonths(months));
-                DateTime finishDate = Convert.ToDateTime(finishDateString);
-
-                int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{requestCustomerName}'"));
-                int tarifID = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{requestTarifName}'"));
-
-                int accountingExists = wWD.noteExistsCheck($"SELECT ID_note FROM Accounting WHERE customer = {customerID};");
-
-                if (accountingExists == 0)
+                try
                 {
-                    if (finishDate > startDate)
+                    string requestCustomerName = Convert.ToString(customerNameText.SelectedValue);
+                    string requestTarifName = Convert.ToString(tarifNameText.SelectedValue);
+                    DateTime startDate = DateTime.Now.ToLocalTime();
+
+                    int months = ((int)monthsCountText.Value);
+                    string finishDateString = Convert.ToString(startDate.AddMonths(months));
+                    DateTime finishDate = Convert.ToDateTime(finishDateString);
+
+                    int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{requestCustomerName}'"));
+                    int tarifID = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{requestTarifName}'"));
+
+                    int accountingExists = wWD.noteExistsCheck($"SELECT ID_note FROM Accounting WHERE customer = {customerID};");
+
+                    if (accountingExists == 0)
                     {
-                        string start = startDate.ToString("O");
-                        string end = finishDate.ToString("O");
-
-                        int tarifPrice = Convert.ToInt32(wWD.executeScalar($"Select price_per_month from tarifs where ID_tarif = N'{tarifID}'"));
-                        int total = tarifPrice * Convert.ToInt32(monthsCountText.Value);
-
-                        wWD.operationsBuilder($"insert into accounting (customer, tarif, start_date, end_date, total) values ({customerID}, {tarifID}, '{start}', '{end}', {total});");
-
-                        try
+                        if (finishDate > startDate)
                         {
-                            int number = Convert.ToInt32(wWD.executeScalar($"Select ID_note from Accounting where customer = {customerID} AND tarif = {tarifID} and start_date = '{start}'"));
-                            string tarifDescription = Convert.ToString(wWD.executeScalar($"Select services from tarifs where id_tarif = {tarifID}"));
-                            decimal INN = Convert.ToDecimal(wWD.executeScalar($"Select inn from customers where id_customer = {customerID}"));
-                            decimal KPP = Convert.ToDecimal(wWD.executeScalar($"Select kpp from customers where id_customer = {customerID}"));
-                            string regform = Convert.ToString(wWD.executeScalar($"Select registration_form from customers where id_customer = {customerID}"));
-                            decimal OGRN = Convert.ToDecimal(wWD.executeScalar($"Select ogrn from customers where id_customer = {customerID}"));
+                            string start = startDate.ToString("O");
+                            string end = finishDate.ToString("O");
 
-                            Word._Application oWord = new Word.Application();
-                            oWord.Visible = false;
-                            Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\customer_add2.dotx");
-                            oDoc.Bookmarks["in_number"].Range.Text = number.ToString();
-                            oDoc.Bookmarks["in_date"].Range.Text = startDate.Day.ToString();
-                            oDoc.Bookmarks["in_month"].Range.Text = months_list[startDate.Month - 1];
-                            oDoc.Bookmarks["in_year"].Range.Text = startDate.Year.ToString();
-                            oDoc.Bookmarks["in_customer"].Range.Text = requestCustomerName;
-                            oDoc.Bookmarks["in_accdate"].Range.Text = startDate.Day.ToString();
-                            oDoc.Bookmarks["in_price"].Range.Text = tarifPrice.ToString();
-                            oDoc.Bookmarks["in_payday"].Range.Text = startDate.Day.ToString();
-                            oDoc.Bookmarks["in_stdate"].Range.Text = startDate.Day.ToString();
-                            oDoc.Bookmarks["in_stmonth"].Range.Text = months_list[startDate.Month - 1];
-                            oDoc.Bookmarks["in_styear"].Range.Text = startDate.Year.ToString();
-                            oDoc.Bookmarks["in_endate"].Range.Text = finishDate.Day.ToString();
-                            oDoc.Bookmarks["in_enmonth"].Range.Text = months_list[finishDate.Month - 1];
-                            oDoc.Bookmarks["in_enyear"].Range.Text = finishDate.Year.ToString();
-                            oDoc.Bookmarks["in_tarifop"].Range.Text = tarifDescription;
-                            oDoc.Bookmarks["in_orgname"].Range.Text = requestCustomerName;
-                            oDoc.Bookmarks["in_INN"].Range.Text = INN.ToString();
-                            oDoc.Bookmarks["in_KPP"].Range.Text = KPP.ToString();
-                            oDoc.Bookmarks["in_regform"].Range.Text = regform;
-                            oDoc.Bookmarks["in_OGRN"].Range.Text = OGRN.ToString();
+                            int tarifPrice = Convert.ToInt32(wWD.executeScalar($"Select price_per_month from tarifs where ID_tarif = N'{tarifID}'"));
+                            int total = tarifPrice * Convert.ToInt32(monthsCountText.Value);
 
-                            oDoc.SaveAs(FileName: pathSave + $"\\{requestCustomerName}\\Предоставление_услуг_{requestCustomerName}_{requestTarifName}.doc");
-                            oDoc.Close();
-                            oWord.Quit();
-                            MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об оказании услуг!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            wWD.operationsBuilder($"insert into accounting (customer, tarif, start_date, end_date, total) values ({customerID}, {tarifID}, '{start}', '{end}', {total});");
+
+                            try
+                            {
+                                int number = Convert.ToInt32(wWD.executeScalar($"Select ID_note from Accounting where customer = {customerID} AND tarif = {tarifID} and start_date = '{start}'"));
+                                string tarifDescription = Convert.ToString(wWD.executeScalar($"Select services from tarifs where id_tarif = {tarifID}"));
+                                decimal INN = Convert.ToDecimal(wWD.executeScalar($"Select inn from customers where id_customer = {customerID}"));
+                                decimal KPP = Convert.ToDecimal(wWD.executeScalar($"Select kpp from customers where id_customer = {customerID}"));
+                                string regform = Convert.ToString(wWD.executeScalar($"Select registration_form from customers where id_customer = {customerID}"));
+                                decimal OGRN = Convert.ToDecimal(wWD.executeScalar($"Select ogrn from customers where id_customer = {customerID}"));
+
+                                Word._Application oWord = new Word.Application();
+                                oWord.Visible = false;
+                                Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\customer_add2.dotx");
+                                oDoc.Bookmarks["in_number"].Range.Text = number.ToString();
+                                oDoc.Bookmarks["in_date"].Range.Text = startDate.Day.ToString();
+                                oDoc.Bookmarks["in_month"].Range.Text = months_list[startDate.Month - 1];
+                                oDoc.Bookmarks["in_year"].Range.Text = startDate.Year.ToString();
+                                oDoc.Bookmarks["in_customer"].Range.Text = requestCustomerName;
+                                oDoc.Bookmarks["in_accdate"].Range.Text = startDate.Day.ToString();
+                                oDoc.Bookmarks["in_price"].Range.Text = tarifPrice.ToString();
+                                oDoc.Bookmarks["in_payday"].Range.Text = startDate.Day.ToString();
+                                oDoc.Bookmarks["in_stdate"].Range.Text = startDate.Day.ToString();
+                                oDoc.Bookmarks["in_stmonth"].Range.Text = months_list[startDate.Month - 1];
+                                oDoc.Bookmarks["in_styear"].Range.Text = startDate.Year.ToString();
+                                oDoc.Bookmarks["in_endate"].Range.Text = finishDate.Day.ToString();
+                                oDoc.Bookmarks["in_enmonth"].Range.Text = months_list[finishDate.Month - 1];
+                                oDoc.Bookmarks["in_enyear"].Range.Text = finishDate.Year.ToString();
+                                oDoc.Bookmarks["in_tarifop"].Range.Text = tarifDescription;
+                                oDoc.Bookmarks["in_orgname"].Range.Text = requestCustomerName;
+                                oDoc.Bookmarks["in_INN"].Range.Text = INN.ToString();
+                                oDoc.Bookmarks["in_KPP"].Range.Text = KPP.ToString();
+                                oDoc.Bookmarks["in_regform"].Range.Text = regform;
+                                oDoc.Bookmarks["in_OGRN"].Range.Text = OGRN.ToString();
+
+                                oDoc.SaveAs(FileName: pathSave + $"\\{requestCustomerName}\\Предоставление_услуг_{requestCustomerName}_{requestTarifName}.doc");
+                                oDoc.Close();
+                                oWord.Quit();
+                                MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об оказании услуг!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            wWD.updateTable(mainTable, accountingTable);
+                            wWD.comboBoxFuller("SELECT name FROM customers;", "name", customerSearchText);
+
+                            addPanel.Visible = false;
                         }
-                        catch
+                        else
                         {
-                            MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-                        wWD.updateTable(mainTable, accountingTable);
-                        wWD.comboBoxFuller("SELECT name FROM customers;", "name", customerSearchText);
-
-                        addPanel.Visible = false;
                     }
                     else
                     {
-                        MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Договор с этим клиентом уже заключен!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Договор с этим клиентом уже заключен!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void delete_note_Click(object sender, EventArgs e)
@@ -204,27 +219,69 @@ namespace OutAccounting.forms
             {
                 foreach (DataGridViewRow row in accountingTable.SelectedRows)
                 {
-                    customerName = row.Cells[0].Value.ToString();
-                    tarifName = row.Cells[1].Value.ToString();
-                    totalPrice = row.Cells[4].Value.ToString();
-                    try
-                    {
                         DialogResult deleteResult = MessageBox.Show("Вы уверены, что хотите \nразорвать контракт с клиентом?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (deleteResult == DialogResult.Yes)
                         {
-                            int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{customerName}'"));
-                            int tarifID = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{tarifName}'"));
+                            customerName = row.Cells[0].Value.ToString();
+                            tarifName = row.Cells[1].Value.ToString();
+                            DateTime startDate = Convert.ToDateTime(row.Cells[2].Value.ToString());
+                            DateTime endDate = Convert.ToDateTime(row.Cells[3].Value.ToString());
+                            totalPrice = row.Cells[4].Value.ToString();
 
-                            wWD.operationsBuilder($"delete from accounting where customer = {customerID} and tarif = {tarifID} and total = {totalPrice}");
+                            string start = startDate.ToString("O");
+                            string end = endDate.ToString("O");
 
-                            MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                            wWD.updateTable(mainTable, accountingTable);
+                            try
+                            {
+                                DateTime currentDate = DateTime.Now.ToLocalTime();
+
+                                decimal inn = Convert.ToDecimal(wWD.executeScalar($"SELECT inn FROM customers WHERE name = '{customerName}'"));
+                                decimal kpp = Convert.ToDecimal(wWD.executeScalar($"SELECT kpp FROM customers WHERE name = '{customerName}'"));
+                                decimal ogrn = Convert.ToDecimal(wWD.executeScalar($"SELECT ogrn FROM customers WHERE name = '{customerName}'"));
+                                string regist = wWD.executeScalar($"SELECT registration_form FROM customers WHERE name = '{customerName}'");
+
+                                int worker = Convert.ToInt32(wWD.executeScalar($"SELECT worker FROM customers WHERE name = '{customerName}'"));
+                                string workerName = Convert.ToString(wWD.executeScalar($"SELECT surname FROM workers WHERE ID_worker = {worker}"));
+
+                                wWD.operationsBuilder($"INSERT INTO ArchiveAccounting (customer, inn, kpp, ogrn, registration_form, worker, tarif, start_date, end_date, total) VALUES ('{customerName}', {inn}, {kpp}, {ogrn}, '{regist}', '{workerName}', '{tarifName}', '{start}', '{end}', {totalPrice});");
+
+                                int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{customerName}'"));
+                                int tarifID = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{tarifName}'"));
+                                int noteID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_note from accounting where customer = {customerID} and tarif = {tarifID} and total = {totalPrice}"));
+
+                                DateTime accDateTime = Convert.ToDateTime(wWD.executeScalar($"SELECT start_date FROM accounting where ID_note = {noteID}"));
+                                string accDate = accDateTime.ToShortDateString();
+
+                                Word._Application oWord = new Word.Application();
+                                oWord.Visible = false;
+                                Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\rastorg.dotx");
+
+                                oDoc.Bookmarks["customer_num"].Range.Text = noteID.ToString();
+                                oDoc.Bookmarks["curday"].Range.Text = currentDate.Day.ToString();
+                                oDoc.Bookmarks["curmonth"].Range.Text = months_list[currentDate.Month - 1];
+                                oDoc.Bookmarks["curyear"].Range.Text = currentDate.Year.ToString();
+                                oDoc.Bookmarks["customer"].Range.Text = customerName;
+                                oDoc.Bookmarks["acc_num"].Range.Text = noteID.ToString();
+                                oDoc.Bookmarks["acc_date"].Range.Text = accDate;
+                                oDoc.Bookmarks["curdatefull"].Range.Text = currentDate.ToShortDateString();
+                                oDoc.Bookmarks["adcustomer"].Range.Text = customerName;
+                                oDoc.Bookmarks["inn"].Range.Text = inn.ToString();
+                                oDoc.Bookmarks["kpp"].Range.Text = kpp.ToString();
+                                oDoc.Bookmarks["regform"].Range.Text = regist;
+                                oDoc.Bookmarks["ogrn"].Range.Text = ogrn.ToString();
+                                oDoc.SaveAs(FileName: pathSave + $"\\{customerName}\\Отказ_от_оказания_услуг_{customerName}_{tarifName}.doc");
+                                oDoc.Close();
+                                oWord.Quit();
+
+                                wWD.operationsBuilder($"delete from accounting where ID_note = {noteID}");
+                                MessageBox.Show("Создано Согласие на расторжение услуг, данные успешно удалены, копия сохранена в архив!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                wWD.updateTable(mainTable, accountingTable);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Невозможно создать Согласие на расторжение Договора!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }  
                         }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Невозможно удалить, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
             }
             else
@@ -242,8 +299,8 @@ namespace OutAccounting.forms
 
         private void customer_search_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string requesrCustomerName = Convert.ToString(customerSearchText.SelectedValue);
-            int selectedCustomerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{requesrCustomerName}'"));
+            string requesrCustomerName = Convert.ToString(customerSearchText.SelectedItem);
+            int selectedCustomerID = Convert.ToInt32(wWD.executeScalar($"Select ID_customer from Customers where name = N'{requesrCustomerName}'"));
 
             wWD.updateTable("select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
                 "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +

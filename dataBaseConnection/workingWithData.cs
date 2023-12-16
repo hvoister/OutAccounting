@@ -33,15 +33,13 @@ namespace dataBaseConnection
             if (resultTable.Rows.Count == 0)
             {
                 MessageBox.Show("Нет данных для отображения!", "Таблица пуста", MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            else
-            {
-                for (int i = 0; i < resultTable.Columns.Count; i++)
-                {
-                    resultTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-                resultTable.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             };
+
+            for (int i = 0; i < resultTable.Columns.Count; i++)
+            {
+                resultTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            resultTable.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         public void comboBoxFuller(string query, string column, ComboBox resultComboBox)

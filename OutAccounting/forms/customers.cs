@@ -149,7 +149,6 @@ namespace OutAccounting.forms
                     decimal kpp = Convert.ToDecimal(kppMaskedBox.Text);
                     string registr = Convert.ToString(registration_formMaskedBox.SelectedItem);
                     decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
-                    string workerSurname = Convert.ToString(worker_surname.SelectedValue);
 
                     int customerExists = wWD.noteExistsCheck($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';");
                     if (customerExists != 0)
@@ -158,7 +157,7 @@ namespace OutAccounting.forms
                     }
                     else
                     {
-                        int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where surname = '{workerSurname}'"));
+                        int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{current_user.id}'"));
 
                         wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
 

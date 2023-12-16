@@ -33,9 +33,9 @@
             System.Windows.Forms.Label price_per_monthLabel;
             System.Windows.Forms.Label servicesLabel;
             System.Windows.Forms.Label searchLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tarifs));
             this.appName = new System.Windows.Forms.Label();
             this.tarifsDataGridView = new System.Windows.Forms.DataGridView();
@@ -47,18 +47,18 @@
             this.tarifsTableAdapter = new OutAccounting.other.accountingDataSetTableAdapters.TarifsTableAdapter();
             this.deleteNote = new System.Windows.Forms.Button();
             this.infoPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.price_per_monthTextBox = new System.Windows.Forms.TextBox();
+            this.agreeCreateButton = new System.Windows.Forms.Button();
+            this.servicesTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.backbutton = new System.Windows.Forms.PictureBox();
             this.tableAdapterManager = new OutAccounting.other.accountingDataSetTableAdapters.TableAdapterManager();
             this.searchOpenButton = new System.Windows.Forms.PictureBox();
             this.searchPanel = new System.Windows.Forms.Panel();
             this.searchText = new System.Windows.Forms.ComboBox();
             this.close_app_button = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.addTarifButton = new System.Windows.Forms.Button();
-            this.agreeCreateButton = new System.Windows.Forms.Button();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.price_per_monthTextBox = new System.Windows.Forms.TextBox();
-            this.servicesTextBox = new System.Windows.Forms.TextBox();
             this.viewPanel = new System.Windows.Forms.Panel();
             this.bigWindowModeButton = new System.Windows.Forms.PictureBox();
             this.buttonsNamePanel = new System.Windows.Forms.Panel();
@@ -70,11 +70,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).BeginInit();
             this.infoPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchOpenButton)).BeginInit();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.viewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bigWindowModeButton)).BeginInit();
             this.buttonsNamePanel.SuspendLayout();
@@ -149,41 +149,41 @@
             this.tarifsDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.tarifsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.tarifsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tarifsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tarifsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.pricepermonthDataGridViewTextBoxColumn,
             this.servicesDataGridViewTextBoxColumn});
             this.tarifsDataGridView.DataSource = this.tarifsBindingSource;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tarifsDataGridView.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tarifsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.tarifsDataGridView.GridColor = System.Drawing.SystemColors.Control;
             this.tarifsDataGridView.Location = new System.Drawing.Point(21, 16);
             this.tarifsDataGridView.Name = "tarifsDataGridView";
             this.tarifsDataGridView.ReadOnly = true;
             this.tarifsDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tarifsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tarifsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tarifsDataGridView.ShowCellToolTips = false;
             this.tarifsDataGridView.ShowEditingIcon = false;
             this.tarifsDataGridView.Size = new System.Drawing.Size(712, 296);
@@ -256,6 +256,75 @@
             this.infoPanel.TabIndex = 0;
             this.infoPanel.Visible = false;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.price_per_monthTextBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.agreeCreateButton, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.servicesTextBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.nameTextBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(servicesLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(price_per_monthLabel, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 24);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.73913F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.73913F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.78261F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.73913F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(723, 335);
+            this.tableLayoutPanel1.TabIndex = 27;
+            // 
+            // price_per_monthTextBox
+            // 
+            this.price_per_monthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.price_per_monthTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.price_per_monthTextBox.Location = new System.Drawing.Point(176, 90);
+            this.price_per_monthTextBox.Name = "price_per_monthTextBox";
+            this.price_per_monthTextBox.Size = new System.Drawing.Size(544, 35);
+            this.price_per_monthTextBox.TabIndex = 30;
+            // 
+            // agreeCreateButton
+            // 
+            this.agreeCreateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.agreeCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
+            this.agreeCreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.agreeCreateButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agreeCreateButton.ForeColor = System.Drawing.Color.White;
+            this.agreeCreateButton.Location = new System.Drawing.Point(176, 274);
+            this.agreeCreateButton.Name = "agreeCreateButton";
+            this.agreeCreateButton.Size = new System.Drawing.Size(544, 46);
+            this.agreeCreateButton.TabIndex = 22;
+            this.agreeCreateButton.Text = "Добавить тариф";
+            this.agreeCreateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.agreeCreateButton.UseVisualStyleBackColor = false;
+            this.agreeCreateButton.Click += new System.EventHandler(this.agreecreatebutton_Click);
+            // 
+            // servicesTextBox
+            // 
+            this.servicesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.servicesTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.servicesTextBox.Location = new System.Drawing.Point(176, 147);
+            this.servicesTextBox.Multiline = true;
+            this.servicesTextBox.Name = "servicesTextBox";
+            this.servicesTextBox.Size = new System.Drawing.Size(544, 110);
+            this.servicesTextBox.TabIndex = 31;
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.nameTextBox.Location = new System.Drawing.Point(176, 18);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(544, 35);
+            this.nameTextBox.TabIndex = 29;
+            // 
             // backbutton
             // 
             this.backbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
@@ -271,6 +340,8 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.AccountingTableAdapter = null;
+            this.tableAdapterManager.ArchiveAccountingTableAdapter = null;
+            this.tableAdapterManager.ArchiveWorkersTableAdapter = null;
             this.tableAdapterManager.AuthTableAdapter = null;
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CustomersTableAdapter = null;
@@ -300,7 +371,7 @@
             this.searchPanel.BackColor = System.Drawing.Color.White;
             this.searchPanel.Controls.Add(this.searchText);
             this.searchPanel.Controls.Add(searchLabel);
-            this.searchPanel.Location = new System.Drawing.Point(0, 316);
+            this.searchPanel.Location = new System.Drawing.Point(7, 316);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(739, 60);
             this.searchPanel.TabIndex = 2;
@@ -336,31 +407,6 @@
             this.close_app_button.TabStop = false;
             this.close_app_button.Click += new System.EventHandler(this.close_app_button_Click);
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.price_per_monthTextBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.agreeCreateButton, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.servicesTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.nameTextBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(servicesLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(price_per_monthLabel, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 24);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.73913F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.73913F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.78261F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.73913F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(723, 335);
-            this.tableLayoutPanel1.TabIndex = 27;
-            // 
             // addTarifButton
             // 
             this.addTarifButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -376,50 +422,6 @@
             this.addTarifButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addTarifButton.UseVisualStyleBackColor = false;
             this.addTarifButton.Click += new System.EventHandler(this.addTarifButton_Click);
-            // 
-            // agreeCreateButton
-            // 
-            this.agreeCreateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.agreeCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(110)))), ((int)(((byte)(171)))));
-            this.agreeCreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.agreeCreateButton.Font = new System.Drawing.Font("Linux Biolinum G", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agreeCreateButton.ForeColor = System.Drawing.Color.White;
-            this.agreeCreateButton.Location = new System.Drawing.Point(176, 274);
-            this.agreeCreateButton.Name = "agreeCreateButton";
-            this.agreeCreateButton.Size = new System.Drawing.Size(544, 46);
-            this.agreeCreateButton.TabIndex = 22;
-            this.agreeCreateButton.Text = "Добавить тариф";
-            this.agreeCreateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.agreeCreateButton.UseVisualStyleBackColor = false;
-            this.agreeCreateButton.Click += new System.EventHandler(this.agreecreatebutton_Click);
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.nameTextBox.Location = new System.Drawing.Point(176, 18);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(544, 35);
-            this.nameTextBox.TabIndex = 29;
-            // 
-            // price_per_monthTextBox
-            // 
-            this.price_per_monthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.price_per_monthTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.price_per_monthTextBox.Location = new System.Drawing.Point(176, 90);
-            this.price_per_monthTextBox.Name = "price_per_monthTextBox";
-            this.price_per_monthTextBox.Size = new System.Drawing.Size(544, 35);
-            this.price_per_monthTextBox.TabIndex = 30;
-            // 
-            // servicesTextBox
-            // 
-            this.servicesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.servicesTextBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.servicesTextBox.Location = new System.Drawing.Point(176, 147);
-            this.servicesTextBox.Multiline = true;
-            this.servicesTextBox.Name = "servicesTextBox";
-            this.servicesTextBox.Size = new System.Drawing.Size(544, 110);
-            this.servicesTextBox.TabIndex = 31;
             // 
             // viewPanel
             // 
@@ -491,13 +493,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tarifsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountingDataSet)).EndInit();
             this.infoPanel.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchOpenButton)).EndInit();
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_app_button)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.viewPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bigWindowModeButton)).EndInit();
             this.buttonsNamePanel.ResumeLayout(false);

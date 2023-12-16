@@ -118,7 +118,11 @@ namespace OutAccounting
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (current_user.level == 1 && (WindowState != FormWindowState.Maximized)) tarifsDataGridView.Size = new Size(712, 296);   
+            if ((current_user.level == 1 || current_user.level == 0))
+            {
+                if (WindowState == FormWindowState.Normal) tarifsDataGridView.Size = new Size(712, 296); 
+            }
+
             searchPanel.Visible = true;
             searchOpenButton.Visible = false;
         }
@@ -152,6 +156,7 @@ namespace OutAccounting
                 this.BackgroundImage = Properties.Resources.background_table_big;
                 tarifsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
                 tarifsDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+                if (searchPanel.Visible == true) { tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height + 50); }
             }
             else
             {
@@ -159,6 +164,7 @@ namespace OutAccounting
                 this.BackgroundImage = Properties.Resources.authorization_background;
                 tarifsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
                 tarifsDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+                if (searchPanel.Visible == true) { tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height - 50); }
             };
         }
     }
