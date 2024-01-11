@@ -51,8 +51,7 @@ namespace OutAccounting.forms
                 accountingTable.Size = new Size(763, 349);
             }
 
-            wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);
-            
+            wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);  
     }
 
         private void accounting_FormClosed(object sender, FormClosedEventArgs e)

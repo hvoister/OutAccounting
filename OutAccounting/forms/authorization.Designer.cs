@@ -48,6 +48,7 @@
             this.hide_button = new System.Windows.Forms.PictureBox();
             this.showButton = new System.Windows.Forms.PictureBox();
             this.closeAppButton = new System.Windows.Forms.PictureBox();
+            this.archiveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).BeginInit();
@@ -179,6 +180,7 @@
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
+            this.menuPanel.Controls.Add(this.archiveButton);
             this.menuPanel.Controls.Add(this.tarifsButton);
             this.menuPanel.Controls.Add(this.customersButton);
             this.menuPanel.Controls.Add(this.accountingButton);
@@ -286,6 +288,22 @@
             this.closeAppButton.TabStop = false;
             this.closeAppButton.Click += new System.EventHandler(this.close_app_button_Click);
             // 
+            // archiveButton
+            // 
+            this.archiveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.archiveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.archiveButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archiveButton.ForeColor = System.Drawing.Color.White;
+            this.archiveButton.Location = new System.Drawing.Point(-1, 243);
+            this.archiveButton.Name = "archiveButton";
+            this.archiveButton.Size = new System.Drawing.Size(345, 46);
+            this.archiveButton.TabIndex = 3;
+            this.archiveButton.Text = "Архив";
+            this.archiveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.archiveButton.UseVisualStyleBackColor = false;
+            this.archiveButton.Visible = false;
+            this.archiveButton.Click += new System.EventHandler(this.archiveButton_Click);
+            // 
             // authorization
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -345,6 +363,7 @@
         private System.Windows.Forms.PictureBox hide_button;
         private System.Windows.Forms.PictureBox showButton;
         private System.Windows.Forms.PictureBox closeAppButton;
+        private System.Windows.Forms.Button archiveButton;
     }
 }
 

@@ -34,6 +34,10 @@ namespace OutAccounting
             {
                 menuPanel.Visible = true;
                 backauthButton.Visible = true;
+                if (current_user.level == 1)
+                {
+                    archiveButton.Visible = true;
+                }
             }
         }
 
@@ -77,6 +81,10 @@ namespace OutAccounting
 
                         MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
+                        if (current_user.level == 1)
+                        {
+                            archiveButton.Visible = true;
+                        }
                         menuPanel.Visible = true;
                         backauthButton.Visible = true;
                         loginTextBox.Clear();
@@ -166,6 +174,13 @@ namespace OutAccounting
             {
                 Application.Exit();
             }
+        }
+
+        private void archiveButton_Click(object sender, EventArgs e)
+        {
+            archive archive = new archive();
+            archive.Show();
+            this.Hide();
         }
     }
 }

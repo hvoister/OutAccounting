@@ -54,6 +54,12 @@
     <Compile Include="forms\accounting.Designer.cs">
       <DependentUpon>accounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\archive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\archive.Designer.cs">
+      <DependentUpon>archive.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\customers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="forms\accounting.resx">
       <DependentUpon>accounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\archive.resx">
+      <DependentUpon>archive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\authorization.resx">
       <DependentUpon>authorization.cs</DependentUpon>
