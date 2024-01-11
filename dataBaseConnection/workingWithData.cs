@@ -12,6 +12,7 @@ namespace dataBaseConnection
     public class workingWithData
     {
         dataBase dataBase = new dataBase();
+
         public void operationsBuilder(string query)
         {
             dataBase.openConnection();
