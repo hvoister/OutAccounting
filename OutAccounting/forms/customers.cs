@@ -25,7 +25,7 @@ namespace OutAccounting.forms
         dataBase dataBase = new dataBase();
         workingWithData wWD = new workingWithData();
 
-        string mainTable = "select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker;";
+        string mainTable = "select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker";
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
         string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
@@ -33,8 +33,15 @@ namespace OutAccounting.forms
         public customers()
         {
             InitializeComponent();
-
-            wWD.updateTable(mainTable, customersDataGridView);
+            if (current_user.level == 2)
+            {
+                int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
+            }
+            else 
+            {
+                wWD.updateTable(mainTable, customersDataGridView);
+            }
             wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
 
             if (current_user.level == 1)
@@ -138,72 +145,74 @@ namespace OutAccounting.forms
         {
             try
             {
-                if (orgName.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "")
+                if (orgName.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "" ||
+                    innMaskedBox.Text.Length != innMaskedBox.Mask.Length || kppMaskedBox.Text.Length != kppMaskedBox.Mask.Length || ogrnMaskedBox.Text.Length != ogrnMaskedBox.Mask.Length)
                 {
                     MessageBox.Show("Введите данные во все поля для ввода!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                {
-                    string customerName = orgName.Text;
-                    decimal inn = Convert.ToDecimal(innMaskedBox.Text);
-                    decimal kpp = Convert.ToDecimal(kppMaskedBox.Text);
-                    string registr = Convert.ToString(registration_formMaskedBox.SelectedItem);
-                    decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
+                { 
+                        string customerName = orgName.Text;
+                        decimal inn = Convert.ToDecimal(innMaskedBox.Text);
+                        decimal kpp = Convert.ToDecimal(kppMaskedBox.Text);
+                        string registr = Convert.ToString(registration_formMaskedBox.SelectedItem);
+                        decimal ogrn = Convert.ToDecimal(ogrnMaskedBox.Text);
 
-                    int customerExists = wWD.noteExistsCheck($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';");
-                    if (customerExists != 0)
-                    {
-                        MessageBox.Show("Такой клиент уже есть в базе!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{current_user.id}'"));
-
-                        wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
-
-                        try
+                        int customerExists = wWD.noteExistsCheck($"select ID_customer from Customers where inn = {inn} OR ogrn = {ogrn} or name = N'{customerName}';");
+                        if (customerExists != 0)
                         {
-                            Word._Application oWord = new Word.Application();
-                            oWord.Visible = false;
-                            Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
-                            oDoc.Bookmarks["int_orgname"].Range.Text = customerName;
-                            oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString();
-                            oDoc.Bookmarks["int_curmonth"].Range.Text = months_list[DateTime.Now.Month - 1];
-                            oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
-
-                            DirectoryInfo folder = new DirectoryInfo(pathSave);
-                            if (folder.Exists == false)
-                            {
-                                Directory.CreateDirectory(pathSave);
-                            }
-                            string saveFolder = folder.FullName + $"\\{customerName}";
-                            if (Directory.Exists(saveFolder) == false)
-                            {
-                                Directory.CreateDirectory(saveFolder);
-                                pathSave = saveFolder;
-                            }
-
-                            oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{customerName}.doc");
-                            oDoc.Close();
-                            oWord.Quit();
-
-                            MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            MessageBox.Show("Такой клиент уже есть в базе!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        catch
+                        else
                         {
-                            MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        };
+                            int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{current_user.id}'"));
 
-                        wWD.updateTable(mainTable, customersDataGridView);
-                        wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
+                            wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
 
-                        createNewPanel.Visible = false;
-                        orgName.Clear();
-                        innMaskedBox.Clear();
-                        kppMaskedBox.Clear();
-                        ogrnMaskedBox.Clear();
-                    }
-                }
+                            try
+                            {
+                                Word._Application oWord = new Word.Application();
+                                oWord.Visible = false;
+                                Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
+                                oDoc.Bookmarks["int_orgname"].Range.Text = customerName;
+                                oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString();
+                                oDoc.Bookmarks["int_curmonth"].Range.Text = months_list[DateTime.Now.Month - 1];
+                                oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
+
+                                DirectoryInfo folder = new DirectoryInfo(pathSave);
+                                if (folder.Exists == false)
+                                {
+                                    Directory.CreateDirectory(pathSave);
+                                }
+                                string saveFolder = folder.FullName + $"\\{customerName}";
+                                if (Directory.Exists(saveFolder) == false)
+                                {
+                                    Directory.CreateDirectory(saveFolder);
+                                    pathSave = saveFolder;
+                                }
+
+                                oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{customerName}.doc");
+                                oDoc.Close();
+                                oWord.Quit();
+
+                                MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            };
+
+                            wWD.updateTable(mainTable, customersDataGridView);
+                            wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
+
+                            createNewPanel.Visible = false;
+                            orgName.Clear();
+                            innMaskedBox.Clear();
+                            kppMaskedBox.Clear();
+                            ogrnMaskedBox.Clear();
+                        }
+                    } 
             }
             catch
             {
@@ -238,7 +247,7 @@ namespace OutAccounting.forms
                             DirectoryInfo folder = new DirectoryInfo(pathSave);
                             if (folder.Exists)
                             {
-                                DirectoryInfo customerFolder = new DirectoryInfo(pathSave);
+                                DirectoryInfo customerFolder = new DirectoryInfo(pathSave + $"\\{customerName}");
                                 Directory.Delete(customerFolder.ToString(), true);
                             }
                             MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -247,7 +256,7 @@ namespace OutAccounting.forms
                     }
                     catch
                     {
-                        MessageBox.Show("Ошибка удаления, выберите одну строку и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Ошибка удаления, закройте документ или папку клиента для корректного удаления!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

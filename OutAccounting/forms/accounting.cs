@@ -28,7 +28,7 @@ namespace OutAccounting.forms
 
         string mainTable = "select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
                 "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +
-                "from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif;";
+                "from Accounting join customers on customer = customers.id_customer join Tarifs on tarif = tarifs.ID_tarif";
 
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
         string[] months_list = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
@@ -44,14 +44,15 @@ namespace OutAccounting.forms
             accountingTable.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             accountingTable.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            wWD.comboBoxFuller("SELECT name FROM customers;", "name", customerSearchText);
-
             if (current_user.level == 1)
             {
                 deleteNote.Visible = false;
                 addButton.Visible = false;
                 accountingTable.Size = new Size(763, 349);
             }
+
+            wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);
+            
     }
 
         private void accounting_FormClosed(object sender, FormClosedEventArgs e)
@@ -96,7 +97,10 @@ namespace OutAccounting.forms
             {
                 if (tarifsExist != 0)
                 {
+                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                    wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerNameText);
                     addPanel.Visible = true;
+                    searchOpenButton.Visible = false;
                 }
                 else
                 {
@@ -122,7 +126,7 @@ namespace OutAccounting.forms
         {
                 try
                 {
-                    string requestCustomerName = Convert.ToString(customerNameText.SelectedValue);
+                    string requestCustomerName = Convert.ToString(customerNameText.SelectedItem);
                     string requestTarifName = Convert.ToString(tarifNameText.SelectedValue);
                     DateTime startDate = DateTime.Now.ToLocalTime();
 
@@ -180,9 +184,21 @@ namespace OutAccounting.forms
                                 oDoc.Bookmarks["in_regform"].Range.Text = regform;
                                 oDoc.Bookmarks["in_OGRN"].Range.Text = OGRN.ToString();
 
-                                oDoc.SaveAs(FileName: pathSave + $"\\{requestCustomerName}\\Предоставление_услуг_{requestCustomerName}_{requestTarifName}.doc");
+                                DirectoryInfo folder = new DirectoryInfo(pathSave);
+                                if (folder.Exists == false)
+                                {
+                                    Directory.CreateDirectory(pathSave);
+                                }
+                                string saveFolder = folder.FullName + $"\\{requestCustomerName}\\Договор";
+                                if (Directory.Exists(saveFolder) == false)
+                                {
+                                    Directory.CreateDirectory(saveFolder);
+                                }
+
+                                oDoc.SaveAs(FileName: saveFolder + $"\\Предоставление_услуг_{requestCustomerName}_{requestTarifName}.doc");
                                 oDoc.Close();
                                 oWord.Quit();
+
                                 MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об оказании услуг!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             }
                             catch
@@ -243,8 +259,6 @@ namespace OutAccounting.forms
                                 int worker = Convert.ToInt32(wWD.executeScalar($"SELECT worker FROM customers WHERE name = '{customerName}'"));
                                 string workerName = Convert.ToString(wWD.executeScalar($"SELECT surname FROM workers WHERE ID_worker = {worker}"));
 
-                                wWD.operationsBuilder($"INSERT INTO ArchiveAccounting (customer, inn, kpp, ogrn, registration_form, worker, tarif, start_date, end_date, total) VALUES ('{customerName}', {inn}, {kpp}, {ogrn}, '{regist}', '{workerName}', '{tarifName}', '{start}', '{end}', {totalPrice});");
-
                                 int customerID = Convert.ToInt32(wWD.executeScalar($"Select id_customer from customers where name = N'{customerName}'"));
                                 int tarifID = Convert.ToInt32(wWD.executeScalar($"Select id_tarif from tarifs where name = N'{tarifName}'"));
                                 int noteID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_note from accounting where customer = {customerID} and tarif = {tarifID} and total = {totalPrice}"));
@@ -269,12 +283,17 @@ namespace OutAccounting.forms
                                 oDoc.Bookmarks["kpp"].Range.Text = kpp.ToString();
                                 oDoc.Bookmarks["regform"].Range.Text = regist;
                                 oDoc.Bookmarks["ogrn"].Range.Text = ogrn.ToString();
-                                oDoc.SaveAs(FileName: pathSave + $"\\{customerName}\\Отказ_от_оказания_услуг_{customerName}_{tarifName}.doc");
+                                oDoc.SaveAs(FileName: pathSave + $"\\{customerName}\\Договор\\Отказ_от_оказания_услуг_{customerName}_{tarifName}.doc");
                                 oDoc.Close();
                                 oWord.Quit();
 
+                                string saveFolder = pathSave + $"\\{customerName}";
+                                Directory.Move((pathSave + $"\\{customerName}\\Договор"), (pathSave + $"\\{customerName}\\расторжен_Договор_{noteID}"));
+
+                                wWD.operationsBuilder($"INSERT INTO ArchiveAccounting (customer, inn, kpp, ogrn, registration_form, worker, tarif, start_date, end_date, total) VALUES ('{customerName}', {inn}, {kpp}, {ogrn}, '{regist}', '{workerName}', '{tarifName}', '{start}', '{DateTime.Now.ToString("dd.MM.yyyy")}', {totalPrice});");
+
                                 wWD.operationsBuilder($"delete from accounting where ID_note = {noteID}");
-                                MessageBox.Show("Создано Согласие на расторжение услуг, данные успешно удалены, копия сохранена в архив!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                MessageBox.Show("Создано Согласие на расторжение услуг, данные успешно удалены, копия записи сохранена в архив!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 wWD.updateTable(mainTable, accountingTable);
                             }
                             catch
