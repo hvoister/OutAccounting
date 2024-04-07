@@ -497,6 +497,7 @@
             this.buttonsNamePanel.PerformLayout();
             this.ResumeLayout(false);
 
+            this.AcceptButton = this.agreeAddButton;
         }
 
         #endregion

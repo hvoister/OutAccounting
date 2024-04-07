@@ -156,9 +156,26 @@ namespace OutAccounting.forms
 
         private void agree_add_Click(object sender, EventArgs e)
         {
-                try
+            try
+            {
+                string requestCustomerName = Convert.ToString(customerNameText.SelectedItem);
+                DirectoryInfo customerFolder = new DirectoryInfo(pathSave + $"{requestCustomerName}");
+                if (customerFolder.Exists == false)
                 {
-                    string requestCustomerName = Convert.ToString(customerNameText.SelectedItem);
+                    Directory.CreateDirectory(pathSave + $"/{requestCustomerName}");
+                    Word._Application oWord = new Word.Application();
+                    oWord.Visible = false;
+                    Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
+                    oDoc.Bookmarks["int_orgname"].Range.Text = requestCustomerName;
+                    oDoc.Bookmarks["int_curdate"].Range.Text = DateTime.Now.Day.ToString();
+                    oDoc.Bookmarks["int_curmonth"].Range.Text = months_list[DateTime.Now.Month - 1];
+                    oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
+
+                    oDoc.SaveAs(FileName: pathSave + $"\\{requestCustomerName}\\Обработка_данных_{requestCustomerName}.doc");
+                    oDoc.Close();
+                    oWord.Quit();
+                };
+
                     string requestTarifName = Convert.ToString(tarifNameText.SelectedValue);
                     DateTime startDate = DateTime.Now.ToLocalTime();
 
@@ -217,10 +234,6 @@ namespace OutAccounting.forms
                                 oDoc.Bookmarks["in_OGRN"].Range.Text = OGRN.ToString();
 
                                 DirectoryInfo folder = new DirectoryInfo(pathSave);
-                                if (folder.Exists == false)
-                                {
-                                    Directory.CreateDirectory(pathSave);
-                                }
                                 string saveFolder = folder.FullName + $"\\{requestCustomerName}\\Договор";
                                 if (Directory.Exists(saveFolder) == false)
                                 {
@@ -325,11 +338,19 @@ namespace OutAccounting.forms
                                 oDoc.Bookmarks["kpp"].Range.Text = kpp.ToString();
                                 oDoc.Bookmarks["regform"].Range.Text = regist;
                                 oDoc.Bookmarks["ogrn"].Range.Text = ogrn.ToString();
+
+                                DirectoryInfo folder = new DirectoryInfo(pathSave);
+                                string saveFolder = folder.FullName + $"\\{customerName}\\Договор";
+                                if (Directory.Exists(saveFolder) == false)
+                                {
+                                    Directory.CreateDirectory(saveFolder);
+                                }
                                 oDoc.SaveAs(FileName: pathSave + $"\\{customerName}\\Договор\\Отказ_от_оказания_услуг_{customerName}_{tarifName}.doc");
+
                                 oDoc.Close();
                                 oWord.Quit();
 
-                                string saveFolder = pathSave + $"\\{customerName}";
+                                saveFolder = pathSave + $"\\{customerName}";
                                 Directory.Move((pathSave + $"\\{customerName}\\Договор"), (pathSave + $"\\{customerName}\\расторжен_Договор_{noteID}"));
 
                                 wWD.operationsBuilder($"INSERT INTO ArchiveAccounting (customer, inn, kpp, ogrn, registration_form, worker, tarif, start_date, end_date, total) VALUES ('{customerName}', {inn}, {kpp}, {ogrn}, '{regist}', '{workerName}', '{tarifName}', '{start}', '{DateTime.Now.ToString("dd.MM.yyyy")}', {totalPrice});");

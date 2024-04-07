@@ -550,6 +550,7 @@
             this.buttonsNamePanel.PerformLayout();
             this.ResumeLayout(false);
 
+            this.AcceptButton = this.agreecreatebutton;
         }
 
         #endregion

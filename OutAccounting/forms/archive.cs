@@ -35,6 +35,8 @@ namespace OutAccounting.forms
 
             wWD.updateTable(mainTable, archiveAccountingDataGridView);
             wWD.comboBoxFuller($"SELECT DISTINCT customer FROM ArchiveAccounting;", "customer", customerSearchText);
+            customerSearchText.Items.Add("Все записи");
+            customerSearchText.SelectedIndex = customerSearchText.Items.Count - 1;
         }
 
         private void closeAppButton_Click(object sender, EventArgs e)
@@ -82,6 +84,7 @@ namespace OutAccounting.forms
 
                 searchPanel.Visible = false;
                 searchOpenButton.Visible = true;
+                
             }
         }
 
@@ -110,8 +113,14 @@ namespace OutAccounting.forms
         private void customerSearchText_SelectedIndexChanged(object sender, EventArgs e)
         {
             string requesrCustomerName = Convert.ToString(customerSearchText.SelectedItem);
-
-            wWD.updateTable($"select * from ArchiveAccounting where customer = N'{requesrCustomerName}';", archiveAccountingDataGridView);
+            if (requesrCustomerName != "Все записи")
+            {
+                wWD.updateTable($"select * from ArchiveAccounting where customer = N'{requesrCustomerName}';", archiveAccountingDataGridView);
+            }
+            else
+            {
+                wWD.updateTable($"select * from ArchiveAccounting;", archiveAccountingDataGridView);
+            }
         }
 
         private void createDocument_Click(object sender, EventArgs e)
@@ -119,7 +128,7 @@ namespace OutAccounting.forms
             DialogResult documentCreateResult;
             string tableQuery;
             string customerName = "";
-            if (customerSearchText.SelectedItem != null) 
+            if (customerSearchText.SelectedItem != null && Convert.ToString(customerSearchText.SelectedItem) != "Все записи") 
             {
                 documentCreateResult = MessageBox.Show("Вы действительно хотите сохранить данные выбранного клиента в документ?", "Подтверждение операции", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 customerName = customerSearchText.SelectedItem.ToString();
