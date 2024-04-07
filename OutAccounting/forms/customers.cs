@@ -33,16 +33,22 @@ namespace OutAccounting.forms
         public customers()
         {
             InitializeComponent();
+            wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
             if (current_user.level == 2)
             {
                 int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
                 wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
+                wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", search_text);
             }
             else 
             {
                 wWD.updateTable(mainTable, customersDataGridView);
             }
-            wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
+
+            if (customersDataGridView.Rows.Count == 0)
+            {
+                searchOpenButton.Visible = false;
+            };
 
             if (current_user.level == 1)
             {
@@ -71,7 +77,15 @@ namespace OutAccounting.forms
             }
             else
             {
-                wWD.updateTable(mainTable, customersDataGridView);
+                if (current_user.level == 1)
+                {
+                    wWD.updateTable(mainTable, customersDataGridView);
+                }
+                else
+                {
+                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                    wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
+                }
 
                 if (current_user.level == 1)
                 {
@@ -80,9 +94,17 @@ namespace OutAccounting.forms
                     if (WindowState != FormWindowState.Maximized) customersDataGridView.Size = new Size(817, 363);
                 };
 
+
+                if (customersDataGridView.Rows.Count == 0)
+                {
+                    searchOpenButton.Visible = false;
+                }
+                else
+                {
+                    searchOpenButton.Visible = true;
+                };
                 createNewPanel.Visible = false;
                 searchPanel.Visible = false;
-                searchOpenButton.Visible = true;
 
                 orgName.Clear();
                 innMaskedBox.Clear();
@@ -203,8 +225,8 @@ namespace OutAccounting.forms
                                 MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             };
 
-                            wWD.updateTable(mainTable, customersDataGridView);
-                            wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
+                            wWD.updateTable(mainTable + $" WHERE worker = {seller}", customersDataGridView);
+                            wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {seller};", "name", search_text);
 
                             createNewPanel.Visible = false;
                             orgName.Clear();
@@ -251,7 +273,9 @@ namespace OutAccounting.forms
                                 Directory.Delete(customerFolder.ToString(), true);
                             }
                             MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                            wWD.updateTable(mainTable, customersDataGridView);
+                            int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{current_user.id}'"));
+                            wWD.updateTable(mainTable + $" WHERE worker = {seller}", customersDataGridView);
+                            wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {seller};", "name", search_text);
                         }
                     }
                     catch

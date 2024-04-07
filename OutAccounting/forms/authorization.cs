@@ -68,36 +68,43 @@ namespace OutAccounting
             }
             else
             {
-                current_user.login = loginTextBox.Text.Trim();
-                current_user.password = passwordTextBox.Text.Trim();
-
-                try
+                if (loginTextBox.Text != "guest")
                 {
-                    int userExists = wWD.noteExistsCheck($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'");
-                    if (userExists == 1)
+                    current_user.login = loginTextBox.Text.Trim();
+                    current_user.password = passwordTextBox.Text.Trim();
+
+                    try
                     {
-                        current_user.id = Convert.ToInt32(wWD.executeScalar($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
-                        current_user.level = Convert.ToInt32(wWD.executeScalar($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
-
-                        MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
-                        if (current_user.level == 1)
+                        int userExists = wWD.noteExistsCheck($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'");
+                        if (userExists == 1)
                         {
-                            archiveButton.Visible = true;
+                            current_user.id = Convert.ToInt32(wWD.executeScalar($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
+                            current_user.level = Convert.ToInt32(wWD.executeScalar($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
+
+                            MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                            if (current_user.level == 1)
+                            {
+                                archiveButton.Visible = true;
+                            }
+                            menuPanel.Visible = true;
+                            backauthButton.Visible = true;
+                            loginTextBox.Clear();
+                            passwordTextBox.Clear();
                         }
-                        menuPanel.Visible = true;
-                        backauthButton.Visible = true;
-                        loginTextBox.Clear();
-                        passwordTextBox.Clear();
+                        else
+                        {
+                            MessageBox.Show("Такого аккаунта не существует! \nПроверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Ошибка входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
+                    catch
                     {
-                        MessageBox.Show("Такого аккаунта не существует! \nПроверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Ошибка входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Проверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Неизвестная ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch 
+                else
                 {
-                    MessageBox.Show("Проверьте корректность данных или обратитесь к администратору для создания нового аккаунта!", "Неизвестная ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Вы не можете получить доступ к остальным частям приложения с текущим уровнем аккаунта!", "Гостевой аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }

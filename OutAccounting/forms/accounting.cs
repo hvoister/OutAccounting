@@ -36,7 +36,17 @@ namespace OutAccounting.forms
     public accounting()
     {
             InitializeComponent();
-            wWD.updateTable(mainTable, accountingTable);
+            wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);
+            if (current_user.level == 2)
+            {
+                int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
+                wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
+            }
+            else
+            {
+                wWD.updateTable(mainTable, accountingTable);
+            }
 
             accountingTable.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             accountingTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -51,8 +61,15 @@ namespace OutAccounting.forms
                 accountingTable.Size = new Size(763, 349);
             }
 
-            wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);  
-    }
+            if (accountingTable.Rows.Count == 0)
+            {
+                searchOpenButton.Visible = false;
+            }
+            else
+            {
+                searchOpenButton.Visible = true;
+            };
+        }
 
         private void accounting_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -74,7 +91,16 @@ namespace OutAccounting.forms
             }
             else
             {
-                wWD.updateTable(mainTable, accountingTable);
+                if (current_user.level == 2)
+                {
+                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                    wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
+                    wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
+                }
+                else
+                {
+                    wWD.updateTable(mainTable, accountingTable);
+                }
                 if (current_user.level == 1)
                 {
                     deleteNote.Visible = false;
@@ -84,19 +110,26 @@ namespace OutAccounting.forms
 
                 addPanel.Visible = false;
                 searchPanel.Visible = false;
-                searchOpenButton.Visible = true;
+                if (accountingTable.Rows.Count == 0)
+                {
+                    searchOpenButton.Visible = false;
+                }
+                else
+                {
+                    searchOpenButton.Visible = true;
+                };
             }
         }
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            int customersExist = wWD.noteExistsCheck("SELECT ID_customer FROM customers;");
+            int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+            int customersExist = wWD.noteExistsCheck($"SELECT ID_customer FROM customers WHERE worker = {workerID};");
             int tarifsExist = wWD.noteExistsCheck("SELECT ID_tarif FROM tarifs;");
             if (customersExist != 0)
             {
                 if (tarifsExist != 0)
                 {
-                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
                     wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerNameText);
                     addPanel.Visible = true;
                     searchOpenButton.Visible = false;
@@ -205,10 +238,20 @@ namespace OutAccounting.forms
                                 MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
-                            wWD.updateTable(mainTable, accountingTable);
-                            wWD.comboBoxFuller("SELECT name FROM customers;", "name", customerSearchText);
+                        int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                        wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
+                        wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
 
-                            addPanel.Visible = false;
+                        if (accountingTable.Rows.Count == 0)
+                        {
+                            searchOpenButton.Visible = false;
+                        }
+                        else
+                        {
+                            searchOpenButton.Visible = true;
+                        };
+
+                        addPanel.Visible = false;
                         }
                         else
                         {
