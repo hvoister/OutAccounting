@@ -189,5 +189,12 @@ namespace OutAccounting
             archive.Show();
             this.Hide();
         }
+
+        private void statisticButton_Click(object sender, EventArgs e)
+        {
+            statistic statistic = new statistic();
+            statistic.Show();
+            this.Hide();
+        }
     }
 }

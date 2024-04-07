@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +66,12 @@
     </Compile>
     <Compile Include="forms\customers.Designer.cs">
       <DependentUpon>customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\statistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\statistic.Designer.cs">
+      <DependentUpon>statistic.cs</DependentUpon>
     </Compile>
     <Compile Include="other\accountingDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -96,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\customers.resx">
       <DependentUpon>customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\statistic.resx">
+      <DependentUpon>statistic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

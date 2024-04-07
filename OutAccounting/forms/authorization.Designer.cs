@@ -41,6 +41,7 @@
             this.todayLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.archiveButton = new System.Windows.Forms.Button();
             this.tarifsButton = new System.Windows.Forms.Button();
             this.customersButton = new System.Windows.Forms.Button();
             this.accountingButton = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             this.hide_button = new System.Windows.Forms.PictureBox();
             this.showButton = new System.Windows.Forms.PictureBox();
             this.closeAppButton = new System.Windows.Forms.PictureBox();
-            this.archiveButton = new System.Windows.Forms.Button();
+            this.statisticButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).BeginInit();
@@ -180,6 +181,7 @@
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(100)))), ((int)(((byte)(161)))));
+            this.menuPanel.Controls.Add(this.statisticButton);
             this.menuPanel.Controls.Add(this.archiveButton);
             this.menuPanel.Controls.Add(this.tarifsButton);
             this.menuPanel.Controls.Add(this.customersButton);
@@ -189,6 +191,22 @@
             this.menuPanel.Size = new System.Drawing.Size(391, 397);
             this.menuPanel.TabIndex = 4;
             this.menuPanel.Visible = false;
+            // 
+            // archiveButton
+            // 
+            this.archiveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.archiveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.archiveButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archiveButton.ForeColor = System.Drawing.Color.White;
+            this.archiveButton.Location = new System.Drawing.Point(-1, 243);
+            this.archiveButton.Name = "archiveButton";
+            this.archiveButton.Size = new System.Drawing.Size(345, 46);
+            this.archiveButton.TabIndex = 3;
+            this.archiveButton.Text = "Архив";
+            this.archiveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.archiveButton.UseVisualStyleBackColor = false;
+            this.archiveButton.Visible = false;
+            this.archiveButton.Click += new System.EventHandler(this.archiveButton_Click);
             // 
             // tarifsButton
             // 
@@ -288,24 +306,24 @@
             this.closeAppButton.TabStop = false;
             this.closeAppButton.Click += new System.EventHandler(this.close_app_button_Click);
             // 
-            // archiveButton
+            // statisticButton
             // 
-            this.archiveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.archiveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.archiveButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archiveButton.ForeColor = System.Drawing.Color.White;
-            this.archiveButton.Location = new System.Drawing.Point(-1, 243);
-            this.archiveButton.Name = "archiveButton";
-            this.archiveButton.Size = new System.Drawing.Size(345, 46);
-            this.archiveButton.TabIndex = 3;
-            this.archiveButton.Text = "Архив";
-            this.archiveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.archiveButton.UseVisualStyleBackColor = false;
-            this.archiveButton.Visible = false;
-            this.archiveButton.Click += new System.EventHandler(this.archiveButton_Click);
+            this.statisticButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.statisticButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.statisticButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticButton.ForeColor = System.Drawing.Color.White;
+            this.statisticButton.Location = new System.Drawing.Point(-1, 295);
+            this.statisticButton.Name = "statisticButton";
+            this.statisticButton.Size = new System.Drawing.Size(345, 46);
+            this.statisticButton.TabIndex = 4;
+            this.statisticButton.Text = "Статистика";
+            this.statisticButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statisticButton.UseVisualStyleBackColor = false;
+            this.statisticButton.Click += new System.EventHandler(this.statisticButton_Click);
             // 
             // authorization
             // 
+            this.AcceptButton = this.entranceButton;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -341,7 +359,6 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            this.AcceptButton = this.entranceButton;
         }
 
         #endregion
@@ -365,6 +382,7 @@
         private System.Windows.Forms.PictureBox showButton;
         private System.Windows.Forms.PictureBox closeAppButton;
         private System.Windows.Forms.Button archiveButton;
+        private System.Windows.Forms.Button statisticButton;
     }
 }
 
