@@ -22,42 +22,73 @@ namespace OutAccounting.forms
         dataBase dataBase = new dataBase();
         workingWithData wWD = new workingWithData();
 
-        string mainTable = "SELECT Workers.surname as Работник, COUNT(Customers.name) as Клиенты FROM Customers JOIN Workers ON Workers.ID_worker = Customers.worker GROUP BY Workers.surname";
+        string mainTableCustomers = "SELECT Workers.surname as Работник, COUNT(Customers.name) as Клиенты FROM Customers JOIN Workers ON Workers.ID_worker = Customers.worker GROUP BY Workers.surname ORDER BY COUNT(Customers.name) DESC";
+        string sideTableCustomers = $"SELECT Workers.surname as Работник, COUNT(Customers.name) as Клиенты FROM Customers JOIN Workers ON Workers.ID_worker = Customers.worker JOIN Accounting ON Customers.ID_customer = Accounting.customer WHERE start_date >= '01.{DateTime.Today.Month}.{DateTime.Today.Year}' GROUP BY Workers.surname ORDER BY COUNT(Customers.name) DESC";
+
+        string MTCArchive = "SELECT worker as Работник, COUNT(customer) as Клиенты FROM ArchiveAccounting GROUP BY worker ORDER BY COUNT(customer) DESC";
+        string STBArchive = $"SELECT worker as Работник, COUNT(customer) as Клиенты FROM ArchiveAccounting WHERE start_date >= '01.{DateTime.Today.Month}.{DateTime.Today.Year}' GROUP BY worker ORDER BY COUNT(customer) DESC";
+
+        string mainTableTarif = "SELECT Tarifs.name as Тариф, COUNT(Accounting.tarif) as Использование FROM Accounting JOIN Tarifs ON Tarifs.ID_tarif = Accounting.tarif GROUP BY Tarifs.name ORDER BY COUNT(Accounting.tarif) DESC;";
+        string sideTableTarif = $"SELECT Tarifs.name as Тариф, COUNT(Accounting.tarif) as Использование FROM Accounting JOIN Tarifs ON Tarifs.ID_tarif = Accounting.tarif WHERE start_date >= '01.{DateTime.Today.Month}.{DateTime.Today.Year}' GROUP BY Tarifs.name ORDER BY COUNT(Accounting.tarif) DESC;";
+
+        string MTTArchive = "SELECT tarif as Тариф, COUNT(tarif) as Использование FROM ArchiveAccounting GROUP BY tarif ORDER BY COUNT(tarif) DESC";
+        string STTArchive = $"SELECT tarif as Тариф, COUNT(tarif) as Использование FROM ArchiveAccounting WHERE start_date >= '01.{DateTime.Today.Month}.{DateTime.Today.Year}' GROUP BY tarif ORDER BY COUNT(tarif) DESC";
 
         public statistic()
         {
             InitializeComponent();
 
-            wWD.updateTable(mainTable, statisticTable);
+            allTimeRadioButton.Checked = true;
+            choiseComboBox.SelectedIndex = 0;
+            wWD.updateTable(mainTableCustomers, statisticTable);
+            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+        }
 
-            try
+        private void updateTableAndGraphic(Boolean current)
+        {
+            if (current)
             {
-                workersStatistic.Series.Clear();
-                workersStatistic.Series.Add("Количество \nклиентов \nработника");
-
-                for (int i = 0; i < statisticTable.RowCount; i++)
+                switch (choiseComboBox.SelectedIndex)
                 {
-                    var name = statisticTable.Rows[i].Cells[0].Value?.ToString() ?? "";
-                    var value = statisticTable.Rows[i].Cells[1].Value?.ToString() ?? "";
-                    workersStatistic.Series["Количество \nклиентов \nработника"].Points.AddXY(name, value);
+                    case 0:
+                        wWD.updateTable(mainTableCustomers, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+                        break;
+                    case 1:
+                        wWD.updateTable(MTCArchive, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника \nв архиве");
+                        break;
+                    case 2:
+                        wWD.updateTable(mainTableTarif, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
+                        break;
+                    case 3:
+                        wWD.updateTable(MTTArchive, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа \nв архиве");
+                        break;
                 }
-                workersStatistic.Titles.Clear();
-
-                workersStatistic.ChartAreas[0].AxisX.Title = statisticTable.Columns[0].HeaderText;
-                workersStatistic.ChartAreas[0].AxisY.Title = statisticTable.Columns[1].HeaderText;
             }
-
-            catch (ArgumentOutOfRangeException)
+            else
             {
-                MessageBox.Show("Ошибка: Недостаточно столбцов в DataGridView", "Ошибка");
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Ошибка: недопустимые данные в DataGridView", "Ошибка");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка: " + ex.Message, "Ошибка");
+                switch (choiseComboBox.SelectedIndex)
+                {
+                    case 0:
+                        wWD.updateTable(sideTableCustomers, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+                        break;
+                    case 1:
+                        wWD.updateTable(STBArchive, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника \nв архиве");
+                        break;
+                    case 2:
+                        wWD.updateTable(sideTableTarif, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
+                        break;
+                    case 3:
+                        wWD.updateTable(STTArchive, statisticTable);
+                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа \nв архиве");
+                        break;
+                }
             }
         }
 
@@ -82,7 +113,7 @@ namespace OutAccounting.forms
             if (allTimeRadioButton.Checked)
             {
                 currentMonthRadioButton.Checked = false;
-                wWD.updateTable(mainTable, statisticTable);
+                updateTableAndGraphic(true);
             }
         }
 
@@ -91,8 +122,22 @@ namespace OutAccounting.forms
             if (currentMonthRadioButton.Checked)
             {
                 allTimeRadioButton.Checked = false;
-                // доделать
-                wWD.updateTable(mainTable, statisticTable);
+                updateTableAndGraphic(false);
+            }
+        }
+
+        private void choiseComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            allTimeRadioButton.Checked = true;
+            if (allTimeRadioButton.Checked)
+            {
+                currentMonthRadioButton.Checked = false;
+                updateTableAndGraphic(true);
+            }
+            else
+            {
+                allTimeRadioButton.Checked = false;
+                updateTableAndGraphic(false);
             }
         }
     }

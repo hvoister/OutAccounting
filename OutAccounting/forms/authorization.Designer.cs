@@ -41,6 +41,7 @@
             this.todayLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.statisticButton = new System.Windows.Forms.Button();
             this.archiveButton = new System.Windows.Forms.Button();
             this.tarifsButton = new System.Windows.Forms.Button();
             this.customersButton = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.hide_button = new System.Windows.Forms.PictureBox();
             this.showButton = new System.Windows.Forms.PictureBox();
             this.closeAppButton = new System.Windows.Forms.PictureBox();
-            this.statisticButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).BeginInit();
@@ -192,13 +192,28 @@
             this.menuPanel.TabIndex = 4;
             this.menuPanel.Visible = false;
             // 
+            // statisticButton
+            // 
+            this.statisticButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
+            this.statisticButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.statisticButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticButton.ForeColor = System.Drawing.Color.White;
+            this.statisticButton.Location = new System.Drawing.Point(-1, 62);
+            this.statisticButton.Name = "statisticButton";
+            this.statisticButton.Size = new System.Drawing.Size(345, 46);
+            this.statisticButton.TabIndex = 4;
+            this.statisticButton.Text = "Статистика";
+            this.statisticButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statisticButton.UseVisualStyleBackColor = false;
+            this.statisticButton.Click += new System.EventHandler(this.statisticButton_Click);
+            // 
             // archiveButton
             // 
             this.archiveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
             this.archiveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.archiveButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archiveButton.ForeColor = System.Drawing.Color.White;
-            this.archiveButton.Location = new System.Drawing.Point(-1, 243);
+            this.archiveButton.Location = new System.Drawing.Point(-1, 277);
             this.archiveButton.Name = "archiveButton";
             this.archiveButton.Size = new System.Drawing.Size(345, 46);
             this.archiveButton.TabIndex = 3;
@@ -214,7 +229,7 @@
             this.tarifsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.tarifsButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tarifsButton.ForeColor = System.Drawing.Color.White;
-            this.tarifsButton.Location = new System.Drawing.Point(-1, 189);
+            this.tarifsButton.Location = new System.Drawing.Point(-1, 223);
             this.tarifsButton.Name = "tarifsButton";
             this.tarifsButton.Size = new System.Drawing.Size(345, 46);
             this.tarifsButton.TabIndex = 2;
@@ -229,7 +244,7 @@
             this.customersButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.customersButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customersButton.ForeColor = System.Drawing.Color.White;
-            this.customersButton.Location = new System.Drawing.Point(-1, 134);
+            this.customersButton.Location = new System.Drawing.Point(-1, 168);
             this.customersButton.Name = "customersButton";
             this.customersButton.Size = new System.Drawing.Size(345, 46);
             this.customersButton.TabIndex = 1;
@@ -244,7 +259,7 @@
             this.accountingButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.accountingButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accountingButton.ForeColor = System.Drawing.Color.White;
-            this.accountingButton.Location = new System.Drawing.Point(-1, 80);
+            this.accountingButton.Location = new System.Drawing.Point(-1, 114);
             this.accountingButton.Name = "accountingButton";
             this.accountingButton.Size = new System.Drawing.Size(345, 46);
             this.accountingButton.TabIndex = 0;
@@ -305,21 +320,6 @@
             this.closeAppButton.TabIndex = 14;
             this.closeAppButton.TabStop = false;
             this.closeAppButton.Click += new System.EventHandler(this.close_app_button_Click);
-            // 
-            // statisticButton
-            // 
-            this.statisticButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
-            this.statisticButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.statisticButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statisticButton.ForeColor = System.Drawing.Color.White;
-            this.statisticButton.Location = new System.Drawing.Point(-1, 295);
-            this.statisticButton.Name = "statisticButton";
-            this.statisticButton.Size = new System.Drawing.Size(345, 46);
-            this.statisticButton.TabIndex = 4;
-            this.statisticButton.Text = "Статистика";
-            this.statisticButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.statisticButton.UseVisualStyleBackColor = false;
-            this.statisticButton.Click += new System.EventHandler(this.statisticButton_Click);
             // 
             // authorization
             // 

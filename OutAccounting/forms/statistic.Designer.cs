@@ -29,31 +29,34 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(statistic));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bigWindowModeButton = new System.Windows.Forms.PictureBox();
             this.closeAppButton = new System.Windows.Forms.PictureBox();
             this.workersStatistic = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statisticTable = new System.Windows.Forms.DataGridView();
             this.buttonsNamePanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.choiseComboBox = new System.Windows.Forms.ComboBox();
+            this.currentMonthRadioButton = new System.Windows.Forms.RadioButton();
+            this.allTimeRadioButton = new System.Windows.Forms.RadioButton();
             this.appName = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.allTimeRadioButton = new System.Windows.Forms.RadioButton();
-            this.currentMonthRadioButton = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.bigWindowModeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeAppButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workersStatistic)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.statisticTable)).BeginInit();
             this.buttonsNamePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.backButton)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bigWindowModeButton
@@ -89,21 +92,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workersStatistic.BorderlineColor = System.Drawing.Color.Black;
             this.workersStatistic.BorderlineWidth = 3;
-            chartArea3.Name = "ChartArea1";
-            this.workersStatistic.ChartAreas.Add(chartArea3);
-            legend3.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend3.IsTextAutoFit = false;
-            legend3.Name = "Legend1";
-            legend3.TitleFont = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workersStatistic.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.workersStatistic.ChartAreas.Add(chartArea4);
+            legend4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend4.IsTextAutoFit = false;
+            legend4.Name = "Legend1";
+            legend4.TitleFont = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workersStatistic.Legends.Add(legend4);
             this.workersStatistic.Location = new System.Drawing.Point(3, 3);
             this.workersStatistic.Name = "workersStatistic";
-            series3.ChartArea = "ChartArea1";
-            series3.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.workersStatistic.Series.Add(series3);
-            this.workersStatistic.Size = new System.Drawing.Size(870, 542);
+            series4.ChartArea = "ChartArea1";
+            series4.Font = new System.Drawing.Font("Linux Biolinum G", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.workersStatistic.Series.Add(series4);
+            this.workersStatistic.Size = new System.Drawing.Size(782, 523);
             this.workersStatistic.TabIndex = 35;
             this.workersStatistic.Text = "workersStatistic";
             // 
@@ -118,12 +121,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.17997F));
             this.tableLayoutPanel1.Controls.Add(this.workersStatistic, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.statisticTable, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(55, 258);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(125, 273);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1332, 548);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 529F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1198, 529);
             this.tableLayoutPanel1.TabIndex = 36;
             // 
             // statisticTable
@@ -134,37 +137,36 @@
             this.statisticTable.AllowUserToResizeRows = false;
             this.statisticTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.statisticTable.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.statisticTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.statisticTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.statisticTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.statisticTable.DefaultCellStyle = dataGridViewCellStyle8;
-            this.statisticTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.statisticTable.DefaultCellStyle = dataGridViewCellStyle11;
             this.statisticTable.GridColor = System.Drawing.SystemColors.Control;
-            this.statisticTable.Location = new System.Drawing.Point(879, 3);
+            this.statisticTable.Location = new System.Drawing.Point(791, 3);
             this.statisticTable.Name = "statisticTable";
             this.statisticTable.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.statisticTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.statisticTable.Size = new System.Drawing.Size(450, 542);
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Linux Biolinum G", 12F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(126)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.statisticTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.statisticTable.Size = new System.Drawing.Size(404, 500);
             this.statisticTable.TabIndex = 36;
             // 
             // buttonsNamePanel
@@ -180,6 +182,70 @@
             this.buttonsNamePanel.Name = "buttonsNamePanel";
             this.buttonsNamePanel.Size = new System.Drawing.Size(1332, 154);
             this.buttonsNamePanel.TabIndex = 37;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.96234F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.03766F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel2.Controls.Add(this.choiseComboBox, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.currentMonthRadioButton, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.allTimeRadioButton, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(14, 95);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1311, 36);
+            this.tableLayoutPanel2.TabIndex = 15;
+            // 
+            // choiseComboBox
+            // 
+            this.choiseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.choiseComboBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.choiseComboBox.FormattingEnabled = true;
+            this.choiseComboBox.Items.AddRange(new object[] {
+            "Текущие записи",
+            "Записи архива",
+            "Текущая популярность тарифов",
+            "Популярность тарифов в архиве"});
+            this.choiseComboBox.Location = new System.Drawing.Point(3, 3);
+            this.choiseComboBox.Name = "choiseComboBox";
+            this.choiseComboBox.Size = new System.Drawing.Size(838, 35);
+            this.choiseComboBox.TabIndex = 16;
+            this.choiseComboBox.SelectedIndexChanged += new System.EventHandler(this.choiseComboBox_SelectedIndexChanged);
+            // 
+            // currentMonthRadioButton
+            // 
+            this.currentMonthRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.currentMonthRadioButton.AutoSize = true;
+            this.currentMonthRadioButton.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.currentMonthRadioButton.Location = new System.Drawing.Point(1063, 3);
+            this.currentMonthRadioButton.Name = "currentMonthRadioButton";
+            this.currentMonthRadioButton.Size = new System.Drawing.Size(245, 30);
+            this.currentMonthRadioButton.TabIndex = 1;
+            this.currentMonthRadioButton.TabStop = true;
+            this.currentMonthRadioButton.Text = "За текущий месяц";
+            this.currentMonthRadioButton.UseVisualStyleBackColor = true;
+            this.currentMonthRadioButton.CheckedChanged += new System.EventHandler(this.currentMonthRadioButton_CheckedChanged);
+            // 
+            // allTimeRadioButton
+            // 
+            this.allTimeRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.allTimeRadioButton.AutoSize = true;
+            this.allTimeRadioButton.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
+            this.allTimeRadioButton.Location = new System.Drawing.Point(862, 3);
+            this.allTimeRadioButton.Name = "allTimeRadioButton";
+            this.allTimeRadioButton.Size = new System.Drawing.Size(195, 30);
+            this.allTimeRadioButton.TabIndex = 0;
+            this.allTimeRadioButton.TabStop = true;
+            this.allTimeRadioButton.Text = "За всё время";
+            this.allTimeRadioButton.UseVisualStyleBackColor = true;
+            this.allTimeRadioButton.CheckedChanged += new System.EventHandler(this.allTimeRadioButton_CheckedChanged);
             // 
             // appName
             // 
@@ -205,52 +271,16 @@
             this.backButton.Size = new System.Drawing.Size(55, 53);
             this.backButton.TabIndex = 14;
             this.backButton.TabStop = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // tableLayoutPanel2
+            // pictureBox1
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.allTimeRadioButton, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.currentMonthRadioButton, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(827, 95);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(491, 36);
-            this.tableLayoutPanel2.TabIndex = 15;
-            // 
-            // allTimeRadioButton
-            // 
-            this.allTimeRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.allTimeRadioButton.AutoSize = true;
-            this.allTimeRadioButton.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.allTimeRadioButton.Location = new System.Drawing.Point(3, 3);
-            this.allTimeRadioButton.Name = "allTimeRadioButton";
-            this.allTimeRadioButton.Size = new System.Drawing.Size(239, 30);
-            this.allTimeRadioButton.TabIndex = 0;
-            this.allTimeRadioButton.TabStop = true;
-            this.allTimeRadioButton.Text = "За всё время";
-            this.allTimeRadioButton.UseVisualStyleBackColor = true;
-            this.allTimeRadioButton.CheckedChanged += new System.EventHandler(this.allTimeRadioButton_CheckedChanged);
-            // 
-            // currentMonthRadioButton
-            // 
-            this.currentMonthRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentMonthRadioButton.AutoSize = true;
-            this.currentMonthRadioButton.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.currentMonthRadioButton.Location = new System.Drawing.Point(248, 3);
-            this.currentMonthRadioButton.Name = "currentMonthRadioButton";
-            this.currentMonthRadioButton.Size = new System.Drawing.Size(240, 30);
-            this.currentMonthRadioButton.TabIndex = 1;
-            this.currentMonthRadioButton.TabStop = true;
-            this.currentMonthRadioButton.Text = "За текущий месяц";
-            this.currentMonthRadioButton.UseVisualStyleBackColor = true;
-            this.currentMonthRadioButton.CheckedChanged += new System.EventHandler(this.currentMonthRadioButton_CheckedChanged);
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Location = new System.Drawing.Point(55, 258);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1332, 561);
+            this.pictureBox1.TabIndex = 38;
+            this.pictureBox1.TabStop = false;
             // 
             // statistic
             // 
@@ -263,6 +293,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.bigWindowModeButton);
             this.Controls.Add(this.closeAppButton);
+            this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -276,9 +307,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.statisticTable)).EndInit();
             this.buttonsNamePanel.ResumeLayout(false);
             this.buttonsNamePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.backButton)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,5 +328,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.RadioButton allTimeRadioButton;
         private System.Windows.Forms.RadioButton currentMonthRadioButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox choiseComboBox;
     }
 }

@@ -48,12 +48,6 @@ namespace OutAccounting.forms
                 wWD.updateTable(mainTable, accountingTable);
             }
 
-            accountingTable.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            accountingTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            accountingTable.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            accountingTable.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            accountingTable.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
             if (current_user.level == 1)
             {
                 deleteNote.Visible = false;
@@ -357,13 +351,15 @@ namespace OutAccounting.forms
 
                                 wWD.operationsBuilder($"delete from accounting where ID_note = {noteID}");
                                 MessageBox.Show("Создано Согласие на расторжение услуг, данные успешно удалены, копия записи сохранена в архив!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                wWD.updateTable(mainTable, accountingTable);
                             }
                             catch
                             {
                                 MessageBox.Show("Невозможно создать Согласие на расторжение Договора!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }  
-                        }
+                            }
+                        int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                        wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
+                        wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
+                    }
                 }
             }
             else
