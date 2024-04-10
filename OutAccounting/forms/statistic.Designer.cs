@@ -71,6 +71,7 @@
             this.bigWindowModeButton.Size = new System.Drawing.Size(53, 50);
             this.bigWindowModeButton.TabIndex = 33;
             this.bigWindowModeButton.TabStop = false;
+            this.bigWindowModeButton.Click += new System.EventHandler(this.bigWindowModeButton_Click);
             // 
             // closeAppButton
             // 
@@ -106,7 +107,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.workersStatistic.Series.Add(series4);
-            this.workersStatistic.Size = new System.Drawing.Size(782, 523);
+            this.workersStatistic.Size = new System.Drawing.Size(782, 515);
             this.workersStatistic.TabIndex = 35;
             this.workersStatistic.Text = "workersStatistic";
             // 
@@ -126,7 +127,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 529F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1198, 529);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1198, 521);
             this.tableLayoutPanel1.TabIndex = 36;
             // 
             // statisticTable
@@ -135,6 +136,9 @@
             this.statisticTable.AllowUserToDeleteRows = false;
             this.statisticTable.AllowUserToResizeColumns = false;
             this.statisticTable.AllowUserToResizeRows = false;
+            this.statisticTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.statisticTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.statisticTable.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -166,13 +170,12 @@
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.statisticTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.statisticTable.Size = new System.Drawing.Size(404, 500);
+            this.statisticTable.Size = new System.Drawing.Size(404, 515);
             this.statisticTable.TabIndex = 36;
             // 
             // buttonsNamePanel
             // 
-            this.buttonsNamePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.buttonsNamePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonsNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(119)))), ((int)(((byte)(176)))));
             this.buttonsNamePanel.Controls.Add(this.tableLayoutPanel2);
@@ -185,10 +188,12 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.96234F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.03766F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251F));
             this.tableLayoutPanel2.Controls.Add(this.choiseComboBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.currentMonthRadioButton, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.allTimeRadioButton, 1, 0);
@@ -201,6 +206,7 @@
             // 
             // choiseComboBox
             // 
+            this.choiseComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.choiseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.choiseComboBox.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
             this.choiseComboBox.FormattingEnabled = true;
@@ -211,20 +217,19 @@
             "Популярность тарифов в архиве"});
             this.choiseComboBox.Location = new System.Drawing.Point(3, 3);
             this.choiseComboBox.Name = "choiseComboBox";
-            this.choiseComboBox.Size = new System.Drawing.Size(838, 35);
+            this.choiseComboBox.Size = new System.Drawing.Size(852, 35);
             this.choiseComboBox.TabIndex = 16;
             this.choiseComboBox.SelectedIndexChanged += new System.EventHandler(this.choiseComboBox_SelectedIndexChanged);
             // 
             // currentMonthRadioButton
             // 
-            this.currentMonthRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.currentMonthRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.currentMonthRadioButton.AutoSize = true;
             this.currentMonthRadioButton.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.currentMonthRadioButton.Location = new System.Drawing.Point(1063, 3);
+            this.currentMonthRadioButton.Location = new System.Drawing.Point(1085, 3);
             this.currentMonthRadioButton.Name = "currentMonthRadioButton";
-            this.currentMonthRadioButton.Size = new System.Drawing.Size(245, 30);
+            this.currentMonthRadioButton.Size = new System.Drawing.Size(223, 30);
             this.currentMonthRadioButton.TabIndex = 1;
             this.currentMonthRadioButton.TabStop = true;
             this.currentMonthRadioButton.Text = "За текущий месяц";
@@ -233,14 +238,13 @@
             // 
             // allTimeRadioButton
             // 
-            this.allTimeRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.allTimeRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.allTimeRadioButton.AutoSize = true;
             this.allTimeRadioButton.Font = new System.Drawing.Font("Linux Biolinum G", 18F);
-            this.allTimeRadioButton.Location = new System.Drawing.Point(862, 3);
+            this.allTimeRadioButton.Location = new System.Drawing.Point(895, 3);
             this.allTimeRadioButton.Name = "allTimeRadioButton";
-            this.allTimeRadioButton.Size = new System.Drawing.Size(195, 30);
+            this.allTimeRadioButton.Size = new System.Drawing.Size(161, 30);
             this.allTimeRadioButton.TabIndex = 0;
             this.allTimeRadioButton.TabStop = true;
             this.allTimeRadioButton.Text = "За всё время";
@@ -275,6 +279,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(55, 258);
             this.pictureBox1.Name = "pictureBox1";

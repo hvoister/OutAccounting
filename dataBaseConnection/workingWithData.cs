@@ -87,6 +87,7 @@ namespace dataBaseConnection
         {
             try
             {
+                chart.Series[0].Points.Clear();
                 chart.Series.Clear();
                 chart.Series.Add(resultName);
 

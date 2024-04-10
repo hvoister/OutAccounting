@@ -91,7 +91,7 @@ namespace OutAccounting.forms
                 {
                     delete_note.Visible = false;
                     add_button.Visible = false;
-                    if (WindowState != FormWindowState.Maximized) customersDataGridView.Size = new Size(817, 363);
+                    customersDataGridView.Size = new Size(customersDataGridView.Width, customersDataGridView.Height + 50);
                 };
 
 
@@ -139,7 +139,7 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (current_user.level == 1 && (WindowState != FormWindowState.Maximized)) customersDataGridView.Size = new Size(817, 311);
+            if (current_user.level == 1) customersDataGridView.Size = new Size(customersDataGridView.Width, customersDataGridView.Height - 50);
 
             createNewPanel.Visible = false;
             searchPanel.Visible = true;

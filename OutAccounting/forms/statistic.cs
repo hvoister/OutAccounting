@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 using Application = System.Windows.Forms.Application;
+using Font = System.Drawing.Font;
 using Point = System.Drawing.Point;
 
 namespace OutAccounting.forms
@@ -42,52 +43,99 @@ namespace OutAccounting.forms
             choiseComboBox.SelectedIndex = 0;
             wWD.updateTable(mainTableCustomers, statisticTable);
             wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+
+            choiseComboBox.Items.Clear();
+            if (current_user.level == 1)
+            {
+                string[] values = {"Текущие записи", "Записи архива", "Текущая популярность тарифов", "Популярность тарифов в архиве"};
+                choiseComboBox.Items.AddRange(values);
+            }
+            else
+            {
+                string[] values = { "Текущие записи", "Текущая популярность тарифов"};
+                choiseComboBox.Items.AddRange(values);
+            }
+            choiseComboBox.SelectedIndex = 0;
         }
 
         private void updateTableAndGraphic(Boolean current)
         {
-            if (current)
+            if (current_user.level == 1)
             {
-                switch (choiseComboBox.SelectedIndex)
+                if (current)
                 {
-                    case 0:
-                        wWD.updateTable(mainTableCustomers, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
-                        break;
-                    case 1:
-                        wWD.updateTable(MTCArchive, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника \nв архиве");
-                        break;
-                    case 2:
-                        wWD.updateTable(mainTableTarif, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
-                        break;
-                    case 3:
-                        wWD.updateTable(MTTArchive, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа \nв архиве");
-                        break;
+                    switch (choiseComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            wWD.updateTable(mainTableCustomers, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+                            break;
+                        case 1:
+                            wWD.updateTable(MTCArchive, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника \nв архиве");
+                            break;
+                        case 2:
+                            wWD.updateTable(mainTableTarif, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
+                            break;
+                        case 3:
+                            wWD.updateTable(MTTArchive, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа \nв архиве");
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (choiseComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            wWD.updateTable(sideTableCustomers, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+                            break;
+                        case 1:
+                            wWD.updateTable(STBArchive, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника \nв архиве");
+                            break;
+                        case 2:
+                            wWD.updateTable(sideTableTarif, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
+                            break;
+                        case 3:
+                            wWD.updateTable(STTArchive, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа \nв архиве");
+                            break;
+                    }
                 }
             }
             else
             {
-                switch (choiseComboBox.SelectedIndex)
+                if (current)
                 {
-                    case 0:
-                        wWD.updateTable(sideTableCustomers, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
-                        break;
-                    case 1:
-                        wWD.updateTable(STBArchive, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника \nв архиве");
-                        break;
-                    case 2:
-                        wWD.updateTable(sideTableTarif, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
-                        break;
-                    case 3:
-                        wWD.updateTable(STTArchive, statisticTable);
-                        wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа \nв архиве");
-                        break;
+                    switch (choiseComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            wWD.updateTable(mainTableCustomers, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+                            break;
+                        case 1:
+                            wWD.updateTable(mainTableTarif, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (choiseComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            wWD.updateTable(sideTableCustomers, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
+                            break;
+                        case 1:
+                            wWD.updateTable(sideTableTarif, statisticTable);
+                            wWD.graphicPicture(workersStatistic, statisticTable, "Использование \nданного \nтарифа");
+                            break;
+                    }
                 }
             }
         }
@@ -139,6 +187,24 @@ namespace OutAccounting.forms
                 allTimeRadioButton.Checked = false;
                 updateTableAndGraphic(false);
             }
+        }
+
+        private void bigWindowModeButton_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                this.BackgroundImage = Properties.Resources.background_table_big;
+                statisticTable.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+                statisticTable.DefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+                this.BackgroundImage = Properties.Resources.authorization_background;
+                statisticTable.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+                statisticTable.DefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
+            };
         }
     }
 }

@@ -77,7 +77,10 @@ namespace OutAccounting
             }
             else 
             {
-                if (WindowState != FormWindowState.Maximized && (current_user.level == 1 || current_user.level == 0)) tarifsDataGridView.Size = new Size(712, 348);
+                if ((current_user.level == 1 || current_user.level == 0) && searchPanel.Visible == true)
+                {
+                    tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height + 50);
+                }
                 infoPanel.Visible = false;
                 searchOpenButton.Visible = true;
                 searchPanel.Visible = false;
@@ -103,6 +106,7 @@ namespace OutAccounting
 
                     tarifsTableAdapter.Fill(accountingDataSet.Tarifs);
                     infoPanel.Visible=false;
+                    searchOpenButton.Visible = true;
                 }
             }
             catch
@@ -115,17 +119,7 @@ namespace OutAccounting
         {
             Application.Exit();
         }
-
-        private void search_open_Click(object sender, EventArgs e)
-        {
-            if ((current_user.level == 1 || current_user.level == 0))
-            {
-                if (WindowState == FormWindowState.Normal) tarifsDataGridView.Size = new Size(712, 296); 
-            }
-
-            searchPanel.Visible = true;
-            searchOpenButton.Visible = false;
-        }
+        
 
         private void search_text_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -146,6 +140,18 @@ namespace OutAccounting
         private void addTarifButton_Click(object sender, EventArgs e)
         {
             infoPanel.Visible = true;
+            searchOpenButton.Visible = false;
+        }
+
+        private void search_open_Click(object sender, EventArgs e)
+        {
+            if ((current_user.level == 1 || current_user.level == 0))
+            {
+                tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height - 50);
+            }
+
+            searchPanel.Visible = true;
+            searchOpenButton.Visible = false;
         }
 
         private void bigWindowModeButton_Click(object sender, EventArgs e)
@@ -156,7 +162,6 @@ namespace OutAccounting
                 this.BackgroundImage = Properties.Resources.background_table_big;
                 tarifsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
                 tarifsDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 12);
-                if (searchPanel.Visible == true) { tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height + 50); }
             }
             else
             {
@@ -164,7 +169,6 @@ namespace OutAccounting
                 this.BackgroundImage = Properties.Resources.authorization_background;
                 tarifsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
                 tarifsDataGridView.DefaultCellStyle.Font = new Font("Linux Biolinum G", 18);
-                if (searchPanel.Visible == true) { tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height - 50); }
             };
         }
     }

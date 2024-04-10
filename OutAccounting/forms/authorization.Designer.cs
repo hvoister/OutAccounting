@@ -213,7 +213,7 @@
             this.archiveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.archiveButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archiveButton.ForeColor = System.Drawing.Color.White;
-            this.archiveButton.Location = new System.Drawing.Point(-1, 277);
+            this.archiveButton.Location = new System.Drawing.Point(-1, 280);
             this.archiveButton.Name = "archiveButton";
             this.archiveButton.Size = new System.Drawing.Size(345, 46);
             this.archiveButton.TabIndex = 3;
@@ -229,7 +229,7 @@
             this.tarifsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.tarifsButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tarifsButton.ForeColor = System.Drawing.Color.White;
-            this.tarifsButton.Location = new System.Drawing.Point(-1, 223);
+            this.tarifsButton.Location = new System.Drawing.Point(-1, 226);
             this.tarifsButton.Name = "tarifsButton";
             this.tarifsButton.Size = new System.Drawing.Size(345, 46);
             this.tarifsButton.TabIndex = 2;
@@ -244,7 +244,7 @@
             this.customersButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.customersButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customersButton.ForeColor = System.Drawing.Color.White;
-            this.customersButton.Location = new System.Drawing.Point(-1, 168);
+            this.customersButton.Location = new System.Drawing.Point(-1, 171);
             this.customersButton.Name = "customersButton";
             this.customersButton.Size = new System.Drawing.Size(345, 46);
             this.customersButton.TabIndex = 1;
@@ -259,7 +259,7 @@
             this.accountingButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.accountingButton.Font = new System.Drawing.Font("Linux Biolinum G", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accountingButton.ForeColor = System.Drawing.Color.White;
-            this.accountingButton.Location = new System.Drawing.Point(-1, 114);
+            this.accountingButton.Location = new System.Drawing.Point(-1, 117);
             this.accountingButton.Name = "accountingButton";
             this.accountingButton.Size = new System.Drawing.Size(345, 46);
             this.accountingButton.TabIndex = 0;

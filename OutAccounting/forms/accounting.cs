@@ -99,7 +99,7 @@ namespace OutAccounting.forms
                 {
                     deleteNote.Visible = false;
                     addButton.Visible = false;
-                    if (WindowState != FormWindowState.Maximized) accountingTable.Size = new Size(763, 349);
+                    accountingTable.Size = new Size(accountingTable.Width, accountingTable.Height + 55);
                 }
 
                 addPanel.Visible = false;
@@ -370,7 +370,7 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (current_user.level == 1 && (WindowState != FormWindowState.Maximized)) accountingTable.Size = new Size(763, 294);
+            if (current_user.level == 1) accountingTable.Size = new Size(accountingTable.Width, accountingTable.Height - 55);
             searchPanel.Visible = true;
             searchOpenButton.Visible = false;
         }
