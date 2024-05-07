@@ -162,6 +162,11 @@ namespace OutAccounting.forms
                 Application.Exit();
             }
         }
+        private void add_button_Click(object sender, EventArgs e)
+        {
+            createNewPanel.Visible = true;
+            searchOpenButton.Visible = false;
+        }
 
         private void agreecreatebutton_Click(object sender, EventArgs e)
         {
@@ -240,11 +245,6 @@ namespace OutAccounting.forms
             {
                 MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void add_button_Click(object sender, EventArgs e)
-        {
-            createNewPanel.Visible = true;
         }
 
         private void delete_note_Click(object sender, EventArgs e)
