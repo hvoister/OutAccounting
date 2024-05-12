@@ -139,6 +139,7 @@ namespace OutAccounting.forms
                 documentCreateResult = MessageBox.Show("Вы действительно хотите сохранить данные всех клиентов в документ?", "Подтверждение операции", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 tableQuery = $"SELECT ID_archive as [Номер записи], customer as [Клиент], inn as [ИНН], kpp as [КПП], ogrn as [ОГРН], registration_form as [Форма регистрации], worker as [Сотрудник], tarif as [Тариф], start_date as [Дата начала], end_date as [Дата окончания], total as [Итого] FROM ArchiveAccounting;";
             }
+            
             if (documentCreateResult == DialogResult.Yes)
             {
                 try
@@ -175,18 +176,24 @@ namespace OutAccounting.forms
                     }
 
                     DirectoryInfo folder = new DirectoryInfo(pathSave);
+                    object outputFileName = folder;
+                    object fileFormat = WdSaveFormat.wdFormatPDF;
+
                     if (folder.Exists == false)
                     {
                         Directory.CreateDirectory(pathSave);
                     }
                     if (customerName == "")
                     {
-                        oDoc.SaveAs(FileName: folder + $"\\Архив_записей.doc");
+                        outputFileName = folder + $"\\Архив_записей.pdf";
                     }
                     else {
-                        oDoc.SaveAs(FileName: folder + $"\\Архив_записей_{customerName}.doc");
+                        outputFileName = folder + $"\\Архив_записей_{customerName}.pdf";
                     }
-                    oDoc.Close();
+                    oDoc.SaveAs(ref outputFileName, ref fileFormat);
+
+                    object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                    oDoc.Close(ref saveChanges);
                     oWord.Quit();
                     MessageBox.Show("Данные успешно сохранены в документ на рабочем столе в папке Документы_клиентов", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
@@ -194,6 +201,9 @@ namespace OutAccounting.forms
                 {
                     MessageBox.Show("Произошла ошибка импорта данных в документ!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
+
+                
             }
         }
     }

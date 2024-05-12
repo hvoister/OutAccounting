@@ -17,6 +17,7 @@ using Application = System.Windows.Forms.Application;
 using DataTable = System.Data.DataTable;
 using Font = System.Drawing.Font;
 using static System.Windows.Forms.LinkLabel;
+using System.Reflection;
 
 namespace OutAccounting.forms
 {
@@ -170,8 +171,8 @@ namespace OutAccounting.forms
 
         private void agreecreatebutton_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (orgName.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "" ||
                     innMaskedBox.Text.Length != innMaskedBox.Mask.Length || kppMaskedBox.Text.Length != kppMaskedBox.Mask.Length || ogrnMaskedBox.Text.Length != ogrnMaskedBox.Mask.Length)
                 {
@@ -196,8 +197,8 @@ namespace OutAccounting.forms
 
                             wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
 
-                            try
-                            {
+                            //try
+                            //{
                                 Word._Application oWord = new Word.Application();
                                 oWord.Visible = false;
                                 Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
@@ -218,21 +219,27 @@ namespace OutAccounting.forms
                                     pathSave = saveFolder;
                                 }
 
-                                oDoc.SaveAs(FileName: pathSave + $"\\Обработка_данных_{customerName}.doc");
-                                oDoc.Close();
+                                object outputFileName = pathSave + $"\\Обработка_данных_{customerName}.pdf";
+                                object fileFormat = WdSaveFormat.wdFormatPDF;
+
+                                oDoc.SaveAs(ref outputFileName, ref fileFormat);
+
+                                object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                                oDoc.Close(ref saveChanges);
                                 oWord.Quit();
 
                                 MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
-                            }
-                            catch
-                            {
-                                MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            };
+                            //}
+                            //catch
+                            //{
+                            //    MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //};
 
                             wWD.updateTable(mainTable + $" WHERE worker = {seller}", customersDataGridView);
                             wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {seller};", "name", search_text);
 
+                            searchOpenButton.Visible = true;
                             createNewPanel.Visible = false;
                             orgName.Clear();
                             innMaskedBox.Clear();
@@ -240,11 +247,11 @@ namespace OutAccounting.forms
                             ogrnMaskedBox.Clear();
                         }
                     } 
-            }
-            catch
-            {
-                MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void delete_note_Click(object sender, EventArgs e)

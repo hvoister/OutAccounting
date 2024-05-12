@@ -165,8 +165,13 @@ namespace OutAccounting.forms
                     oDoc.Bookmarks["int_curmonth"].Range.Text = months_list[DateTime.Now.Month - 1];
                     oDoc.Bookmarks["int_curyear"].Range.Text = DateTime.Today.Year.ToString();
 
-                    oDoc.SaveAs(FileName: pathSave + $"\\{requestCustomerName}\\Обработка_данных_{requestCustomerName}.doc");
-                    oDoc.Close();
+                    object outputFileName = pathSave + $"\\{requestCustomerName}\\Обработка_данных_{requestCustomerName}.pdf";
+                    object fileFormat = WdSaveFormat.wdFormatPDF;
+
+                    oDoc.SaveAs(ref outputFileName, ref fileFormat);
+
+                    object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                    oDoc.Close(ref saveChanges);
                     oWord.Quit();
                 };
 
@@ -234,10 +239,14 @@ namespace OutAccounting.forms
                                     Directory.CreateDirectory(saveFolder);
                                 }
 
-                                oDoc.SaveAs(FileName: saveFolder + $"\\Предоставление_услуг_{requestCustomerName}_{requestTarifName}.doc");
-                                oDoc.Close();
-                                oWord.Quit();
+                                object outputFileName = saveFolder + $"\\Предоставление_услуг_{requestCustomerName}_{requestTarifName}.pdf";
+                                object fileFormat = WdSaveFormat.wdFormatPDF;
 
+                                oDoc.SaveAs(ref outputFileName, ref fileFormat);
+
+                                object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                                oDoc.Close(ref saveChanges);
+                                oWord.Quit();
                                 MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об оказании услуг!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             }
                             catch
@@ -339,9 +348,14 @@ namespace OutAccounting.forms
                                 {
                                     Directory.CreateDirectory(saveFolder);
                                 }
-                                oDoc.SaveAs(FileName: pathSave + $"\\{customerName}\\Договор\\Отказ_от_оказания_услуг_{customerName}_{tarifName}.doc");
 
-                                oDoc.Close();
+                                object outputFileName = pathSave + $"\\{customerName}\\Договор\\Отказ_от_оказания_услуг_{customerName}_{tarifName}.pdf";
+                                object fileFormat = WdSaveFormat.wdFormatPDF;
+
+                                oDoc.SaveAs(ref outputFileName, ref fileFormat);
+
+                                object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                                oDoc.Close(ref saveChanges);
                                 oWord.Quit();
 
                                 saveFolder = pathSave + $"\\{customerName}";
