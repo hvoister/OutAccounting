@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace dataBaseConnection
 {
-    public class dataBase
+    public class DataBase
     {
         /// <summary>
         /// Класс dataBase открывает, закрывает и получает подключение к базе дынных
         /// </summary>
 
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=DESKTOP-8R9KQAA;Initial Catalog=accounting;Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=localhost;Initial Catalog=4115;Integrated Security=True");
 
             public void openConnection()
             {

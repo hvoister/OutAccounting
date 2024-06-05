@@ -23,8 +23,8 @@ namespace OutAccounting.forms
 {
     public partial class customers : Form
     {
-        dataBase dataBase = new dataBase();
-        workingWithData wWD = new workingWithData();
+        DataBase dataBase = new DataBase();
+        WorkingWithData wWD = new WorkingWithData();
 
         string mainTable = "select Customers.name as [Организация], inn as [ИНН], kpp as [КПП], registration_form as [Форма регистрации], ogrn as [ОГРН], Workers.surname as [Сотрудник] from customers join Workers on worker = Workers.ID_worker";
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
@@ -35,9 +35,9 @@ namespace OutAccounting.forms
         {
             InitializeComponent();
             wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
-            if (current_user.level == 2)
+            if (CurrentUser.level == 2)
             {
-                int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                 wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
                 wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", search_text);
             }
@@ -51,7 +51,7 @@ namespace OutAccounting.forms
                 searchOpenButton.Visible = false;
             };
 
-            if (current_user.level == 1)
+            if (CurrentUser.level == 1)
             {
                 delete_note.Visible = false;
                 add_button.Visible = false;
@@ -78,17 +78,17 @@ namespace OutAccounting.forms
             }
             else
             {
-                if (current_user.level == 1)
+                if (CurrentUser.level == 1)
                 {
                     wWD.updateTable(mainTable, customersDataGridView);
                 }
                 else
                 {
-                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                     wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
                 }
 
-                if (current_user.level == 1)
+                if (CurrentUser.level == 1)
                 {
                     delete_note.Visible = false;
                     add_button.Visible = false;
@@ -140,7 +140,7 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (current_user.level == 1) customersDataGridView.Size = new Size(customersDataGridView.Width, customersDataGridView.Height - 50);
+            if (CurrentUser.level == 1) customersDataGridView.Size = new Size(customersDataGridView.Width, customersDataGridView.Height - 50);
 
             createNewPanel.Visible = false;
             searchPanel.Visible = true;
@@ -171,8 +171,8 @@ namespace OutAccounting.forms
 
         private void agreecreatebutton_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 if (orgName.Text == "" || innMaskedBox.Text == "" || kppMaskedBox.Text == "" || registration_formMaskedBox.Text == "" || ogrnMaskedBox.Text == "" ||
                     innMaskedBox.Text.Length != innMaskedBox.Mask.Length || kppMaskedBox.Text.Length != kppMaskedBox.Mask.Length || ogrnMaskedBox.Text.Length != ogrnMaskedBox.Mask.Length)
                 {
@@ -193,12 +193,12 @@ namespace OutAccounting.forms
                         }
                         else
                         {
-                            int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{current_user.id}'"));
+                            int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{CurrentUser.id}'"));
 
                             wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
 
-                            //try
-                            //{
+                            try
+                            {
                                 Word._Application oWord = new Word.Application();
                                 oWord.Visible = false;
                                 Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\soglas1.dotx");
@@ -230,11 +230,11 @@ namespace OutAccounting.forms
 
                                 MessageBox.Show("Данные успешно добавлены, а также на рабочем столе создан документ об обработке данных клиента!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
-                            //}
-                            //catch
-                            //{
-                            //    MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //};
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            };
 
                             wWD.updateTable(mainTable + $" WHERE worker = {seller}", customersDataGridView);
                             wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {seller};", "name", search_text);
@@ -247,11 +247,11 @@ namespace OutAccounting.forms
                             ogrnMaskedBox.Clear();
                         }
                     } 
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Проверьте корректность введённых данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void delete_note_Click(object sender, EventArgs e)
@@ -280,7 +280,7 @@ namespace OutAccounting.forms
                                 Directory.Delete(customerFolder.ToString(), true);
                             }
                             MessageBox.Show("Данные успешно удалены!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                            int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{current_user.id}'"));
+                            int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{CurrentUser.id}'"));
                             wWD.updateTable(mainTable + $" WHERE worker = {seller}", customersDataGridView);
                             wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {seller};", "name", search_text);
                         }

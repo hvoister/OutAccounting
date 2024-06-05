@@ -23,8 +23,8 @@ namespace OutAccounting.forms
 {
     public partial class accounting : Form
     {
-        dataBase dataBase = new dataBase();
-        workingWithData wWD = new workingWithData();
+        DataBase dataBase = new DataBase();
+        WorkingWithData wWD = new WorkingWithData();
 
         string mainTable = "select Customers.name AS [Клиент], Tarifs.name AS [Тариф], " +
                 "Accounting.start_date as [Дата начала], Accounting.end_date as [Дата окончания], total as [Итого] " +
@@ -37,9 +37,9 @@ namespace OutAccounting.forms
     {
             InitializeComponent();
             wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);
-            if (current_user.level == 2)
+            if (CurrentUser.level == 2)
             {
-                int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                 wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
                 wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
             }
@@ -48,7 +48,7 @@ namespace OutAccounting.forms
                 wWD.updateTable(mainTable, accountingTable);
             }
 
-            if (current_user.level == 1)
+            if (CurrentUser.level == 1)
             {
                 deleteNote.Visible = false;
                 addButton.Visible = false;
@@ -85,9 +85,9 @@ namespace OutAccounting.forms
             }
             else
             {
-                if (current_user.level == 2)
+                if (CurrentUser.level == 2)
                 {
-                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                    int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                     wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
                     wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
                 }
@@ -95,7 +95,7 @@ namespace OutAccounting.forms
                 {
                     wWD.updateTable(mainTable, accountingTable);
                 }
-                if (current_user.level == 1)
+                if (CurrentUser.level == 1)
                 {
                     deleteNote.Visible = false;
                     addButton.Visible = false;
@@ -117,7 +117,7 @@ namespace OutAccounting.forms
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+            int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
             int customersExist = wWD.noteExistsCheck($"SELECT ID_customer FROM customers WHERE worker = {workerID};");
             int tarifsExist = wWD.noteExistsCheck("SELECT ID_tarif FROM tarifs;");
             if (customersExist != 0)
@@ -254,7 +254,7 @@ namespace OutAccounting.forms
                                 MessageBox.Show("Не удалось создать документы для клиента!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
-                        int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                        int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                         wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
                         wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
 
@@ -370,7 +370,7 @@ namespace OutAccounting.forms
                             {
                                 MessageBox.Show("Невозможно создать Согласие на расторжение Договора!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-                        int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {current_user.id};"));
+                        int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                         wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
                         wWD.comboBoxFuller($"SELECT name FROM customers WHERE worker = {workerID};", "name", customerSearchText);
                     }
@@ -384,7 +384,7 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (current_user.level == 1) accountingTable.Size = new Size(accountingTable.Width, accountingTable.Height - 55);
+            if (CurrentUser.level == 1) accountingTable.Size = new Size(accountingTable.Width, accountingTable.Height - 55);
             searchPanel.Visible = true;
             searchOpenButton.Visible = false;
         }

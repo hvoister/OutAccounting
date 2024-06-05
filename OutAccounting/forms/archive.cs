@@ -22,8 +22,8 @@ namespace OutAccounting.forms
 {
     public partial class archive : Form
     {
-        dataBase dataBase = new dataBase();
-        workingWithData wWD = new workingWithData();
+        DataBase dataBase = new DataBase();
+        WorkingWithData wWD = new WorkingWithData();
         string mainTable = "SELECT * FROM ArchiveAccounting";
 
         string pathSave = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\Документы_клиентов";
@@ -77,7 +77,7 @@ namespace OutAccounting.forms
             else
             {
                 wWD.updateTable(mainTable, archiveAccountingDataGridView);
-                if (current_user.level == 1)
+                if (CurrentUser.level == 1)
                 {
                     if (WindowState != FormWindowState.Maximized) archiveAccountingDataGridView.Size = new Size(1531, 512);
                 }
@@ -125,10 +125,11 @@ namespace OutAccounting.forms
 
         private void createDocument_Click(object sender, EventArgs e)
         {
+
             DialogResult documentCreateResult;
             string tableQuery;
             string customerName = "";
-            if (customerSearchText.SelectedItem != null && Convert.ToString(customerSearchText.SelectedItem) != "Все записи") 
+            if (customerSearchText.SelectedItem != null && Convert.ToString(customerSearchText.SelectedItem) != "Все записи")
             {
                 documentCreateResult = MessageBox.Show("Вы действительно хотите сохранить данные выбранного клиента в документ?", "Подтверждение операции", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 customerName = customerSearchText.SelectedItem.ToString();
@@ -139,71 +140,79 @@ namespace OutAccounting.forms
                 documentCreateResult = MessageBox.Show("Вы действительно хотите сохранить данные всех клиентов в документ?", "Подтверждение операции", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 tableQuery = $"SELECT ID_archive as [Номер записи], customer as [Клиент], inn as [ИНН], kpp as [КПП], ogrn as [ОГРН], registration_form as [Форма регистрации], worker as [Сотрудник], tarif as [Тариф], start_date as [Дата начала], end_date as [Дата окончания], total as [Итого] FROM ArchiveAccounting;";
             }
-            
+
             if (documentCreateResult == DialogResult.Yes)
             {
-                try
+                if (archiveAccountingDataGridView.Rows.Count != 0)
                 {
-                    Word._Application oWord = new Word.Application();
-                    oWord.Visible = false;
-                    Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\statistics.dotx");
-
-                    oDoc.Bookmarks["date"].Range.Text = DateTime.Now.Day.ToString();
-                    oDoc.Bookmarks["month"].Range.Text = months_list[DateTime.Now.Month - 1];
-                    oDoc.Bookmarks["year"].Range.Text = DateTime.Now.Year.ToString();
-
-                    dataBase.openConnection();
-                    SqlDataAdapter docTable = new SqlDataAdapter(tableQuery, dataBase.getConnection());
-                    DataTable resultTable = new DataTable();
-                    docTable.Fill(resultTable);
-                    dataBase.closeConnection();
-
-                    Table table = oWord.Application.ActiveDocument.Tables.Add(oWord.Selection.Range, resultTable.Rows.Count + 1, resultTable.Columns.Count, Type.Missing, Type.Missing);
-                    table.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
-                    table.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
-
-                    for (int i = 0; i < resultTable.Columns.Count; i++)
+                    try
                     {
-                        table.Cell(1, i + 1).Range.Text = resultTable.Columns[i].ColumnName;
-                    }
+                        Word._Application oWord = new Word.Application();
+                        oWord.Visible = false;
+                        Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\statistics.dotx");
 
-                    for (int i = 0; i < resultTable.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < resultTable.Columns.Count; j++)
+                        oDoc.Bookmarks["date"].Range.Text = DateTime.Now.Day.ToString();
+                        oDoc.Bookmarks["month"].Range.Text = months_list[DateTime.Now.Month - 1];
+                        oDoc.Bookmarks["year"].Range.Text = DateTime.Now.Year.ToString();
+
+                        dataBase.openConnection();
+                        SqlDataAdapter docTable = new SqlDataAdapter(tableQuery, dataBase.getConnection());
+                        DataTable resultTable = new DataTable();
+                        docTable.Fill(resultTable);
+                        dataBase.closeConnection();
+
+                        Table table = oWord.Application.ActiveDocument.Tables.Add(oWord.Selection.Range, resultTable.Rows.Count + 1, resultTable.Columns.Count, Type.Missing, Type.Missing);
+                        table.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
+                        table.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
+
+                        for (int i = 0; i < resultTable.Columns.Count; i++)
                         {
-                            table.Cell(i + 2, j + 1).Range.Text = resultTable.Rows[i][j].ToString();
+                            table.Cell(1, i + 1).Range.Text = resultTable.Columns[i].ColumnName;
                         }
+
+                        for (int i = 0; i < resultTable.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < resultTable.Columns.Count; j++)
+                            {
+                                table.Cell(i + 2, j + 1).Range.Text = resultTable.Rows[i][j].ToString();
+                            }
+                        }
+
+                        DirectoryInfo folder = new DirectoryInfo(pathSave);
+                        object outputFileName = folder;
+                        object fileFormat = WdSaveFormat.wdFormatPDF;
+
+                        if (folder.Exists == false)
+                        {
+                            Directory.CreateDirectory(pathSave);
+                        }
+                        if (customerName == "")
+                        {
+                            outputFileName = folder + $"\\Архив_записей.pdf";
+                        }
+                        else
+                        {
+                            outputFileName = folder + $"\\Архив_записей_{customerName}.pdf";
+                        }
+                        oDoc.SaveAs(ref outputFileName, ref fileFormat);
+
+                        object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                        oDoc.Close(ref saveChanges);
+                        oWord.Quit();
+                        MessageBox.Show("Данные успешно сохранены в документ на рабочем столе в папке Документы_клиентов", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
-
-                    DirectoryInfo folder = new DirectoryInfo(pathSave);
-                    object outputFileName = folder;
-                    object fileFormat = WdSaveFormat.wdFormatPDF;
-
-                    if (folder.Exists == false)
+                    catch
                     {
-                        Directory.CreateDirectory(pathSave);
+                        MessageBox.Show("Произошла ошибка импорта данных в документ!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    if (customerName == "")
-                    {
-                        outputFileName = folder + $"\\Архив_записей.pdf";
-                    }
-                    else {
-                        outputFileName = folder + $"\\Архив_записей_{customerName}.pdf";
-                    }
-                    oDoc.SaveAs(ref outputFileName, ref fileFormat);
 
-                    object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
-                    oDoc.Close(ref saveChanges);
-                    oWord.Quit();
-                    MessageBox.Show("Данные успешно сохранены в документ на рабочем столе в папке Документы_клиентов", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Произошла ошибка импорта данных в документ!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Нет данных для сохранения в документ!", "Пустая таблица!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
-
-                
             }
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dataBaseConnection
 {
-    public class current_user
+    public class CurrentUser
     {
         public static int id;
         public static string login;

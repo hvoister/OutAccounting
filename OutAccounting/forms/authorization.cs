@@ -20,9 +20,9 @@ namespace OutAccounting
 {
     public partial class authorization : Form
     {
-        public current_user user;
-        dataBase dataBase = new dataBase();
-        workingWithData wWD = new workingWithData();
+        public CurrentUser user;
+        DataBase dataBase = new DataBase();
+        WorkingWithData wWD = new WorkingWithData();
 
         public authorization()
         {
@@ -30,11 +30,11 @@ namespace OutAccounting
 
             todayLabel.Text = Convert.ToString(DateTime.Now.ToString("dd.MM.yyyy")) + " " + Convert.ToString(DateTime.Now.ToString("HH:mm:ss")) + "     ";
 
-            if (current_user.login != "guest" && current_user.login != null)
+            if (CurrentUser.login != "guest" && CurrentUser.login != null)
             {
                 menuPanel.Visible = true;
                 backauthButton.Visible = true;
-                if (current_user.level == 1)
+                if (CurrentUser.level == 1)
                 {
                     archiveButton.Visible = true;
                 }
@@ -70,20 +70,20 @@ namespace OutAccounting
             {
                 if (loginTextBox.Text != "guest")
                 {
-                    current_user.login = loginTextBox.Text.Trim();
-                    current_user.password = passwordTextBox.Text.Trim();
+                    CurrentUser.login = loginTextBox.Text.Trim();
+                    CurrentUser.password = passwordTextBox.Text.Trim();
 
                     try
                     {
-                        int userExists = wWD.noteExistsCheck($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'");
+                        int userExists = wWD.noteExistsCheck($"select ID_account from Auth where login = N'{CurrentUser.login}' and password = N'{CurrentUser.password}'");
                         if (userExists == 1)
                         {
-                            current_user.id = Convert.ToInt32(wWD.executeScalar($"select ID_account from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
-                            current_user.level = Convert.ToInt32(wWD.executeScalar($"Select pass_level from Auth where login = N'{current_user.login}' and password = N'{current_user.password}'"));
+                            CurrentUser.id = Convert.ToInt32(wWD.executeScalar($"select ID_account from Auth where login = N'{CurrentUser.login}' and password = N'{CurrentUser.password}'"));
+                            CurrentUser.level = Convert.ToInt32(wWD.executeScalar($"Select pass_level from Auth where login = N'{CurrentUser.login}' and password = N'{CurrentUser.password}'"));
 
                             MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-                            if (current_user.level == 1)
+                            if (CurrentUser.level == 1)
                             {
                                 archiveButton.Visible = true;
                             }
@@ -112,9 +112,9 @@ namespace OutAccounting
 
         private void tarifs_Click(object sender, EventArgs e)
         {
-            current_user.login = "guest";
-            current_user.password = "guest";
-            current_user.level = 0;
+            CurrentUser.login = "guest";
+            CurrentUser.password = "guest";
+            CurrentUser.level = 0;
 
             tarifs tarifs = new tarifs();
             tarifs.Show();
@@ -125,7 +125,7 @@ namespace OutAccounting
         {
             menuPanel.Visible = false;
             backauthButton.Visible = false;
-            
+            if (CurrentUser.level == 1) archiveButton.Visible = false;
         }
 
         private void tarifs_button_Click(object sender, EventArgs e)

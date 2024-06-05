@@ -11,9 +11,13 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace dataBaseConnection
 {
-    public class workingWithData
+    public class WorkingWithData
     {
-        dataBase dataBase = new dataBase();
+        /// <summary>
+        /// Класс WorkingWithData предназначен для работы с данными базы данных
+        /// </summary>
+
+        DataBase dataBase = new DataBase();
 
         public void operationsBuilder(string query)
         {
@@ -105,15 +109,15 @@ namespace dataBaseConnection
 
             catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show("Ошибка: Недостаточно столбцов в DataGridView", "Ошибка");
+                MessageBox.Show("Ошибка: Недостаточно столбцов в DataGridView", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (FormatException)
             {
-                MessageBox.Show("Ошибка: недопустимые данные в DataGridView", "Ошибка");
+                MessageBox.Show("Ошибка: недопустимые данные в DataGridView", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message, "Ошибка");
+                MessageBox.Show("Обратитесь к администратору для устранения проблемы!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

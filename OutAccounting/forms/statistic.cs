@@ -20,8 +20,8 @@ namespace OutAccounting.forms
 {
     public partial class statistic : Form
     {
-        dataBase dataBase = new dataBase();
-        workingWithData wWD = new workingWithData();
+        DataBase dataBase = new DataBase();
+        WorkingWithData wWD = new WorkingWithData();
 
         string mainTableCustomers = "SELECT Workers.surname as Работник, COUNT(Customers.name) as Клиенты FROM Customers JOIN Workers ON Workers.ID_worker = Customers.worker GROUP BY Workers.surname ORDER BY COUNT(Customers.name) DESC";
         string sideTableCustomers = $"SELECT Workers.surname as Работник, COUNT(Customers.name) as Клиенты FROM Customers JOIN Workers ON Workers.ID_worker = Customers.worker JOIN Accounting ON Customers.ID_customer = Accounting.customer WHERE start_date >= '01.{DateTime.Today.Month}.{DateTime.Today.Year}' GROUP BY Workers.surname ORDER BY COUNT(Customers.name) DESC";
@@ -45,7 +45,7 @@ namespace OutAccounting.forms
             wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
 
             choiseComboBox.Items.Clear();
-            if (current_user.level == 1)
+            if (CurrentUser.level == 1)
             {
                 string[] values = {"Текущие записи", "Записи архива", "Текущая популярность тарифов", "Популярность тарифов в архиве"};
                 choiseComboBox.Items.AddRange(values);
@@ -60,7 +60,7 @@ namespace OutAccounting.forms
 
         private void updateTableAndGraphic(Boolean current)
         {
-            if (current_user.level == 1)
+            if (CurrentUser.level == 1)
             {
                 if (current)
                 {

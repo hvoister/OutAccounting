@@ -17,8 +17,8 @@ namespace OutAccounting
 {
     public partial class tarifs : Form
     {
-        dataBase dataBase = new dataBase();
-        workingWithData wWD = new workingWithData();
+        DataBase dataBase = new DataBase();
+        WorkingWithData wWD = new WorkingWithData();
         public tarifs()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace OutAccounting
             }
             tarifsDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            if (current_user.level != 2)
+            if (CurrentUser.level != 2)
             { 
                 tarifsDataGridView.Size = new Size(712, 348);
                 addTarifButton.Visible = false;
@@ -77,7 +77,7 @@ namespace OutAccounting
             }
             else 
             {
-                if ((current_user.level == 1 || current_user.level == 0) && searchPanel.Visible == true)
+                if ((CurrentUser.level == 1 || CurrentUser.level == 0) && searchPanel.Visible == true)
                 {
                     tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height + 50);
                 }
@@ -145,7 +145,7 @@ namespace OutAccounting
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if ((current_user.level == 1 || current_user.level == 0))
+            if ((CurrentUser.level == 1 || CurrentUser.level == 0))
             {
                 tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height - 50);
             }
