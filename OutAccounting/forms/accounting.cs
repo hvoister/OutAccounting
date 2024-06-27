@@ -37,7 +37,7 @@ namespace OutAccounting.forms
     {
             InitializeComponent();
             wWD.comboBoxFuller($"SELECT name FROM customers;", "name", customerSearchText);
-            if (CurrentUser.level == 2)
+            if (CurrentUser.level == 5)
             {
                 int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                 wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
@@ -48,7 +48,7 @@ namespace OutAccounting.forms
                 wWD.updateTable(mainTable, accountingTable);
             }
 
-            if (CurrentUser.level == 1)
+            if (CurrentUser.level == 4)
             {
                 deleteNote.Visible = false;
                 addButton.Visible = false;
@@ -85,7 +85,7 @@ namespace OutAccounting.forms
             }
             else
             {
-                if (CurrentUser.level == 2)
+                if (CurrentUser.level == 5)
                 {
                     int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                     wWD.updateTable(mainTable + $" WHERE worker = {workerID}", accountingTable);
@@ -95,7 +95,7 @@ namespace OutAccounting.forms
                 {
                     wWD.updateTable(mainTable, accountingTable);
                 }
-                if (CurrentUser.level == 1)
+                if (CurrentUser.level == 4)
                 {
                     deleteNote.Visible = false;
                     addButton.Visible = false;
@@ -198,7 +198,7 @@ namespace OutAccounting.forms
                             int total = tarifPrice * Convert.ToInt32(monthsCountText.Value);
 
                             wWD.operationsBuilder($"insert into accounting (customer, tarif, start_date, end_date, total) values ({customerID}, {tarifID}, '{start}', '{end}', {total});");
-
+                            MessageBox.Show("Данные внесены, ожидайте создания документов!", "Данные внесены", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             try
                             {
                                 int number = Convert.ToInt32(wWD.executeScalar($"Select ID_note from Accounting where customer = {customerID} AND tarif = {tarifID} and start_date = '{start}'"));
@@ -303,10 +303,11 @@ namespace OutAccounting.forms
                             totalPrice = row.Cells[4].Value.ToString();
 
                             string start = startDate.ToString("O");
-                            string end = endDate.ToString("O");
+                            string end = endDate.ToString("O");                            
 
                             try
                             {
+                                MessageBox.Show("Данные удалены, ожидайте создания документов!", "Данные удалены", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 DateTime currentDate = DateTime.Now.ToLocalTime();
 
                                 decimal inn = Convert.ToDecimal(wWD.executeScalar($"SELECT inn FROM customers WHERE name = '{customerName}'"));
@@ -384,7 +385,7 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (CurrentUser.level == 1) accountingTable.Size = new Size(accountingTable.Width, accountingTable.Height - 55);
+            if (CurrentUser.level == 4) accountingTable.Size = new Size(accountingTable.Width, accountingTable.Height - 55);
             searchPanel.Visible = true;
             searchOpenButton.Visible = false;
         }

@@ -45,7 +45,7 @@ namespace OutAccounting.forms
             wWD.graphicPicture(workersStatistic, statisticTable, "Клиенты \nданного \nработника");
 
             choiseComboBox.Items.Clear();
-            if (CurrentUser.level == 1)
+            if (CurrentUser.level == 4)
             {
                 string[] values = {"Текущие записи", "Записи архива", "Текущая популярность тарифов", "Популярность тарифов в архиве"};
                 choiseComboBox.Items.AddRange(values);
@@ -60,7 +60,7 @@ namespace OutAccounting.forms
 
         private void updateTableAndGraphic(Boolean current)
         {
-            if (CurrentUser.level == 1)
+            if (CurrentUser.level == 4)
             {
                 if (current)
                 {

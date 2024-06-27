@@ -29,7 +29,7 @@ namespace OutAccounting
             }
             tarifsDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            if (CurrentUser.level != 2)
+            if (CurrentUser.level != 5)
             { 
                 tarifsDataGridView.Size = new Size(712, 348);
                 addTarifButton.Visible = false;
@@ -77,7 +77,7 @@ namespace OutAccounting
             }
             else 
             {
-                if ((CurrentUser.level == 1 || CurrentUser.level == 0) && searchPanel.Visible == true)
+                if ((CurrentUser.level == 4 || CurrentUser.level == 0) && searchPanel.Visible == true)
                 {
                     tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height + 50);
                 }
@@ -145,7 +145,7 @@ namespace OutAccounting
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if ((CurrentUser.level == 1 || CurrentUser.level == 0))
+            if ((CurrentUser.level == 4 || CurrentUser.level == 0))
             {
                 tarifsDataGridView.Size = new Size(tarifsDataGridView.Width, tarifsDataGridView.Height - 50);
             }

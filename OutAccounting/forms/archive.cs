@@ -77,11 +77,10 @@ namespace OutAccounting.forms
             else
             {
                 wWD.updateTable(mainTable, archiveAccountingDataGridView);
-                if (CurrentUser.level == 1)
+                if ((CurrentUser.level == 4 || CurrentUser.level == 0) && searchPanel.Visible == true)
                 {
-                    if (WindowState != FormWindowState.Maximized) archiveAccountingDataGridView.Size = new Size(1531, 512);
+                    archiveAccountingDataGridView.Size = new Size(archiveAccountingDataGridView.Width, archiveAccountingDataGridView.Height + 60);
                 }
-
                 searchPanel.Visible = false;
                 searchOpenButton.Visible = true;
                 
@@ -105,7 +104,10 @@ namespace OutAccounting.forms
 
         private void searchOpenButton_Click(object sender, EventArgs e)
         {
-            if (WindowState != FormWindowState.Maximized) archiveAccountingDataGridView.Size = new Size(1531, 450);
+            if ((CurrentUser.level == 4 || CurrentUser.level == 0))
+            {
+                archiveAccountingDataGridView.Size = new Size(archiveAccountingDataGridView.Width, archiveAccountingDataGridView.Height - 60);
+            }
             searchPanel.Visible = true;
             searchOpenButton.Visible = false;
         }
@@ -147,6 +149,7 @@ namespace OutAccounting.forms
                 {
                     try
                     {
+                        MessageBox.Show("Ожидайте создания документов!", "Создание документов", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         Word._Application oWord = new Word.Application();
                         oWord.Visible = false;
                         Word._Document oDoc = oWord.Documents.Open(Environment.CurrentDirectory + "\\statistics.dotx");

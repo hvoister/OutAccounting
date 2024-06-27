@@ -35,7 +35,7 @@ namespace OutAccounting.forms
         {
             InitializeComponent();
             wWD.comboBoxFuller("SELECT name FROM customers;", "name", search_text);
-            if (CurrentUser.level == 2)
+            if (CurrentUser.level == 5)
             {
                 int workerID = Convert.ToInt32(wWD.executeScalar($"SELECT ID_worker FROM Workers WHERE account = {CurrentUser.id};"));
                 wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
@@ -51,7 +51,7 @@ namespace OutAccounting.forms
                 searchOpenButton.Visible = false;
             };
 
-            if (CurrentUser.level == 1)
+            if (CurrentUser.level == 4)
             {
                 delete_note.Visible = false;
                 add_button.Visible = false;
@@ -78,7 +78,7 @@ namespace OutAccounting.forms
             }
             else
             {
-                if (CurrentUser.level == 1)
+                if (CurrentUser.level == 4)
                 {
                     wWD.updateTable(mainTable, customersDataGridView);
                 }
@@ -88,7 +88,7 @@ namespace OutAccounting.forms
                     wWD.updateTable(mainTable + $" WHERE worker = {workerID}", customersDataGridView);
                 }
 
-                if (CurrentUser.level == 1)
+                if (CurrentUser.level == 4)
                 {
                     delete_note.Visible = false;
                     add_button.Visible = false;
@@ -140,7 +140,7 @@ namespace OutAccounting.forms
 
         private void search_open_Click(object sender, EventArgs e)
         {
-            if (CurrentUser.level == 1) customersDataGridView.Size = new Size(customersDataGridView.Width, customersDataGridView.Height - 50);
+            if (CurrentUser.level == 4) customersDataGridView.Size = new Size(customersDataGridView.Width, customersDataGridView.Height - 50);
 
             createNewPanel.Visible = false;
             searchPanel.Visible = true;
@@ -196,6 +196,7 @@ namespace OutAccounting.forms
                             int seller = Convert.ToInt32(wWD.executeScalar($"select id_worker from workers where account = '{CurrentUser.id}'"));
 
                             wWD.operationsBuilder($"insert into Customers (name, inn, kpp, ogrn, registration_form, worker) values (N'{customerName}', {inn} , {kpp}, {ogrn}, N'{registr}', {seller})");
+                            MessageBox.Show("Данные внесены, ожидайте создания документов!", "Данные внесены", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                             try
                             {

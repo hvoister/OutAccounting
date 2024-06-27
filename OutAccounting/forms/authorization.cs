@@ -34,7 +34,7 @@ namespace OutAccounting
             {
                 menuPanel.Visible = true;
                 backauthButton.Visible = true;
-                if (CurrentUser.level == 1)
+                if (CurrentUser.level == 4)
                 {
                     archiveButton.Visible = true;
                 }
@@ -83,7 +83,7 @@ namespace OutAccounting
 
                             MessageBox.Show($"Вы успешно вошли в свой аккаунт!", "Успех входа в аккаунт!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-                            if (CurrentUser.level == 1)
+                            if (CurrentUser.level == 4)
                             {
                                 archiveButton.Visible = true;
                             }
@@ -125,7 +125,7 @@ namespace OutAccounting
         {
             menuPanel.Visible = false;
             backauthButton.Visible = false;
-            if (CurrentUser.level == 1) archiveButton.Visible = false;
+            if (CurrentUser.level == 4) archiveButton.Visible = false;
         }
 
         private void tarifs_button_Click(object sender, EventArgs e)
